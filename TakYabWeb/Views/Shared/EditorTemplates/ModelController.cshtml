@@ -1,0 +1,23 @@
+﻿@model Guid?
+
+@{
+    var colourController =  new TakYab.Areas.Advertising.Controllers.ColourController();
+    var colours = colourController.GetColours();
+    ViewBag.Colours = colours;
+    ViewBag.DropDownId = Guid.NewGuid();
+}
+
+<div style="display:inline-block;width:100%;">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="@(ViewBag.DropDownId)" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="@(ViewBag.DropDownId)">
+            @foreach (var item in ViewBag.Colours)
+            {
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@(item.Name)</a></li>
+            }
+        </ul>
+    </div>
+</div>

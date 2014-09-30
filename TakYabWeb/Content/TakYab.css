@@ -1,0 +1,134 @@
+﻿html, body {
+    height: 99%;
+}
+
+body {
+    direction: rtl;
+    border: none;
+}
+
+
+div#body {
+    clear: both;
+    padding: 60px 0 0 0;
+    min-height: 600px;
+}
+
+a:hover {
+    border: none;
+}
+
+.carList tr th {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.carList tbody tr td {
+    vertical-align: middle !important;
+}
+
+
+div.dropdown {
+    float: right;
+}
+
+ 
+
+footer {
+    width: 100%;
+    display:inline-block;
+    /*position: absolute;
+    bottom: 0;*/
+}
+
+.footerLogoList {
+    text-align: center;
+}
+
+.footerItem {
+    padding-top: 10px;
+    display: inline-block;
+}
+
+
+.dropdown-menu > li > a {
+    text-align: right;
+}
+
+#carCarousel {
+    float: left;
+}
+
+
+.navbar-nav li {
+}
+
+    .navbar-brand,
+    .navbar-nav li a {
+        line-height: 50px;
+        height: 50px;
+        padding-top: 0;
+        vertical-align: middle;
+    }
+
+.editor-field {
+    padding: 0 0 10px 0;
+}
+
+    .editor-field select,
+    .display-label select {
+        min-width: 300px;
+        padding: 5px;
+        border: 1px solid #e2e2e2;
+    }
+
+.editor-label,
+.display-label {
+    padding: 10px 0 0px 0;
+    font-weight: bold;
+}
+
+
+.buttonsContainer {
+    padding: 10px 0 0px 0;
+}
+
+.formPanel {
+    vertical-align: top;
+    width: 100%;
+}
+
+.leftSidePanel {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+}
+
+
+.rightSidePanel {
+    display: inline-block;
+    vertical-align: top;
+    width: 55%;
+}
+
+.searchPanel {
+    width:500px;
+    display:inline-block;
+}
+
+.searchPanel .btn {
+    width:100px;
+}
+.searchItem{
+    padding:5px 0 5px 0;
+    display:inline-block;
+    height:100%;
+}
+.searchTitle{
+    width:80px;
+    text-align:left;
+    font-weight:bold;
+}
+
+.editor-field .multi-line {
+}

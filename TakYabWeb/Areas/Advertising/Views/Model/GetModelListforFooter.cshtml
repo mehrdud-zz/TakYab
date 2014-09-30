@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DataLayer.Model>
+
+<div class="footerLogoList">
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="footerItem">
+                <a href="#">
+                    <img src="~/Content/Models/@(item.ModelId).png" alt="@(item.Name)">
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TakYabModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdStatus">
+          <Key>
+            <PropertyRef Name="AdStatusId" />
+          </Key>
+          <Property Name="AdStatusId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="CssCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AdType">
+          <Key>
+            <PropertyRef Name="AdTypeId" />
+          </Key>
+          <Property Name="AdTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="BuildYear">
+          <Key>
+            <PropertyRef Name="BuildYearId" />
+          </Key>
+          <Property Name="BuildYearId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubModelId" Type="uniqueidentifier" />
+          <Property Name="ProvinceId" Type="uniqueidentifier" />
+          <Property Name="AdTypeId" Type="uniqueidentifier" />
+          <Property Name="BuildYearId" Type="uniqueidentifier" />
+          <Property Name="PriceBandId" Type="uniqueidentifier" />
+          <Property Name="PriorityId" Type="uniqueidentifier" />
+          <Property Name="AdStatusId" Type="uniqueidentifier" />
+          <Property Name="OutsideColourId" Type="uniqueidentifier" />
+          <Property Name="InsideColourId" Type="uniqueidentifier" />
+          <Property Name="FuelTypeId" Type="uniqueidentifier" />
+          <Property Name="InsuranceTypeId" Type="uniqueidentifier" />
+          <Property Name="CarStatusId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="AdCreatedDate" Type="datetime" />
+          <Property Name="AdValidUntil" Type="datetime" />
+          <Property Name="GearType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageURI1" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageURI2" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageURI3" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageURI4" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageURI5" Type="nvarchar" MaxLength="500" />
+          <Property Name="Milage" Type="bigint" />
+        </EntityType>
+        <EntityType Name="CarStatus">
+          <Key>
+            <PropertyRef Name="CarStatusId" />
+          </Key>
+          <Property Name="CarStatusId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Colour">
+          <Key>
+            <PropertyRef Name="ColourId" />
+          </Key>
+          <Property Name="ColourId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Code" Type="nvarchar" MaxLength="200" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="FuelType">
+          <Key>
+            <PropertyRef Name="FuelTypeId" />
+          </Key>
+          <Property Name="FuelTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Code" Type="nchar" MaxLength="10" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="InsuranceType">
+          <Key>
+            <PropertyRef Name="InsuranceTypeId" />
+          </Key>
+          <Property Name="InsuranceTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="SubNav" Type="bit" />
+        </EntityType>
+        <EntityType Name="PriceRange">
+          <Key>
+            <PropertyRef Name="PriceBandId" />
+          </Key>
+          <Property Name="PriceBandId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartRange" Type="money" />
+          <Property Name="EndRange" Type="money" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceId" />
+          </Key>
+          <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="SubModel">
+          <Key>
+            <PropertyRef Name="SubModelId" />
+          </Key>
+          <Property Name="SubModelId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModelId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <Association Name="FK_Car_AdStatus">
+          <End Role="AdStatus" Type="Self.AdStatus" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdStatus">
+              <PropertyRef Name="AdStatusId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="AdStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_AdType">
+          <End Role="AdType" Type="Self.AdType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdType">
+              <PropertyRef Name="AdTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="AdTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_BuildYear">
+          <End Role="BuildYear" Type="Self.BuildYear" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildYear">
+              <PropertyRef Name="BuildYearId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="BuildYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_CarStatus">
+          <End Role="CarStatus" Type="Self.CarStatus" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarStatus">
+              <PropertyRef Name="CarStatusId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="CarStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_FuelType">
+          <End Role="FuelType" Type="Self.FuelType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="FuelTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_InsuranceType">
+          <End Role="InsuranceType" Type="Self.InsuranceType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceType">
+              <PropertyRef Name="InsuranceTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="InsuranceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_PriceRange">
+          <End Role="PriceRange" Type="Self.PriceRange" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceRange">
+              <PropertyRef Name="PriceBandId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PriceBandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PriorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="ProvinceId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_SubModel">
+          <End Role="SubModel" Type="Self.SubModel" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModel">
+              <PropertyRef Name="SubModelId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="SubModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubModel_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubModel" Type="Self.SubModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="SubModel">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TakYabModelStoreContainer">
+          <EntitySet Name="AdStatus" EntityType="Self.AdStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdType" EntityType="Self.AdType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildYear" EntityType="Self.BuildYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarStatus" EntityType="Self.CarStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colour" EntityType="Self.Colour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceType" EntityType="Self.InsuranceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceRange" EntityType="Self.PriceRange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubModel" EntityType="Self.SubModel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Car_AdStatus" Association="Self.FK_Car_AdStatus">
+            <End Role="AdStatus" EntitySet="AdStatus" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_AdType" Association="Self.FK_Car_AdType">
+            <End Role="AdType" EntitySet="AdType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_BuildYear" Association="Self.FK_Car_BuildYear">
+            <End Role="BuildYear" EntitySet="BuildYear" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_CarStatus" Association="Self.FK_Car_CarStatus">
+            <End Role="CarStatus" EntitySet="CarStatus" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_FuelType" Association="Self.FK_Car_FuelType">
+            <End Role="FuelType" EntitySet="FuelType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_InsuranceType" Association="Self.FK_Car_InsuranceType">
+            <End Role="InsuranceType" EntitySet="InsuranceType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_PriceRange" Association="Self.FK_Car_PriceRange">
+            <End Role="PriceRange" EntitySet="PriceRange" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Priority" Association="Self.FK_Car_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Province" Association="Self.FK_Car_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_SubModel" Association="Self.FK_Car_SubModel">
+            <End Role="SubModel" EntitySet="SubModel" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubModel_Model" Association="Self.FK_SubModel_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="SubModel" EntitySet="SubModel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TakYabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdType">
+          <Key>
+            <PropertyRef Name="AdTypeId" />
+          </Key>
+          <Property Name="AdTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_AdType" FromRole="AdType" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="BuildYear">
+          <Key>
+            <PropertyRef Name="BuildYearId" />
+          </Key>
+          <Property Name="BuildYearId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_BuildYear" FromRole="BuildYear" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="SubModels" Relationship="Self.FK_SubModel_Model" FromRole="Model" ToRole="SubModel" />
+          <Property Name="SubNav" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PriceRange">
+          <Key>
+            <PropertyRef Name="PriceBandId" />
+          </Key>
+          <Property Name="PriceBandId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartRange" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EndRange" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="PriceRange" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_Priority" FromRole="Priority" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceId" />
+          </Key>
+          <Property Name="ProvinceId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_Province" FromRole="Province" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="SubModel">
+          <Key>
+            <PropertyRef Name="SubModelId" />
+          </Key>
+          <Property Name="SubModelId" Type="Guid" Nullable="false" />
+          <Property Name="ModelId" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_SubModel_Model" FromRole="SubModel" ToRole="Model" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_SubModel" FromRole="SubModel" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_SubModel_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubModel" Type="Self.SubModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="SubModel">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TakYabEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdTypes" EntityType="Self.AdType" />
+          <EntitySet Name="BuildYears" EntityType="Self.BuildYear" />
+          <EntitySet Name="Models" EntityType="Self.Model" />
+          <EntitySet Name="PriceRanges" EntityType="Self.PriceRange" />
+          <EntitySet Name="Priorities" EntityType="Self.Priority" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="SubModels" EntityType="Self.SubModel" />
+          <AssociationSet Name="FK_SubModel_Model" Association="Self.FK_SubModel_Model">
+            <End Role="Model" EntitySet="Models" />
+            <End Role="SubModel" EntitySet="SubModels" />
+          </AssociationSet>
+          <EntitySet Name="AdStatus" EntityType="TakYabModel.AdStatus" />
+          <EntitySet Name="Colours" EntityType="TakYabModel.Colour" />
+          <EntitySet Name="InsuranceTypes" EntityType="TakYabModel.InsuranceType" />
+          <EntitySet Name="Cars" EntityType="TakYabModel.Car" />
+          <AssociationSet Name="FK_Car_AdStatus" Association="TakYabModel.FK_Car_AdStatus">
+            <End Role="AdStatus" EntitySet="AdStatus" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_AdType" Association="TakYabModel.FK_Car_AdType">
+            <End Role="AdType" EntitySet="AdTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_BuildYear" Association="TakYabModel.FK_Car_BuildYear">
+            <End Role="BuildYear" EntitySet="BuildYears" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_InsuranceType" Association="TakYabModel.FK_Car_InsuranceType">
+            <End Role="InsuranceType" EntitySet="InsuranceTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_PriceRange" Association="TakYabModel.FK_Car_PriceRange">
+            <End Role="PriceRange" EntitySet="PriceRanges" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Priority" Association="TakYabModel.FK_Car_Priority">
+            <End Role="Priority" EntitySet="Priorities" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Province" Association="TakYabModel.FK_Car_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_SubModel" Association="TakYabModel.FK_Car_SubModel">
+            <End Role="SubModel" EntitySet="SubModels" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <EntitySet Name="FuelTypes" EntityType="TakYabModel.FuelType" />
+          <AssociationSet Name="FK_Car_FuelType" Association="TakYabModel.FK_Car_FuelType">
+            <End Role="FuelType" EntitySet="FuelTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <EntitySet Name="CarStatus" EntityType="TakYabModel.CarStatu" />
+          <AssociationSet Name="FK_Car_CarStatus" Association="TakYabModel.FK_Car_CarStatus">
+            <End Role="CarStatu" EntitySet="CarStatus" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AdStatus">
+          <Key>
+            <PropertyRef Name="AdStatusId" />
+          </Key>
+          <Property Name="AdStatusId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="CssCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_AdStatus" FromRole="AdStatus" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Colour">
+          <Key>
+            <PropertyRef Name="ColourId" />
+          </Key>
+          <Property Name="ColourId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InsuranceType">
+          <Key>
+            <PropertyRef Name="InsuranceTypeId" />
+          </Key>
+          <Property Name="InsuranceTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_InsuranceType" FromRole="InsuranceType" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="Guid" Nullable="false" />
+          <Property Name="SubModelId" Type="Guid" />
+          <Property Name="ProvinceId" Type="Guid" />
+          <Property Name="AdTypeId" Type="Guid" />
+          <Property Name="BuildYearId" Type="Guid" />
+          <Property Name="PriceBandId" Type="Guid" />
+          <Property Name="PriorityId" Type="Guid" />
+          <Property Name="AdStatusId" Type="Guid" />
+          <Property Name="OutsideColourId" Type="Guid" />
+          <Property Name="InsideColourId" Type="Guid" />
+          <Property Name="FuelTypeId" Type="Guid" />
+          <Property Name="InsuranceTypeId" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="AdCreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AdValidUntil" Type="DateTime" Precision="3" />
+          <Property Name="GearType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURI1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURI2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURI3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURI4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageURI5" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Milage" Type="Int64" />
+          <NavigationProperty Name="AdStatus" Relationship="TakYabModel.FK_Car_AdStatus" FromRole="Car" ToRole="AdStatus" />
+          <NavigationProperty Name="AdType" Relationship="TakYabModel.FK_Car_AdType" FromRole="Car" ToRole="AdType" />
+          <NavigationProperty Name="BuildYear" Relationship="TakYabModel.FK_Car_BuildYear" FromRole="Car" ToRole="BuildYear" />
+          <NavigationProperty Name="InsuranceType" Relationship="TakYabModel.FK_Car_InsuranceType" FromRole="Car" ToRole="InsuranceType" />
+          <NavigationProperty Name="PriceRange" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="Car" ToRole="PriceRange" />
+          <NavigationProperty Name="Priority" Relationship="TakYabModel.FK_Car_Priority" FromRole="Car" ToRole="Priority" />
+          <NavigationProperty Name="Province" Relationship="TakYabModel.FK_Car_Province" FromRole="Car" ToRole="Province" />
+          <NavigationProperty Name="SubModel" Relationship="TakYabModel.FK_Car_SubModel" FromRole="Car" ToRole="SubModel" />
+          <NavigationProperty Name="FuelType" Relationship="TakYabModel.FK_Car_FuelType" FromRole="Car" ToRole="FuelType" />
+          <Property Name="CarStatusId" Type="Guid" />
+          <NavigationProperty Name="CarStatus" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="Car" ToRole="CarStatu" />
+        </EntityType>
+        <Association Name="FK_Car_AdStatus">
+          <End Type="TakYabModel.AdStatus" Role="AdStatus" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdStatus">
+              <PropertyRef Name="AdStatusId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="AdStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_AdType">
+          <End Type="TakYabModel.AdType" Role="AdType" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdType">
+              <PropertyRef Name="AdTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="AdTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_BuildYear">
+          <End Type="TakYabModel.BuildYear" Role="BuildYear" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildYear">
+              <PropertyRef Name="BuildYearId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="BuildYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_InsuranceType">
+          <End Type="TakYabModel.InsuranceType" Role="InsuranceType" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceType">
+              <PropertyRef Name="InsuranceTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="InsuranceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_PriceRange">
+          <End Type="TakYabModel.PriceRange" Role="PriceRange" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceRange">
+              <PropertyRef Name="PriceBandId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PriceBandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Priority">
+          <End Type="TakYabModel.Priority" Role="Priority" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PriorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Province">
+          <End Type="TakYabModel.Province" Role="Province" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="ProvinceId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_SubModel">
+          <End Type="TakYabModel.SubModel" Role="SubModel" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubModel">
+              <PropertyRef Name="SubModelId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="SubModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FuelType">
+          <Key>
+            <PropertyRef Name="FuelTypeId" />
+          </Key>
+          <Property Name="FuelTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_FuelType" FromRole="FuelType" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_Car_FuelType">
+          <End Type="TakYabModel.FuelType" Role="FuelType" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="FuelTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CarStatu">
+          <Key>
+            <PropertyRef Name="CarStatusId" />
+          </Key>
+          <Property Name="CarStatusId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="CarStatu" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_Car_CarStatus">
+          <End Type="TakYabModel.CarStatu" Role="CarStatu" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarStatu">
+              <PropertyRef Name="CarStatusId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="CarStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TakYabModelStoreContainer" CdmEntityContainer="TakYabEntities">
+          <EntitySetMapping Name="AdTypes">
+            <EntityTypeMapping TypeName="TakYabModel.AdType">
+              <MappingFragment StoreEntitySet="AdType">
+                <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildYears">
+            <EntityTypeMapping TypeName="TakYabModel.BuildYear">
+              <MappingFragment StoreEntitySet="BuildYear">
+                <ScalarProperty Name="BuildYearId" ColumnName="BuildYearId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="TakYabModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="SubNav" ColumnName="SubNav" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceRanges">
+            <EntityTypeMapping TypeName="TakYabModel.PriceRange">
+              <MappingFragment StoreEntitySet="PriceRange">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="PriceBandId" ColumnName="PriceBandId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartRange" ColumnName="StartRange" />
+                <ScalarProperty Name="EndRange" ColumnName="EndRange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priorities">
+            <EntityTypeMapping TypeName="TakYabModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="TakYabModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubModels">
+            <EntityTypeMapping TypeName="TakYabModel.SubModel">
+              <MappingFragment StoreEntitySet="SubModel">
+                <ScalarProperty Name="SubModelId" ColumnName="SubModelId" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdStatus">
+            <EntityTypeMapping TypeName="TakYabModel.AdStatus">
+              <MappingFragment StoreEntitySet="AdStatus">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CssCode" ColumnName="CssCode" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdStatusId" ColumnName="AdStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colours">
+            <EntityTypeMapping TypeName="TakYabModel.Colour">
+              <MappingFragment StoreEntitySet="Colour">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ColourId" ColumnName="ColourId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceTypes">
+            <EntityTypeMapping TypeName="TakYabModel.InsuranceType">
+              <MappingFragment StoreEntitySet="InsuranceType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsuranceTypeId" ColumnName="InsuranceTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="TakYabModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
+                <ScalarProperty Name="Milage" ColumnName="Milage" />
+                <ScalarProperty Name="ImageURI5" ColumnName="ImageURI5" />
+                <ScalarProperty Name="ImageURI4" ColumnName="ImageURI4" />
+                <ScalarProperty Name="ImageURI3" ColumnName="ImageURI3" />
+                <ScalarProperty Name="ImageURI2" ColumnName="ImageURI2" />
+                <ScalarProperty Name="ImageURI1" ColumnName="ImageURI1" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="GearType" ColumnName="GearType" />
+                <ScalarProperty Name="AdValidUntil" ColumnName="AdValidUntil" />
+                <ScalarProperty Name="AdCreatedDate" ColumnName="AdCreatedDate" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsuranceTypeId" ColumnName="InsuranceTypeId" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
+                <ScalarProperty Name="InsideColourId" ColumnName="InsideColourId" />
+                <ScalarProperty Name="OutsideColourId" ColumnName="OutsideColourId" />
+                <ScalarProperty Name="AdStatusId" ColumnName="AdStatusId" />
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="PriceBandId" ColumnName="PriceBandId" />
+                <ScalarProperty Name="BuildYearId" ColumnName="BuildYearId" />
+                <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="SubModelId" ColumnName="SubModelId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuelTypes">
+            <EntityTypeMapping TypeName="TakYabModel.FuelType">
+              <MappingFragment StoreEntitySet="FuelType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarStatus">
+            <EntityTypeMapping TypeName="TakYabModel.CarStatu">
+              <MappingFragment StoreEntitySet="CarStatus">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

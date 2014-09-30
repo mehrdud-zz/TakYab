@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div id="searchResullts"></div>
+<table>
+    <tr>
+        <td>
+            @Html.Action("SearchComponent", "Search", new { area = "Advertising" })
+
+
+        </td>
+        <td>
+            @Html.Action("CarRotator", "Search", new { area = "Advertising" })
+
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @Html.Action("ListCars", "Car", new { area = "Ads" })
+
+        </td>
+    </tr>
+</table>
+
+
+

@@ -1,0 +1,270 @@
+﻿@model DataLayer.Car
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>آگهی جدید</h2>
+
+@using (Html.BeginForm("Create", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Car</legend> 
+        <div class="formPanel ">
+            <div class="rightSidePanel panel panel-primary ">
+                <div class="panel-heading">اطلاعات خودرو</div>
+                <div class=" panel-body">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CarStatusId)
+                    </div>
+                    <div class="editor-field">
+                     @Html.DropDownListFor(model => model.CarStatusId, ((SelectList)ViewBag.CarStatusId))
+                    @Html.ValidationMessageFor(model => model.CarStatusId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProvinceId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ProvinceId, ((SelectList)ViewBag.ProvinceId))
+                        @Html.ValidationMessageFor(model => model.ProvinceId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SubModelId)
+                    </div>
+                    <div class="editor-field">
+                        <table cellspacing="2px">
+                            <tr>
+                                <td>
+                                    @Html.DropDownList("ModelId", ((SelectList)ViewBag.ModelId), "", new { })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="SubModelId" id="SubModelId" style="display:none;">
+                                        <option></option>
+                                    </select>
+                                  
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BuildYearId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.BuildYearId, ((SelectList)ViewBag.BuildYearId))
+                        @Html.ValidationMessageFor(model => model.BuildYearId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Milage)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Milage)
+                        @Html.ValidationMessageFor(model => model.Milage)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Price)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Price)
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OutsideColourId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.OutsideColourId, ((SelectList)ViewBag.OutsideColourId))
+                        @Html.ValidationMessageFor(model => model.OutsideColourId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InsideColourId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.InsideColourId, ((SelectList)ViewBag.InsideColourId))
+                        @Html.ValidationMessageFor(model => model.InsideColourId)
+                    </div>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.FuelTypeId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.FuelTypeId, ((SelectList)ViewBag.FuelTypeId))
+                        @Html.ValidationMessageFor(model => model.FuelTypeId)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InsuranceTypeId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.InsuranceTypeId, ((SelectList)ViewBag.InsuranceTypeId))
+                        @Html.ValidationMessageFor(model => model.InsuranceTypeId)
+                    </div> 
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Description)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Description)
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PhoneNumber)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PhoneNumber)
+                        @Html.ValidationMessageFor(model => model.PhoneNumber)
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="leftSidePanel ">
+                <div class=" panel panel-primary ">
+                    <div class="panel-heading">آپلود عکس</div>
+                    <div class="panel-body">
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImageURI1)
+                        </div>
+                        <div class="editor-field">
+                            <input type="file" id="ImageURI1File" name="ImageURI1File" />
+                        </div>
+
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImageURI2)
+                        </div>
+                        <div class="editor-field">
+                            <input type="file" id="ImageURI2File" name="ImageURI2File" />
+                        </div>
+
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImageURI3)
+                        </div>
+                        <div class="editor-field">
+                            <input type="file" id="ImageURI3File" name="ImageURI3File" />
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImageURI4)
+                        </div>
+                        <div class="editor-field">
+                            <input type="file" id="ImageURI4File" name="ImageURI4File" />
+                        </div>
+
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ImageURI5)
+                        </div>
+                        <div class="editor-field">
+                            <input type="file" id="ImageURI5File" name="ImageURI5File" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">دقت کنید</div>
+                    <div class="panel-body">
+                        <p>برای درج آگهی در سایت به موارد زیر دقت کنید</p>
+                        <ol>
+                            <li>قیمت به ریال و بین 1،000،000 تا5،000،000،000است </li>
+                            <li>قوانین سایت را حتما مطالعه فرمایید</li>
+                            <li>از صحت اطلاعات خود مطمئن باشید</li>
+                            <li>در انتخاب عکس ها دقت کنید</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Admin area</div>
+                <div class="panel-body">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.AdTypeId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.AdTypeId, ((SelectList)ViewBag.AdTypeId))
+                        @Html.ValidationMessageFor(model => model.AdTypeId)
+                    </div>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriorityId)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriorityId, ((SelectList)ViewBag.PriorityId))
+                        @Html.ValidationMessageFor(model => model.PriorityId)
+                    </div>
+                </div>
+
+            </div>
+            <div class="buttonsContainer">
+                <input type="submit" value="افزودن" />
+            </div>
+
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+
+    function DashboardDataReceived(data) {
+        var dashboardData = data.Result;
+        var result = '<option value=""></option>';
+        for (var i = 0; i < dashboardData.length; i++) {
+            result += '<option value="' + dashboardData[i].SubModelId + '">' + dashboardData[i].Name + '</option>';
+        }
+        $("#SubModelId").html(result);
+    }
+
+    $("#ModelId").change(function () {
+        var modelId = $(this).val();
+
+        if (modelId != "") {
+            $("#SubModelId").show();
+            var requestURL = "/Advertising/SubModel/GetSubModelListByModelId?modelId=" + modelId;
+            console.log("requestURL: " + requestURL);
+            $.ajax({
+                url: requestURL,
+                type: "GET",
+                context: this,
+                success: DashboardDataReceived,
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }
+        else {
+            $("#SubModelId").hide();
+        }
+                
+    });
+</script>
