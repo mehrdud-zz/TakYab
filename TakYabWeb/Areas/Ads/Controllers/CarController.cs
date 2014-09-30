@@ -48,7 +48,7 @@ namespace TakYab.Areas.Ads.Controllers
         {
             ViewBag.AdTypeId = new SelectList(db.AdTypes.OrderBy(m => m.SortOrder), "AdTypeId", "Name");
             ViewBag.BuildYearId = new SelectList(db.BuildYears.OrderBy(m => m.SortOrder), "BuildYearId", "Name");
-            ViewBag.PriceBandId = new SelectList(db.PriceRanges.OrderBy(m => m.SortOrder), "PriceBandId", "Name");
+            ViewBag.PriceRangeId = new SelectList(db.PriceRanges.OrderBy(m => m.SortOrder), "PriceRangeId", "Name");
             ViewBag.PriorityId = new SelectList(db.Priorities.OrderBy(m => m.SortOrder), "PriorityId", "Name");
             ViewBag.ProvinceId = new SelectList(db.Provinces.OrderBy(m => m.SortOrder), "ProvinceId", "Name");
             ViewBag.ModelId = new SelectList(db.Models.OrderBy(m => m.SortOrder), "ModelId", "Name");
@@ -123,10 +123,10 @@ namespace TakYab.Areas.Ads.Controllers
 
                 return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
             }
-            
+
             ViewBag.AdTypeId = new SelectList(db.AdTypes.OrderBy(m => m.SortOrder), "AdTypeId", "Name");
             ViewBag.BuildYearId = new SelectList(db.BuildYears.OrderBy(m => m.SortOrder), "BuildYearId", "Name");
-            ViewBag.PriceBandId = new SelectList(db.PriceRanges.OrderBy(m => m.SortOrder), "PriceBandId", "Name");
+            ViewBag.PriceRangeId = new SelectList(db.PriceRanges.OrderBy(m => m.SortOrder), "PriceRangeId", "Name");
             ViewBag.PriorityId = new SelectList(db.Priorities.OrderBy(m => m.SortOrder), "PriorityId", "Name");
             ViewBag.ProvinceId = new SelectList(db.Provinces.OrderBy(m => m.SortOrder), "ProvinceId", "Name");
             ViewBag.ModelId = new SelectList(db.Models.OrderBy(m => m.SortOrder), "ModelId", "Name");
@@ -148,23 +148,22 @@ namespace TakYab.Areas.Ads.Controllers
             if (car == null)
             {
                 return HttpNotFound();
-            } 
+            }
 
-            ViewBag.AdTypes = db.AdTypes.OrderBy(m => m.SortOrder);
-            ViewBag.BuildYearId = db.BuildYears.OrderBy(m => m.SortOrder);
-            ViewBag.PriceBandId = db.PriceRanges.OrderBy(m => m.SortOrder);
-            ViewBag.PriorityId = db.Priorities.OrderBy(m => m.SortOrder);
-            ViewBag.ModelId = db.Models.OrderBy(m => m.SortOrder);
-            ViewBag.SubModelId = db.SubModels.OrderBy(m => m.SortOrder);
-            ViewBag.OutsideColourId = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.InsideColourId = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.FuelTypeId = db.FuelTypes.OrderBy(m => m.SortOrder);
-            ViewBag.InsuranceTypeId = db.InsuranceTypes.OrderBy(m => m.SortOrder); 
-            ViewBag.CarStatus = db.CarStatus.OrderBy(m => m.SortOrder); 
+            ViewBag.AdTypeIdList = db.AdTypes.OrderBy(m => m.SortOrder);
+            ViewBag.BuildYearIdList = db.BuildYears.OrderBy(m => m.SortOrder);
+            ViewBag.PriceRangeIdList = db.PriceRanges.OrderBy(m => m.SortOrder);
+            ViewBag.PriorityIdList = db.Priorities.OrderBy(m => m.SortOrder);
+            ViewBag.ProvinceIdList = db.Provinces.OrderBy(m => m.SortOrder);
+            ViewBag.ModelIdList = db.Models.OrderBy(m => m.SortOrder);
+            ViewBag.SubModelIdList = db.SubModels.OrderBy(m => m.SortOrder);
+            ViewBag.OutsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+            ViewBag.InsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+            ViewBag.FuelTypeIdList = db.FuelTypes.OrderBy(m => m.SortOrder);
+            ViewBag.InsuranceTypeIdList = db.InsuranceTypes.OrderBy(m => m.SortOrder);
+            ViewBag.CarStatusIdList = db.CarStatus.OrderBy(m => m.SortOrder);
 
-            var colourController = new TakYab.Areas.Advertising.Controllers.ColourController();
-            car.InsideColour = car.InsideColourId != null ? colourController.GetColourById(car.InsideColourId.Value).Name : String.Empty;
-            car.OutsideColour = car.InsideColourId != null ? colourController.GetColourById(car.OutsideColourId.Value).Name : String.Empty;
+
             return View(car);
         }
 
@@ -224,17 +223,18 @@ namespace TakYab.Areas.Ads.Controllers
 
                 return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
             }
-            ViewBag.AdTypes = db.AdTypes.OrderBy(m => m.SortOrder);
-            ViewBag.BuildYearId = db.BuildYears.OrderBy(m => m.SortOrder);
-            ViewBag.PriceBandId = db.PriceRanges.OrderBy(m => m.SortOrder);
-            ViewBag.PriorityId = db.Priorities.OrderBy(m => m.SortOrder);
-            ViewBag.ModelId = db.Models.OrderBy(m => m.SortOrder);
-            ViewBag.SubModelId = db.SubModels.OrderBy(m => m.SortOrder);
-            ViewBag.OutsideColourId = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.InsideColourId = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.FuelTypeId = db.FuelTypes.OrderBy(m => m.SortOrder);
-            ViewBag.InsuranceTypeId = db.InsuranceTypes.OrderBy(m => m.SortOrder);
-            ViewBag.CarStatus = db.CarStatus.OrderBy(m => m.SortOrder);  
+            ViewBag.AdTypeIdList = db.AdTypes.OrderBy(m => m.SortOrder);
+            ViewBag.BuildYearIdList = db.BuildYears.OrderBy(m => m.SortOrder);
+            ViewBag.PriceRangeIdList = db.PriceRanges.OrderBy(m => m.SortOrder);
+            ViewBag.PriorityIdList = db.Priorities.OrderBy(m => m.SortOrder);
+            ViewBag.ProvinceIdList = db.Provinces.OrderBy(m => m.SortOrder);
+            ViewBag.ModelIdList = db.Models.OrderBy(m => m.SortOrder);
+            ViewBag.SubModelIdList = db.SubModels.OrderBy(m => m.SortOrder);
+            ViewBag.OutsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+            ViewBag.InsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+            ViewBag.FuelTypeIdList = db.FuelTypes.OrderBy(m => m.SortOrder);
+            ViewBag.InsuranceTypeIdList = db.InsuranceTypes.OrderBy(m => m.SortOrder);
+            ViewBag.CarStatusIdList = db.CarStatus.OrderBy(m => m.SortOrder);
 
             return View(car);
         }

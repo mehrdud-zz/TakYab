@@ -28,15 +28,15 @@ namespace DataLayer
         public DbSet<AdType> AdTypes { get; set; }
         public DbSet<BuildYear> BuildYears { get; set; }
         public DbSet<Model> Models { get; set; }
-        public DbSet<PriceRange> PriceRanges { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<SubModel> SubModels { get; set; }
         public DbSet<AdStatus> AdStatus { get; set; }
         public DbSet<Colour> Colours { get; set; }
         public DbSet<InsuranceType> InsuranceTypes { get; set; }
-        public DbSet<Car> Cars { get; set; }
         public DbSet<FuelType> FuelTypes { get; set; }
-        public DbSet<CarStatu> CarStatus { get; set; }
+        public DbSet<CarStatus> CarStatus { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<PriceRange> PriceRanges { get; set; }
     }
 }

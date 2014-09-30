@@ -19,7 +19,7 @@ namespace DataLayer
             this.Cars = new HashSet<Car>();
         }
     
-        public System.Guid PriceBandId { get; set; }
+        public System.Guid PriceRangeId { get; set; }
         public string Name { get; set; }
         public Nullable<decimal> StartRange { get; set; }
         public Nullable<decimal> EndRange { get; set; }

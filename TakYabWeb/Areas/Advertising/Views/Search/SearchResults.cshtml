@@ -1,0 +1,60 @@
+﻿@model TakYab.Areas.Advertising.Controllers.SearchCriteriaLight
+@{
+    ViewBag.Title = "SearchResults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @Html.Action("SearchComponent")
+</div>
+<div class="panel panel-default">
+    <table class="table table-condensed carList">
+        <tr>
+
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model.LightCarsList)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model) -> @Html.DisplayFor(modelItem => item.SubModel)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.BuildYear)</td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Province)
+                </td>
+                <td>
+
+                    <img src="~/Content/Images/@(item.CarId)/ImageURI1/Thumbnail.jpg" />
+
+                </td>
+
+                <td style="text-align:center;">
+                    @Html.ActionLink("مشاهده آگهی", "Details","Car", new { area = "Ads", id = item.CarId },null)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

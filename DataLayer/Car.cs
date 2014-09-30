@@ -19,13 +19,14 @@ namespace DataLayer
         public Nullable<System.Guid> ProvinceId { get; set; }
         public Nullable<System.Guid> AdTypeId { get; set; }
         public Nullable<System.Guid> BuildYearId { get; set; }
-        public Nullable<System.Guid> PriceBandId { get; set; }
+        public Nullable<System.Guid> PriceRangeId { get; set; }
         public Nullable<System.Guid> PriorityId { get; set; }
         public Nullable<System.Guid> AdStatusId { get; set; }
         public Nullable<System.Guid> OutsideColourId { get; set; }
         public Nullable<System.Guid> InsideColourId { get; set; }
         public Nullable<System.Guid> FuelTypeId { get; set; }
         public Nullable<System.Guid> InsuranceTypeId { get; set; }
+        public Nullable<System.Guid> CarStatusId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -40,17 +41,16 @@ namespace DataLayer
         public string ImageURI4 { get; set; }
         public string ImageURI5 { get; set; }
         public Nullable<long> Milage { get; set; }
-        public Nullable<System.Guid> CarStatusId { get; set; }
     
         public virtual AdStatus AdStatus { get; set; }
         public virtual AdType AdType { get; set; }
         public virtual BuildYear BuildYear { get; set; }
+        public virtual CarStatus CarStatus { get; set; }
+        public virtual FuelType FuelType { get; set; }
         public virtual InsuranceType InsuranceType { get; set; }
-        public virtual PriceRange PriceRange { get; set; }
         public virtual Priority Priority { get; set; }
         public virtual Province Province { get; set; }
         public virtual SubModel SubModel { get; set; }
-        public virtual FuelType FuelType { get; set; }
-        public virtual CarStatu CarStatus { get; set; }
+        public virtual PriceRange PriceRange { get; set; }
     }
 }

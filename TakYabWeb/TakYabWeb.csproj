@@ -15,7 +15,7 @@
     <AssemblyName>TakYab</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
@@ -286,12 +286,14 @@
     <Content Include="Areas\Advertising\Views\SubModel\GetSubModelListByModelId.cshtml" />
     <Content Include="Areas\Ads\Views\Web.config" />
     <Content Include="Areas\Ads\Views\Car\Index.cshtml" />
-    <Content Include="Areas\Ads\Views\Car\Details.cshtml" />
     <Content Include="Areas\Ads\Views\Car\Create.cshtml" />
     <Content Include="Areas\Ads\Views\Car\Edit.cshtml" />
     <Content Include="Areas\Ads\Views\Car\Delete.cshtml" />
     <Content Include="Areas\Ads\Views\Car\CarPanel.cshtml" />
     <Content Include="Areas\Ads\Views\Car\ListCars.cshtml" />
+    <Content Include="Areas\Advertising\Views\Search\SearchResults.cshtml" />
+    <Content Include="Areas\Advertising\Views\Search\SearchResultsPage.cshtml" />
+    <Content Include="Areas\Ads\Views\Car\Details.cshtml" />
     <None Include="Properties\PublishProfiles\TakYab.pubxml" />
     <Content Include="Images\logo3.png" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -395,7 +397,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49163</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8989</IISUrl>
+          <IISUrl>http://localhost:49163/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

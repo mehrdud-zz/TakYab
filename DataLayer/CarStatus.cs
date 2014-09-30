@@ -12,9 +12,9 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class CarStatu
+    public partial class CarStatus
     {
-        public CarStatu()
+        public CarStatus()
         {
             this.Cars = new HashSet<Car>();
         }

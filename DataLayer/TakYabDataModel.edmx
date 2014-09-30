@@ -40,7 +40,7 @@
           <Property Name="ProvinceId" Type="uniqueidentifier" />
           <Property Name="AdTypeId" Type="uniqueidentifier" />
           <Property Name="BuildYearId" Type="uniqueidentifier" />
-          <Property Name="PriceBandId" Type="uniqueidentifier" />
+          <Property Name="PriceRangeId" Type="uniqueidentifier" />
           <Property Name="PriorityId" Type="uniqueidentifier" />
           <Property Name="AdStatusId" Type="uniqueidentifier" />
           <Property Name="OutsideColourId" Type="uniqueidentifier" />
@@ -114,9 +114,9 @@
         </EntityType>
         <EntityType Name="PriceRange">
           <Key>
-            <PropertyRef Name="PriceBandId" />
+            <PropertyRef Name="PriceRangeId" />
           </Key>
-          <Property Name="PriceBandId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PriceRangeId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="StartRange" Type="money" />
           <Property Name="EndRange" Type="money" />
@@ -229,10 +229,10 @@
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PriceRange">
-              <PropertyRef Name="PriceBandId" />
+              <PropertyRef Name="PriceRangeId" />
             </Principal>
             <Dependent Role="Car">
-              <PropertyRef Name="PriceBandId" />
+              <PropertyRef Name="PriceRangeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,17 +379,6 @@
           <NavigationProperty Name="SubModels" Relationship="Self.FK_SubModel_Model" FromRole="Model" ToRole="SubModel" />
           <Property Name="SubNav" Type="Boolean" />
         </EntityType>
-        <EntityType Name="PriceRange">
-          <Key>
-            <PropertyRef Name="PriceBandId" />
-          </Key>
-          <Property Name="PriceBandId" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StartRange" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="EndRange" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="SortOrder" Type="Int32" />
-          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="PriceRange" ToRole="Car" />
-        </EntityType>
         <EntityType Name="Priority">
           <Key>
             <PropertyRef Name="PriorityId" />
@@ -442,7 +431,6 @@
           <EntitySet Name="AdTypes" EntityType="Self.AdType" />
           <EntitySet Name="BuildYears" EntityType="Self.BuildYear" />
           <EntitySet Name="Models" EntityType="Self.Model" />
-          <EntitySet Name="PriceRanges" EntityType="Self.PriceRange" />
           <EntitySet Name="Priorities" EntityType="Self.Priority" />
           <EntitySet Name="Provinces" EntityType="Self.Province" />
           <EntitySet Name="SubModels" EntityType="Self.SubModel" />
@@ -453,6 +441,8 @@
           <EntitySet Name="AdStatus" EntityType="TakYabModel.AdStatus" />
           <EntitySet Name="Colours" EntityType="TakYabModel.Colour" />
           <EntitySet Name="InsuranceTypes" EntityType="TakYabModel.InsuranceType" />
+          <EntitySet Name="FuelTypes" EntityType="TakYabModel.FuelType" />
+          <EntitySet Name="CarStatus" EntityType="TakYabModel.CarStatus" />
           <EntitySet Name="Cars" EntityType="TakYabModel.Car" />
           <AssociationSet Name="FK_Car_AdStatus" Association="TakYabModel.FK_Car_AdStatus">
             <End Role="AdStatus" EntitySet="AdStatus" />
@@ -466,12 +456,16 @@
             <End Role="BuildYear" EntitySet="BuildYears" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <AssociationSet Name="FK_Car_InsuranceType" Association="TakYabModel.FK_Car_InsuranceType">
-            <End Role="InsuranceType" EntitySet="InsuranceTypes" />
+          <AssociationSet Name="FK_Car_CarStatus" Association="TakYabModel.FK_Car_CarStatus">
+            <End Role="CarStatu" EntitySet="CarStatus" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <AssociationSet Name="FK_Car_PriceRange" Association="TakYabModel.FK_Car_PriceRange">
-            <End Role="PriceRange" EntitySet="PriceRanges" />
+          <AssociationSet Name="FK_Car_FuelType" Association="TakYabModel.FK_Car_FuelType">
+            <End Role="FuelType" EntitySet="FuelTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_InsuranceType" Association="TakYabModel.FK_Car_InsuranceType">
+            <End Role="InsuranceType" EntitySet="InsuranceTypes" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Priority" Association="TakYabModel.FK_Car_Priority">
@@ -486,14 +480,9 @@
             <End Role="SubModel" EntitySet="SubModels" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <EntitySet Name="FuelTypes" EntityType="TakYabModel.FuelType" />
-          <AssociationSet Name="FK_Car_FuelType" Association="TakYabModel.FK_Car_FuelType">
-            <End Role="FuelType" EntitySet="FuelTypes" />
-            <End Role="Car" EntitySet="Cars" />
-          </AssociationSet>
-          <EntitySet Name="CarStatus" EntityType="TakYabModel.CarStatu" />
-          <AssociationSet Name="FK_Car_CarStatus" Association="TakYabModel.FK_Car_CarStatus">
-            <End Role="CarStatu" EntitySet="CarStatus" />
+          <EntitySet Name="PriceRanges" EntityType="TakYabModel.PriceRange" />
+          <AssociationSet Name="FK_Car_PriceRange" Association="TakYabModel.FK_Car_PriceRange">
+            <End Role="PriceRange" EntitySet="PriceRanges" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
           </EntityContainer>
@@ -528,6 +517,27 @@
           <Property Name="SortOrder" Type="Int32" />
           <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_InsuranceType" FromRole="InsuranceType" ToRole="Car" />
         </EntityType>
+        <EntityType Name="FuelType">
+          <Key>
+            <PropertyRef Name="FuelTypeId" />
+          </Key>
+          <Property Name="FuelTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_FuelType" FromRole="FuelType" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="CarStatus">
+          <Key>
+            <PropertyRef Name="CarStatusId" />
+          </Key>
+          <Property Name="CarStatusId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="CarStatu" ToRole="Car" />
+        </EntityType>
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="CarId" />
@@ -537,13 +547,14 @@
           <Property Name="ProvinceId" Type="Guid" />
           <Property Name="AdTypeId" Type="Guid" />
           <Property Name="BuildYearId" Type="Guid" />
-          <Property Name="PriceBandId" Type="Guid" />
+          <Property Name="PriceRangeId" Type="Guid" />
           <Property Name="PriorityId" Type="Guid" />
           <Property Name="AdStatusId" Type="Guid" />
           <Property Name="OutsideColourId" Type="Guid" />
           <Property Name="InsideColourId" Type="Guid" />
           <Property Name="FuelTypeId" Type="Guid" />
           <Property Name="InsuranceTypeId" Type="Guid" />
+          <Property Name="CarStatusId" Type="Guid" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
@@ -561,14 +572,13 @@
           <NavigationProperty Name="AdStatus" Relationship="TakYabModel.FK_Car_AdStatus" FromRole="Car" ToRole="AdStatus" />
           <NavigationProperty Name="AdType" Relationship="TakYabModel.FK_Car_AdType" FromRole="Car" ToRole="AdType" />
           <NavigationProperty Name="BuildYear" Relationship="TakYabModel.FK_Car_BuildYear" FromRole="Car" ToRole="BuildYear" />
+          <NavigationProperty Name="CarStatus" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="Car" ToRole="CarStatu" />
+          <NavigationProperty Name="FuelType" Relationship="TakYabModel.FK_Car_FuelType" FromRole="Car" ToRole="FuelType" />
           <NavigationProperty Name="InsuranceType" Relationship="TakYabModel.FK_Car_InsuranceType" FromRole="Car" ToRole="InsuranceType" />
-          <NavigationProperty Name="PriceRange" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="Car" ToRole="PriceRange" />
           <NavigationProperty Name="Priority" Relationship="TakYabModel.FK_Car_Priority" FromRole="Car" ToRole="Priority" />
           <NavigationProperty Name="Province" Relationship="TakYabModel.FK_Car_Province" FromRole="Car" ToRole="Province" />
           <NavigationProperty Name="SubModel" Relationship="TakYabModel.FK_Car_SubModel" FromRole="Car" ToRole="SubModel" />
-          <NavigationProperty Name="FuelType" Relationship="TakYabModel.FK_Car_FuelType" FromRole="Car" ToRole="FuelType" />
-          <Property Name="CarStatusId" Type="Guid" />
-          <NavigationProperty Name="CarStatus" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="Car" ToRole="CarStatu" />
+          <NavigationProperty Name="PriceRange" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="Car" ToRole="PriceRange" />
         </EntityType>
         <Association Name="FK_Car_AdStatus">
           <End Type="TakYabModel.AdStatus" Role="AdStatus" Multiplicity="0..1" />
@@ -606,6 +616,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Car_CarStatus">
+          <End Type="TakYabModel.CarStatus" Role="CarStatu" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarStatu">
+              <PropertyRef Name="CarStatusId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="CarStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_FuelType">
+          <End Type="TakYabModel.FuelType" Role="FuelType" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="FuelTypeId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Car_InsuranceType">
           <End Type="TakYabModel.InsuranceType" Role="InsuranceType" Multiplicity="0..1" />
           <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
@@ -615,18 +649,6 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="InsuranceTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Car_PriceRange">
-          <End Type="TakYabModel.PriceRange" Role="PriceRange" Multiplicity="0..1" />
-          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PriceRange">
-              <PropertyRef Name="PriceBandId" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="PriceBandId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -666,48 +688,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FuelType">
+        <EntityType Name="PriceRange">
           <Key>
-            <PropertyRef Name="FuelTypeId" />
+            <PropertyRef Name="PriceRangeId" />
           </Key>
-          <Property Name="FuelTypeId" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="SortOrder" Type="Int32" />
-          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_FuelType" FromRole="FuelType" ToRole="Car" />
-        </EntityType>
-        <Association Name="FK_Car_FuelType">
-          <End Type="TakYabModel.FuelType" Role="FuelType" Multiplicity="0..1" />
-          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FuelType">
-              <PropertyRef Name="FuelTypeId" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="FuelTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CarStatu">
-          <Key>
-            <PropertyRef Name="CarStatusId" />
-          </Key>
-          <Property Name="CarStatusId" Type="Guid" Nullable="false" />
+          <Property Name="PriceRangeId" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartRange" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EndRange" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="SortOrder" Type="Int32" />
-          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_CarStatus" FromRole="CarStatu" ToRole="Car" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="PriceRange" ToRole="Car" />
         </EntityType>
-        <Association Name="FK_Car_CarStatus">
-          <End Type="TakYabModel.CarStatu" Role="CarStatu" Multiplicity="0..1" />
+        <Association Name="FK_Car_PriceRange">
+          <End Type="TakYabModel.PriceRange" Role="PriceRange" Multiplicity="0..1" />
           <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CarStatu">
-              <PropertyRef Name="CarStatusId" />
+            <Principal Role="PriceRange">
+              <PropertyRef Name="PriceRangeId" />
             </Principal>
             <Dependent Role="Car">
-              <PropertyRef Name="CarStatusId" />
+              <PropertyRef Name="PriceRangeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -744,17 +744,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PriceRanges">
-            <EntityTypeMapping TypeName="TakYabModel.PriceRange">
-              <MappingFragment StoreEntitySet="PriceRange">
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="PriceBandId" ColumnName="PriceBandId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="StartRange" ColumnName="StartRange" />
-                <ScalarProperty Name="EndRange" ColumnName="EndRange" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -823,10 +812,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FuelTypes">
+            <EntityTypeMapping TypeName="TakYabModel.FuelType">
+              <MappingFragment StoreEntitySet="FuelType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarStatus">
+            <EntityTypeMapping TypeName="TakYabModel.CarStatus">
+              <MappingFragment StoreEntitySet="CarStatus">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="TakYabModel.Car">
               <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
                 <ScalarProperty Name="Milage" ColumnName="Milage" />
                 <ScalarProperty Name="ImageURI5" ColumnName="ImageURI5" />
                 <ScalarProperty Name="ImageURI4" ColumnName="ImageURI4" />
@@ -841,13 +850,14 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
                 <ScalarProperty Name="InsuranceTypeId" ColumnName="InsuranceTypeId" />
                 <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
                 <ScalarProperty Name="InsideColourId" ColumnName="InsideColourId" />
                 <ScalarProperty Name="OutsideColourId" ColumnName="OutsideColourId" />
                 <ScalarProperty Name="AdStatusId" ColumnName="AdStatusId" />
                 <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
-                <ScalarProperty Name="PriceBandId" ColumnName="PriceBandId" />
+                <ScalarProperty Name="PriceRangeId" ColumnName="PriceRangeId" />
                 <ScalarProperty Name="BuildYearId" ColumnName="BuildYearId" />
                 <ScalarProperty Name="AdTypeId" ColumnName="AdTypeId" />
                 <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
@@ -856,24 +866,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FuelTypes">
-            <EntityTypeMapping TypeName="TakYabModel.FuelType">
-              <MappingFragment StoreEntitySet="FuelType">
+          <EntitySetMapping Name="PriceRanges">
+            <EntityTypeMapping TypeName="TakYabModel.PriceRange">
+              <MappingFragment StoreEntitySet="PriceRange">
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EndRange" ColumnName="EndRange" />
+                <ScalarProperty Name="StartRange" ColumnName="StartRange" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CarStatus">
-            <EntityTypeMapping TypeName="TakYabModel.CarStatu">
-              <MappingFragment StoreEntitySet="CarStatus">
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CarStatusId" ColumnName="CarStatusId" />
+                <ScalarProperty Name="PriceRangeId" ColumnName="PriceRangeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

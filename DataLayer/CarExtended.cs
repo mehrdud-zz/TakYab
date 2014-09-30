@@ -65,7 +65,7 @@ namespace DataLayer
         public Nullable<System.Guid> BuildYearId { get; set; }
 
         [ScaffoldColumn(false)]
-        public Nullable<System.Guid> PriceBandId { get; set; }
+        public Nullable<System.Guid> PriceRangeId { get; set; }
 
         [Display(Name = "قیمت")]
         public decimal Price { get; set; }

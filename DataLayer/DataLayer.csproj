@@ -58,7 +58,7 @@
     <Compile Include="Car.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarStatu.cs">
+    <Compile Include="CarStatus.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Colour.cs">

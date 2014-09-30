@@ -1,130 +1,137 @@
 ﻿@model TakYab.Areas.Advertising.Controllers.SearchCriterias
 
 
+<form method="post" action="@(Url.Action("SearchResults", "Search", new { area = "Advertising" }))">
+    <div class="searchPanel panel panel-primary">
+        <div class="panel-heading">خودروهای موجود در سایت</div>
+        <div class="panel-body">
 
-<div class="searchPanel panel panel-primary">
-    <div class="panel-heading">خودروهای موجود در سایت</div>
-    <div class="panel-body">
-
-        <div class="searchItem">
-            <span class="searchTitle pull-right">صفر/کارکرده</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="usedCarDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="usedCarDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'usedCarDropDownMenu', 'همه');">همه</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('0', 'usedCarDropDownMenu', 'صفر');">صفر</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('1', 'usedCarDropDownMenu', 'کارکرده');">کارکرده</a></li>
-                </ul>
+            <div class="searchItem">
+                <span class="searchTitle pull-right">صفر/کارکرده</span>
+                <div class="dropdown">
+                    <input type="hidden" value="" name="carStatusHidden" id="carStatusHidden" />
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="carStatusDropDownMenu" name="carStatusDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.CarStatusId != Guid.Empty ? Model.CarStatus : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="usedCarDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'carStatusDropDownMenu', 'همه');">همه</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('0', 'carStatusDropDownMenu', 'صفر');">صفر</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('1', 'carStatusDropDownMenu', 'کارکرده');">کارکرده</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">استان</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="provinceDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="provinceDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'provinceDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.ProvinceList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ProvinceId','provinceDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="provinceHidden" id="provinceHidden" />
+                <span class="searchTitle pull-right">استان</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="provinceDropDownMenu" name="provinceDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.ProvinceId != Guid.Empty ? Model.Province : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="provinceDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'provinceDropDownMenu', 'provinceHidden', 'همه');">همه</a></li>
+                        @foreach (var item in Model.ProvinceList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ProvinceId','provinceDropDownMenu','provinceHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">نوع خودرو</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="modelDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="modelDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'modelDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.ModelList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ModelId','modelDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="modelHidden" id="modelHidden" />
+                <span class="searchTitle pull-right">نوع خودرو</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="modelDropDownMenu" name="modelDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.ModelId != Guid.Empty ? Model.Model : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="modelDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'modelDropDownMenu', 'همه');">همه</a></li>
+                        @foreach (var item in Model.ModelList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ModelId','modelDropDownMenu','modelHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">مدل خودرو</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="subModelDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="subModelDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'subModelDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.SubModelList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.SubModelId','subModelDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="subModelHidden" id="subModelHidden" />
+                <span class="searchTitle pull-right">مدل خودرو</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="subModelDropDownMenu" name="subModelDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.SubModelId != Guid.Empty ? Model.SubModel : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="subModelDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'subModelDropDownMenu', 'همه');">همه</a></li>
+                        @foreach (var item in Model.SubModelList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.SubModelId','subModelDropDownMenu','subModelHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">سال تولید</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="buildYearDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="buildYearDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'buildYearDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.BuildYearList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.BuildYearId','buildYearDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="buildYearHidden" id="buildYearHidden" />
+                <span class="searchTitle pull-right">سال تولید</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="buildYearDropDownMenu" name="buildYearDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.BuildYearId != Guid.Empty ? Model.BuildYear : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="buildYearDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'buildYearDropDownMenu', 'همه');">همه</a></li>
+                        @foreach (var item in Model.BuildYearList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.BuildYearId','buildYearDropDownMenu','buildYearHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">قیمت</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="priceRangeDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="priceRangeDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'priceRangeDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.PriceRangeList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.PriceBandId','priceRangeDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="priceRangeHidden" id="priceRangeHidden" />
+                <span class="searchTitle pull-right">قیمت</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="priceRangeDropDownMenu" name="priceRangeDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.PriceRangeId != Guid.Empty ? Model.PriceRange : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="priceRangeDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'priceRangeDropDownMenu', 'همه');">همه</a></li>
+                        @foreach (var item in Model.PriceRangeList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.PriceRangeId','priceRangeDropDownMenu','priceRangeHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="searchItem">
-            <span class="searchTitle pull-right">نوع آگهی</span>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="adTypeDropDownMenu" data-toggle="dropdown">
-                    <span class="title">همه</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="adTypeDropDownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'adTypeDropDownMenu', 'همه');">همه</a></li>
-                    @foreach (var item in Model.AdTypeList)
-                    {
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.AdTypeId','adTypeDropDownMenu','@(item.Name)');">@(item.Name)</a></li>
-                    }
-                </ul>
+            <div class="searchItem">
+                <input type="hidden" value="" name="adTypeHidden" id="adTypeHidden" />
+                <span class="searchTitle pull-right">نوع آگهی</span>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="adTypeDropDownMenu" data-toggle="dropdown">
+                        <span class="title">@(Model.AdTypeId != Guid.Empty ? Model.AdType : "همه")</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="adTypeDropDownMenu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'adTypeDropDownMenu','adTypeHidden', 'همه');">همه</a></li>
+                        @foreach (var item in Model.AdTypeList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.AdTypeId', 'adTypeDropDownMenu','adTypeHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <br />
-        <div class="buttonsContainer" style="width:100%;display:inline-block;text-align:center;">
-            <input type="button" value="جستجو" onclick="javascript:SearchAds();" class="btn" />
-            &nbsp;&nbsp;&nbsp;
-            <input type="button" value="جستجوی مجدد" onclick="javascript:resetSearch();" class="btn" />
+            <br />
+            <div class="buttonsContainer" style="width:100%;display:inline-block;text-align:center;">
+                <input type="submit" value="جستجو" class="btn" />
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" value="جستجوی مجدد" onclick="javascript:resetSearch();" class="btn" />
+            </div>
         </div>
     </div>
-</div>
-
+</form>
 
 
 <script type="text/javascript">
@@ -154,8 +161,8 @@
 
 
         $.ajax({
-            url: '@Url.Action("SearchAds", "Search", new { area = "Advertising" })',
-            type: 'GET',
+            url: '@Url.Action("SearchResults", "Search", new { area = "Advertising" })',
+            type: 'POST',
             dataType: 'json',
             // we set cache: false because GET requests are often cached by browsers
             // IE is particularly aggressive in that respect
@@ -166,53 +173,30 @@
                 priceRange: JSON.stringify(priceRange), buildYear: JSON.stringify(buildYear),
                 adType: JSON.stringify(adType)
 
-            },
-            success: function (cars) {
-                var searchResuts = "<ul>";
-                for (var i = 0; i < cars.Results.length; i++) {
-                    var item = cars.Results[i];
-                    searchResuts +=
-                        '<li>' +
-                        '<div><img src="/Content/Images/' + item.ImageURI + 'thumbnail.jpg" /><a href="' + item.CarId + '">' + item.CarId + '</a></div>' +
-                        '</li>';
-                }
-                searchResuts += "</ul>";
-
-                $("#searchResullts").html(searchResuts);
             }
+            //success: function (cars) {
+            //    var searchResuts = "<ul>";
+            //    for (var i = 0; i < cars.Results.length; i++) {
+            //        var item = cars.Results[i];
+            //        searchResuts +=
+            //            '<li>' +
+            //            '<div><img src="/Content/Images/' + item.ImageURI + 'thumbnail.jpg" /><a href="' + item.CarId + '">' + item.CarId + '</a></div>' +
+            //            '</li>';
+            //    }
+            //    searchResuts += "</ul>";
+
+            //    $("#searchResullts").html(searchResuts);
+            //}
         });
 
     }
 
-</script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-    function selectThis(itemId, dropDownId, itemName) {
-
+    function selectThis(itemId, dropDownId, hiddenControlId, itemName) {
         $("#" + dropDownId + " .title").html(itemName);
         $("#" + dropDownId + " .title").attr("selectedValue", itemId);
+        $("#" + hiddenControlId).val(itemId);
     }
 </script>

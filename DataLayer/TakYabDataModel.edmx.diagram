@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="06147dad08a94d5ba205cee49740e38c" Name="Diagram1" ZoomLevel="50">
+      <Diagram DiagramId="06147dad08a94d5ba205cee49740e38c" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="TakYabModel.AdType" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TakYabModel.BuildYear" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TakYabModel.Model" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TakYabModel.PriceRange" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TakYabModel.Priority" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TakYabModel.Province" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TakYabModel.SubModel" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
@@ -17,19 +16,20 @@
         <EntityTypeShape EntityType="TakYabModel.AdStatus" Width="1.5" PointX="9.875" PointY="8.5" />
         <EntityTypeShape EntityType="TakYabModel.Colour" Width="1.5" PointX="5.375" PointY="9.75" />
         <EntityTypeShape EntityType="TakYabModel.InsuranceType" Width="1.5" PointX="10.375" PointY="0.875" />
-        <EntityTypeShape EntityType="TakYabModel.Car" Width="1.5" PointX="12.625" PointY="5.125" />
+        <EntityTypeShape EntityType="TakYabModel.FuelType" Width="1.5" PointX="5.375" PointY="0.875" />
+        <EntityTypeShape EntityType="TakYabModel.CarStatus" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="TakYabModel.Car" Width="1.5" PointX="12.625" PointY="5.5" />
         <AssociationConnector Association="TakYabModel.FK_Car_AdStatus" />
         <AssociationConnector Association="TakYabModel.FK_Car_AdType" />
         <AssociationConnector Association="TakYabModel.FK_Car_BuildYear" />
+        <AssociationConnector Association="TakYabModel.FK_Car_CarStatus" />
+        <AssociationConnector Association="TakYabModel.FK_Car_FuelType" />
         <AssociationConnector Association="TakYabModel.FK_Car_InsuranceType" />
-        <AssociationConnector Association="TakYabModel.FK_Car_PriceRange" />
         <AssociationConnector Association="TakYabModel.FK_Car_Priority" />
         <AssociationConnector Association="TakYabModel.FK_Car_Province" />
         <AssociationConnector Association="TakYabModel.FK_Car_SubModel" />
-        <EntityTypeShape EntityType="TakYabModel.FuelType" Width="1.5" PointX="5.375" PointY="0.875" />
-        <AssociationConnector Association="TakYabModel.FK_Car_FuelType" />
-        <EntityTypeShape EntityType="TakYabModel.CarStatu" Width="1.5" PointX="5.375" PointY="3.75" />
-        <AssociationConnector Association="TakYabModel.FK_Car_CarStatus" />
+        <EntityTypeShape EntityType="TakYabModel.PriceRange" Width="1.5" PointX="7.375" PointY="0.875" />
+        <AssociationConnector Association="TakYabModel.FK_Car_PriceRange" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
