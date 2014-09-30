@@ -111,6 +111,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TakYabDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Queries\TakYab.Bak" />
     <None Include="TakYabDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TakYabDataModel.edmx</DependentUpon>
@@ -127,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Queries\MassData.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
