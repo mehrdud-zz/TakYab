@@ -45,6 +45,7 @@ namespace TakYab.Areas.Advertising.Controllers
     }
     public class SearchCriterias
     {
+        public List<DataLayer.CarStatus> CarStatusList { get; set; }
         public List<DataLayer.Model> ModelList { get; set; }
         public List<DataLayer.SubModel> SubModelList { get; set; }
 
@@ -89,6 +90,7 @@ namespace TakYab.Areas.Advertising.Controllers
         public ActionResult SearchComponent()
         {
             var searchCriterias = new SearchCriterias();
+            searchCriterias.CarStatusList = db.CarStatus.OrderBy(m => m.SortOrder).ToList();
             searchCriterias.ModelList = db.Models.OrderBy(m => m.SortOrder).ToList();
             searchCriterias.SubModelList = db.SubModels.OrderBy(m => m.SortOrder).ToList();
             searchCriterias.AdTypeList = db.AdTypes.OrderBy(m => m.SortOrder).ToList();

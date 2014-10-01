@@ -3,58 +3,43 @@
     ViewBag.Title = "SearchResults";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div style="display:inline-block;width:100%;min-height:500px;vertical-align:top;">
+    <div style="min-width:300px;width:20%; display:inline-block;vertical-align:top;padding:0 0 0 10px;">
+        @Html.Action("SearchComponent")
+    </div>
+    <div style="min-width:300px;width:75%;display:inline-block;vertical-align:top;">
+        <div class="panel panel-default">
+           
 
-<div>
-    @Html.Action("SearchComponent")
-</div>
-<div class="panel panel-default">
-    <table class="table table-condensed carList">
-        <tr>
-
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-
-        </tr>
-
-        @foreach (var item in Model.LightCarsList)
-        {
-            <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Model) -> @Html.DisplayFor(modelItem => item.SubModel)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.BuildYear)</td>
-                <td>
-
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Province)
-                </td>
-                <td>
-
-                    <img src="~/Content/Images/@(item.CarId)/ImageURI1/Thumbnail.jpg" />
-
-                </td>
-
-                <td style="text-align:center;">
-                    @Html.ActionLink("مشاهده آگهی", "Details","Car", new { area = "Ads", id = item.CarId },null)
-                </td>
-            </tr>
-        }
-
-    </table>
+                @foreach (var item in Model.LightCarsList)
+                {
+                    <div style="display:inline-block;padding:2px;">
+                        <table>
+                            <tr>
+                                <td colspan="2">
+                                    <img src="~/Content/Images/@(item.CarId)/ImageURI1/Thumbnail.jpg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @item.Model
+                                </td>
+                                <td>
+                                    @item.SubModel
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">آگهی مورد علاقه</a>
+                                </td>
+                                <td>
+                                    <a href="#">مقایسه خودروها</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+             
+        </div>
+    </div>
 </div>

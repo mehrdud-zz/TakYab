@@ -87,18 +87,17 @@ h5, h6 {
 ----------------------------------------------------------*/
 .content-wrapper {
     margin: 0 auto;
-    max-width: 960px;
+     width:98%;
+     padding: 0 1% 0 1%;
 }
  
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
+     
     }
 
     .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
+       
     }
 
 header .content-wrapper {

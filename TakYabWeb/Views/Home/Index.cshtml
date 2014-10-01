@@ -3,27 +3,19 @@
 }
 
 
-<div id="searchResullts"></div>
-<table>
-    <tr>
-        <td>
-            @Html.Action("SearchComponent", "Search", new { area = "Advertising" })
+<div style="display:inline-block;width:100%;min-height:500px;vertical-align:top;">
+    <div style="min-width:300px;width:30%; display:inline-block;vertical-align:top;padding:0 0 0 10px;">
+        @Html.Action("SearchComponent", "Search", new { area = "Advertising" })
 
 
-        </td>
-        <td>
-            @Html.Action("CarRotator", "Search", new { area = "Advertising" })
+    </div>
+    <div style="min-width:300px;width:65%; display:inline-block;vertical-align:top;">
+         @Html.Action("CarRotator", "Search", new { area = "Advertising" })
+    </div>
 
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            @Html.Action("ListCars", "Car", new { area = "Ads" })
-
-        </td>
-    </tr>
-</table>
-
+    <div style="min-width:300px;width:100%; display:inline-block;vertical-align:top;">
+         @Html.Action("ListCars", "Car", new { area = "Ads" })
+    </div>
+</div>
 
 

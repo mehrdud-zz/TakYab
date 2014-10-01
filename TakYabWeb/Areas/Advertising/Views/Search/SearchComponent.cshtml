@@ -15,9 +15,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="usedCarDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'carStatusDropDownMenu', 'همه');">همه</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('0', 'carStatusDropDownMenu', 'صفر');">صفر</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('1', 'carStatusDropDownMenu', 'کارکرده');">کارکرده</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'carStatusDropDownMenu', 'carStatusHidden', 'همه');">همه</a></li>
+                        @foreach (var item in Model.CarStatusList)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.CarStatusId','carStatusDropDownMenu','carStatusHidden','@(item.Name)');">@(item.Name)</a></li>
+                        }
                     </ul>
                 </div>
             </div>
