@@ -1,20 +1,13 @@
 ﻿@model IEnumerable<DataLayer.Car>
 @{
     ViewBag.Title = "ListCars";
-}
-
+} 
 
 <div style="display:inline-block;width:100%;">
 
     @foreach (var item in Model)
     {
-        <div style="width:30%;display:inline-block;height:400px;">
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <img src="~/Content/Images/@(item.CarId)/ImageURI1/Thumbnail.jpg" />
-                    </td>
-                </tr>
+        <div style="display:inline-block;"><table><tr><td colspan="2"><img src="~/Content/Images/@(item.FirstImage)/Thumbnail.jpg" /></td></tr>
                 <tr>
                     <td>
                         @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)

@@ -37,8 +37,50 @@ namespace DataLayer
             }
         }
 
+
+        public string FirstImage
+        {
+            get
+            {
+                var _firstImage = "";
+                if (!String.IsNullOrEmpty(this.ImageURI1))
+                    _firstImage = this.ImageURI1.Replace("\\", "/");
+
+                else if (!String.IsNullOrEmpty(this.ImageURI2))
+                    _firstImage = this.ImageURI2.Replace("\\", "/");
+
+                else if (!String.IsNullOrEmpty(this.ImageURI3))
+                    _firstImage = this.ImageURI3.Replace("\\", "/");
+
+                else if (!String.IsNullOrEmpty(this.ImageURI4))
+                    _firstImage = this.ImageURI4.Replace("\\", "/");
+
+                else if (!String.IsNullOrEmpty(this.ImageURI5))
+                    _firstImage = this.ImageURI5.Replace("\\", "/");
+
+                return _firstImage;
+            }
+        }
+
         public String InsideColour { get; set; }
         public String OutsideColour { get; set; }
+
+
+
+        [Display(Name = "مدل خودرو")]
+        public string ModelName
+        {
+            get
+            {
+                string _modelName = "";
+                if (this.SubModel != null && this.SubModel.Model != null)
+                {
+                    _modelName =
+                        String.Format("{0}->{1}", this.SubModel.Name, this.SubModel.Model.Name);
+                }
+                return _modelName;
+            }
+        }
     }
 
 
@@ -46,8 +88,8 @@ namespace DataLayer
     {
         [ScaffoldColumn(false)]
         public System.Guid CarId { get; set; }
-         
-        [Display(Name = "مدل خودرو")] 
+
+        [Display(Name = "مدل خودرو")]
         public Nullable<System.Guid> SubModelId { get; set; }
 
         [Display(Name = "استان")]
@@ -115,7 +157,7 @@ namespace DataLayer
         public string ImageURI4 { get; set; }
 
         [Display(Name = "عکس 5")]
-        public string ImageURI5 { get; set; }  
+        public string ImageURI5 { get; set; }
 
         [Display(Name = "تاریخ ثبت آگهی")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yy}")]
@@ -124,6 +166,8 @@ namespace DataLayer
         [Display(Name = "تاریخ انقضا آگهی")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yy}")]
         public Nullable<System.DateTime> AdValidUntil { get; set; }
+
+
 
     }
 }

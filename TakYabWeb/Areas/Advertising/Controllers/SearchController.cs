@@ -20,6 +20,16 @@ namespace TakYab.Areas.Advertising.Controllers
         public string Province;
 
         public string BuildYear;
+        public string FirstImage { get; set; }
+
+
+        public string ModelName
+        {
+            get
+            {
+                return String.Format("{0}->{1}", this.SubModel, this.Model);
+            }
+        }
 
     }
 
@@ -42,6 +52,10 @@ namespace TakYab.Areas.Advertising.Controllers
         public string Province { get; set; }
 
         public List<LightCar> LightCarsList { get; set; }
+
+
+        public string FirstImage { get; set; }
+
     }
     public class SearchCriterias
     {
@@ -71,7 +85,7 @@ namespace TakYab.Areas.Advertising.Controllers
         public string SubModel { get; set; }
         public string PriceRange { get; set; }
         public string BuildYear { get; set; }
-        public string Province { get; set; } 
+        public string Province { get; set; }
     }
     public class SearchController : Controller
     {
@@ -135,21 +149,21 @@ namespace TakYab.Areas.Advertising.Controllers
 
         public ActionResult CarRotator()
         {
-            var selectedCars = db.Cars.Where(m => m.Priority.Code == "Homepage" && !String.IsNullOrEmpty(m.ImageURI1)).OrderBy(m => m.SortOrder);
+            var selectedCars = db.Cars.Where(m => m.Priority.Code == "Homepage" && !String.IsNullOrEmpty(m.ImageURI1)).OrderBy(m => m.SortOrder).Take(5);
             return View(selectedCars.ToList());
         }
 
-         
+
         public ActionResult SearchResults()
         {
-            var searchCriteriaLight = new SearchCriteriaLight(); 
+            var searchCriteriaLight = new SearchCriteriaLight();
             searchCriteriaLight.CarStatusId = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Guid.Parse(Request.Form["carStatusHidden"]) : Guid.Empty;
             searchCriteriaLight.ProvinceId = !String.IsNullOrEmpty(Request.Form["provinceHidden"]) ? Guid.Parse(Request.Form["provinceHidden"]) : Guid.Empty;
             searchCriteriaLight.ModelId = !String.IsNullOrEmpty(Request.Form["modelHidden"]) ? Guid.Parse(Request.Form["modelHidden"]) : Guid.Empty;
             searchCriteriaLight.SubModelId = !String.IsNullOrEmpty(Request.Form["subModelHidden"]) ? Guid.Parse(Request.Form["subModelHidden"]) : Guid.Empty;
             searchCriteriaLight.PriceRangeId = !String.IsNullOrEmpty(Request.Form["priceRangeHidden"]) ? Guid.Parse(Request.Form["priceRangeHidden"]) : Guid.Empty;
             searchCriteriaLight.BuildYearId = !String.IsNullOrEmpty(Request.Form["buildYearHidden"]) ? Guid.Parse(Request.Form["buildYearHidden"]) : Guid.Empty;
-            searchCriteriaLight.AdTypeId = !String.IsNullOrEmpty(Request.Form["adTypeHidden"]) ? Guid.Parse(Request.Form["adTypeHidden"]) : Guid.Empty; 
+            searchCriteriaLight.AdTypeId = !String.IsNullOrEmpty(Request.Form["adTypeHidden"]) ? Guid.Parse(Request.Form["adTypeHidden"]) : Guid.Empty;
 
             if (searchCriteriaLight.CarStatusId != Guid.Empty)
                 searchCriteriaLight.CarStatus = db.CarStatus.First(m => m.CarStatusId == searchCriteriaLight.CarStatusId).Name;
@@ -195,10 +209,11 @@ namespace TakYab.Areas.Advertising.Controllers
                     SubModel = cars.SubModel != null ? cars.SubModel.Name : String.Empty,
                     Price = cars.Price,
                     Province = cars.Province != null ? cars.Province.Name : String.Empty,
-                    BuildYear = cars.BuildYear != null ? cars.BuildYear.Name : String.Empty
+                    BuildYear = cars.BuildYear != null ? cars.BuildYear.Name : String.Empty,
+                    FirstImage = cars.ImageURI1
                 };
 
-           
+
             searchCriteriaLight.LightCarsList = searchResults.ToList<LightCar>();
             return View(searchCriteriaLight);
 
