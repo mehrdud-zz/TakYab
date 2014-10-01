@@ -299,6 +299,7 @@
     <Content Include="Images\blankII.jpg" />
     <Content Include="Images\logo3.png" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\grayscale.js" />
     <Content Include="Scripts\gridmvc.customfilter.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.min.js" />
