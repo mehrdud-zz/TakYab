@@ -72,8 +72,9 @@ a:hover
 }
 
 
-.container{
-    width:100% !important;
+.container
+{
+    width: 100% !important;
 }
 /*********       Footer      *********/
 footer
@@ -133,7 +134,7 @@ nav.navbar-takyab
 .navbar-takyab a
 {
     color: #fff;
-    font-size:1.3em;
+    font-size: 1.3em;
     font-weight: 700;
 }
 
@@ -198,7 +199,7 @@ nav.navbar-takyab
     background-color: #000;
     color: #fff;
     font-weight: 700;
-    font-size:1.2em;
+    font-size: 1.2em;
     border-bottom: 1px solid #fff;
 }
 
@@ -210,7 +211,7 @@ nav.navbar-takyab
     background-color: #000;
     color: #fff;
 }
- 
+
 
 /*********   End of Buttons   *********/
 
@@ -248,9 +249,31 @@ div.dropdown
 
 .editor-field
 {
-    padding: 0 0 10px 0;
+    padding: 0;
 }
 
+.formRow
+{
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid #f1f1f1;
+    width:100%;
+}
+
+.editor-field
+{
+        padding: 5px 0px 5px 0;
+    width: 75%;
+    display: inline-block;
+}
+
+.editor-label{
+       padding: 5px 0px 5px 20px;
+    font-weight: bold;
+    width: 20%;
+    text-align: left;
+    display: inline-block;
+
+}
 .editor-field select,
 .display-label select
 {
@@ -259,13 +282,22 @@ div.dropdown
     border: 1px solid #e2e2e2;
 }
 
-.editor-label,
+
 .display-label
 {
-    padding: 10px 0 0px 0;
+    padding: 5px 0px 5px 20px;
     font-weight: bold;
+    width: 20%;
+    text-align: left;
+    display: inline-block;
 }
 
+.display-field
+{
+    padding: 5px 0px 5px 0;
+    width: 75%;
+    display: inline-block;
+}
 
 .buttonsContainer
 {

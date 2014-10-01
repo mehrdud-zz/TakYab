@@ -19,151 +19,167 @@
 
 
         <div class="formPanel">
-            <div class="rightSidePanel panel panel-primary ">
+            <div class="rightSidePanel panel panel-takyab ">
                 <div class="panel-heading">اطلاعات خودرو</div>
                 <div class=" panel-body">
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.CarStatusId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.CarStatusId, new SelectList(ViewBag.CarStatusIdList, "CarStatusId", "Name", Model.CarStatusId), "---")
-                        @Html.ValidationMessageFor(model => model.CarStatusId)
-                    </div>
 
-                   <div class="editor-label">
-                        @Html.LabelFor(model => model.ProvinceId)
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CarStatusId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.CarStatusId, new SelectList(ViewBag.CarStatusIdList, "CarStatusId", "Name", Model.CarStatusId), "---")
+                            @Html.ValidationMessageFor(model => model.CarStatusId)
+                        </div>
                     </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.ProvinceId, new SelectList(ViewBag.ProvinceIdList, "ProvinceId", "Name", Model.ProvinceId), "---")                        
-                        @Html.ValidationMessageFor(model => model.ProvinceId)
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ProvinceId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.ProvinceId, new SelectList(ViewBag.ProvinceIdList, "ProvinceId", "Name", Model.ProvinceId), "---")
+                            @Html.ValidationMessageFor(model => model.ProvinceId)
+                        </div>
                     </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SubModelId)
+                        </div>
+                        <div class="editor-field">
+                            @*<table cellspacing="2px">
+                                    <tr>
+                                        <td>
+                                            @Html.DropDownListFor(model => model.SubModel.ModelId, ((SelectList)ViewBag.ModelId))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DropDownListFor(model => model.SubModelId, ((SelectList)ViewBag.SubModelId))
+                                        </td>
+                                    </tr>
+                                </table>*@
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BuildYearId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.BuildYearId, new SelectList(ViewBag.BuildYearIdList, "BuildYearId", "Name", Model.ProvinceId), "---")
+                            @Html.ValidationMessageFor(model => model.BuildYearId)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Milage)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Milage)
+                            @Html.ValidationMessageFor(model => model.Milage)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Price)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Price)
+                            @Html.ValidationMessageFor(model => model.Price)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutsideColourId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutsideColourId, new SelectList(ViewBag.OutsideColourIdList, "ColourId", "Name", Model.OutsideColourId), "---")
+                            @Html.ValidationMessageFor(model => model.OutsideColourId)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.InsideColourId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.InsideColourId, new SelectList(ViewBag.InsideColourIdList, "ColourId", "Name", Model.InsideColourId), "---")
+                            @Html.ValidationMessageFor(model => model.InsideColourId)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FuelType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.FuelTypeId, new SelectList(ViewBag.FuelTypeIdList, "FuelTypeId", "Name", Model.FuelTypeId), "---")
+                            @Html.ValidationMessageFor(model => model.FuelType)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.InsuranceType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.InsuranceTypeId, new SelectList(ViewBag.InsuranceTypeIdList, "InsuranceTypeId", "Name", Model.InsuranceTypeId), "---")
+                            @Html.ValidationMessageFor(model => model.InsuranceType)
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AdTypeId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.AdTypeId, new SelectList(ViewBag.AdTypeIdList, "AdTypeId", "Name", Model.AdTypeId), "---")
+                            @Html.ValidationMessageFor(model => model.AdTypeId)
+                        </div>
 
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.SubModelId)
                     </div>
-                    <div class="editor-field">
-                        @*<table cellspacing="2px">
-                            <tr>
-                                <td>
-                                    @Html.DropDownListFor(model => model.SubModel.ModelId, ((SelectList)ViewBag.ModelId))
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    @Html.DropDownListFor(model => model.SubModelId, ((SelectList)ViewBag.SubModelId))
-                                </td>
-                            </tr>
-                        </table>*@
-                    </div>
+                    <div class="formRow">
 
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.BuildYearId)
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PriorityId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PriorityId, new SelectList(ViewBag.PriorityIdList, "PriorityId", "Name", Model.PriorityId), "---")
+                            @Html.ValidationMessageFor(model => model.PriorityId)
+                        </div>
                     </div>
-                    <div class="editor-field">
-                     @Html.DropDownListFor(model => model.BuildYearId, new SelectList(ViewBag.BuildYearIdList, "BuildYearId", "Name", Model.ProvinceId), "---")                        
-                        @Html.ValidationMessageFor(model => model.BuildYearId)
-                    </div>
+                    <div class="formRow">
 
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Milage)
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Description)
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
                     </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Milage)
-                        @Html.ValidationMessageFor(model => model.Milage)
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.GearType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.GearType)
+                            @Html.ValidationMessageFor(model => model.GearType)
+                        </div>
                     </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Price)
+                    <div class="formRow">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PhoneNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.PhoneNumber)
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
                     </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Price)
-                        @Html.ValidationMessageFor(model => model.Price)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.OutsideColourId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.OutsideColourId, new SelectList(ViewBag.OutsideColourIdList, "ColourId", "Name", Model.OutsideColourId), "---")                        
-                        @Html.ValidationMessageFor(model => model.OutsideColourId)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.InsideColourId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.InsideColourId, new SelectList(ViewBag.InsideColourIdList, "ColourId", "Name", Model.InsideColourId), "---")
-                        @Html.ValidationMessageFor(model => model.InsideColourId)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.FuelType)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.FuelTypeId, new SelectList(ViewBag.FuelTypeIdList, "FuelTypeId", "Name", Model.FuelTypeId), "---")
-                        @Html.ValidationMessageFor(model => model.FuelType)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.InsuranceType)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.InsuranceTypeId, new SelectList(ViewBag.InsuranceTypeIdList, "InsuranceTypeId", "Name", Model.InsuranceTypeId), "---")
-                        @Html.ValidationMessageFor(model => model.InsuranceType)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.AdTypeId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.AdTypeId, new SelectList(ViewBag.AdTypeIdList, "AdTypeId", "Name", Model.AdTypeId), "---") 
-                        @Html.ValidationMessageFor(model => model.AdTypeId)
-                    </div>
-
-
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.PriorityId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.PriorityId, new SelectList(ViewBag.PriorityIdList, "PriorityId", "Name", Model.PriorityId), "---")
-                        @Html.ValidationMessageFor(model => model.PriorityId)
-                    </div>
-
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Description)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Description)
-                        @Html.ValidationMessageFor(model => model.Description)
-                    </div>
-                     
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.GearType)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.GearType)
-                        @Html.ValidationMessageFor(model => model.GearType)
-                    </div>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.PhoneNumber)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.PhoneNumber)
-                        @Html.ValidationMessageFor(model => model.PhoneNumber)
-                    </div> 
-
                 </div>
 
             </div>
 
             <div class="leftSidePanel">
-                <div class=" panel panel-primary ">
+                <div class=" panel panel-takyab ">
                     <div class="panel-heading">آپلود عکس</div>
                     <div class="panel-body">
 

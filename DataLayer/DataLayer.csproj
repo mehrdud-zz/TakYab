@@ -49,12 +49,18 @@
     <Compile Include="AdStatus.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CarStatusExtended.cs" />
+    <Compile Include="InsuranceTypeExtended.cs" />
+    <Compile Include="FuelTypeExtended.cs" />
     <Compile Include="AdType.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BuildYear.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdStatusExtended.cs" />
+    <Compile Include="PriorityExtended.cs" />
+    <Compile Include="PriceRangeExtended.cs" />
     <Compile Include="Car.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
@@ -73,6 +79,9 @@
     <Compile Include="Model.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdTypeExtended.cs" />
+    <Compile Include="BuildYearExtended.cs" />
+    <Compile Include="ProvinceExtended.cs" />
     <Compile Include="PriceRange.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
@@ -85,6 +94,7 @@
     <Compile Include="SubModel.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExtended.cs" />
     <Compile Include="SubModelExtended.cs" />
     <Compile Include="CarExtended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
