@@ -98,6 +98,11 @@ namespace TakYab.Areas.Ads.Controllers
                             var medium = directory + "Medium.jpg";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium);
 
+
+
+                            var large = directory + "Large.jpg";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large);
+
                             if (i == 0)
                                 car.ImageURI1 = photoPath;
 

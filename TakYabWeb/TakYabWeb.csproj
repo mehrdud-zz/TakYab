@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GridMvc">
-      <HintPath>..\..\..\..\..\..\Downloads\Grid.Mvc.3 (1)\Grid.Mvc.3\GridMvc.dll</HintPath>
+      <HintPath>..\..\..\Users\Mehrdad\Downloads\Grid.Mvc.3\Grid.Mvc.3\GridMvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <Private>False</Private>
