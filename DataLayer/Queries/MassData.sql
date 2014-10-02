@@ -7,6 +7,7 @@ DECLARE @BuildYearId AS uniqueidentifier
 DECLARE @PriceRangeId AS uniqueidentifier
 DECLARE @PriorityId AS uniqueidentifier
 DECLARE @AdStatusId AS uniqueidentifier
+DECLARE @AdTypeId AS uniqueidentifier
 DECLARE @OutsideColourId AS uniqueidentifier
 DECLARE @InsideColourId AS uniqueidentifier
 DECLARE @FuelTypeId AS uniqueidentifier
@@ -27,6 +28,35 @@ DECLARE @ImageURI4 AS NVARCHAR(50)
 DECLARE @ImageURI5 AS NVARCHAR(50)
 DECLARE @Milage AS BIGINT  
 
+
+
+
+SET @SubModelId = (SELECT TOP(1) [SubModelId] from [SubModel] ORDER BY [SortOrder])
+SET @ProvinceId  = (SELECT TOP(1) [ProvinceId] from [Province] ORDER BY [SortOrder])
+SET @BuildYearId  = (SELECT TOP(1) [BuildYearId] from [BuildYear] ORDER BY [SortOrder])
+SET @PriceRangeId  = (SELECT TOP(1) [PriceRangeId] from [PriceRangel] ORDER BY [SortOrder])
+SET @PriorityId  = (SELECT TOP(1) [PriorityId] from [Priority] ORDER BY [SortOrder])
+SET @AdStatusId  = (SELECT TOP(1) [AdStatusId] from [AdStatus] ORDER BY [SortOrder])
+SET @AdTypeId  = (SELECT TOP(1) [AdTypeId] from [AdType] ORDER BY [SortOrder])
+SET @OutsideColourId  = (SELECT TOP(1) [ColourId] from [Colour] ORDER BY [SortOrder])
+SET @InsideColourId  = (SELECT TOP(1) [ColourId] from [Colour] ORDER BY [SortOrder])
+SET @FuelTypeId  = (SELECT TOP(1) [FuelTypeId] from [FuelType] ORDER BY [SortOrder])
+SET @InsuranceTypeId  = (SELECT TOP(1) [InsuranceTypeId] from [InsuranceType] ORDER BY [SortOrder])
+SET @CarStatusId  = (SELECT TOP(1) [CarStatusId] from [CarStatus] ORDER BY [SortOrder])
+SET @Name = 'Test'
+SET @Description = 'Test'
+SET @Price =10000000
+SET @SortOrder= 2
+SET @AdCreatedDate = NULL
+SET @AdValidUntil = NULL
+SET @GearType = 'Test'
+SET @PhoneNumber = 'Test' 
+SET @Milage =10000
+SET @ImageURI1 = (SELECT TOP(1) [ImageURI1] from [Car] ORDER BY [SortOrder])
+SET @ImageURI2 = (SELECT TOP(1) [ImageURI2] from [Car] ORDER BY [SortOrder])
+
+WHILE(@SortOrder<300001)
+BEGIN
 INSERT INTO [dbo].[Car]
            ( [SubModelId]
            ,[ProvinceId]
@@ -42,21 +72,17 @@ INSERT INTO [dbo].[Car]
            ,[CarStatusId]
            ,[Name]
            ,[Description]
-           ,[Price]
-           ,[SortOrder]
+           ,[Price] 
            ,[AdCreatedDate]
            ,[AdValidUntil]
            ,[GearType]
            ,[PhoneNumber]
-           ,[ImageURI1]
-           ,[ImageURI2]
-           ,[ImageURI3]
-           ,[ImageURI4]
-           ,[ImageURI5]
-           ,[Milage])
-     VALUES
-           @CarId, 
-           @SubModelId, 
+           ,[ImageURI1] 
+		   ,[ImageURI2] 
+           ,[Milage]
+		   ,[SortOrder])
+     VALUES  
+           (@SubModelId, 
            @ProvinceId,
            @AdTypeId, 
            @BuildYearId, 
@@ -64,24 +90,22 @@ INSERT INTO [dbo].[Car]
            @PriorityId,
            @AdStatusId, 
            @OutsideColourId, 
-           @InsideColourId, uniqueidentifier,>
-           @FuelTypeId, uniqueidentifier,>
-           @InsuranceTypeId, uniqueidentifier,>
-           @CarStatusId, uniqueidentifier,>
-           @Name, nvarchar(50),>
-           @Description, nvarchar(2000),>
-           @Price, money,>
-           @SortOrder, int,>
-           @AdCreatedDate, datetime,>
-           @AdValidUntil, datetime,>
-           @GearType, nvarchar(50),>
-           @PhoneNumber, nvarchar(50),>
-           @ImageURI1, nvarchar(500),>
-           @ImageURI2, nvarchar(500),>
-           @ImageURI3, nvarchar(500),>
-           @ImageURI4, nvarchar(500),>
-           @ImageURI5, nvarchar(500),>
-           @Milage, bigint,>)
-GO
+           @InsideColourId,
+           @FuelTypeId,
+           @InsuranceTypeId,
+           @CarStatusId,
+           @Name,
+           @Description, 
+           @Price, 
+           @AdCreatedDate,
+           @AdValidUntil,
+           @GearType, 
+           @PhoneNumber,
+           @ImageURI1, 
+           @ImageURI2, 
+           @Milage,		   
+           @SortOrder)
+ 
+ SET @SortOrder = @SortOrder + 1
 
-
+END

@@ -3,17 +3,19 @@
 }
 
 
-<div style="display:inline-block;width:100%;max-width:960px;height:100%;vertical-align:top;position:relative;">
-    <div style="width:300px; display:block;vertical-align:top;padding:0 0 0 10px;position:absolute;top:0;right:0;z-index:1000;    ">
+<div style="display:inline-block;width:100%;min-height:500px;vertical-align:top;">
+    <div style="min-width:300px;width:30%; display:inline-block;vertical-align:top;padding:0 0 0 10px;">
         @Html.Action("SearchComponent", "Search", new { area = "Advertising" })
 
 
     </div>
-    <div style="min-width:300px;width:100%; display:block;vertical-align:top;position:absolute;top:0;right:0;z-index:-1;    filter: alpha(opacity=40);">
-         @Html.Action("CarRotator", "Search", new { area = "Advertising" })
+    <div style="min-width:300px;width:65%; display:inline-block;vertical-align:top;">
+        @Html.Action("CarRotator", "Search", new { area = "Advertising" })
     </div>
 
-     
+    <div style="min-width:300px;width:100%; display:inline-block;vertical-align:top;">
+        @Html.Action("ListCars", "Car", new { area = "Ads" })
+    </div>
 </div>
 
 
