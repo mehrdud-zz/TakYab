@@ -55,7 +55,7 @@ SET @Milage =10000
 SET @ImageURI1 = (SELECT TOP(1) [ImageURI1] from [Car] ORDER BY [SortOrder])
 SET @ImageURI2 = (SELECT TOP(1) [ImageURI2] from [Car] ORDER BY [SortOrder])
 
-WHILE(@SortOrder<300001)
+WHILE(@SortOrder<30001)
 BEGIN
 INSERT INTO [dbo].[Car]
            ( [SubModelId]
