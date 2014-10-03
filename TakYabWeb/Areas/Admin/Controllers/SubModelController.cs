@@ -18,7 +18,7 @@ namespace TakYab.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var submodels = db.SubModels.Include(s => s.Model);
+            var submodels = db.SubModels.Include(s => s.Model).OrderBy(m=>m.SortOrder);
             return View(submodels.ToList());
         }
 

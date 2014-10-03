@@ -15,7 +15,7 @@ namespace TakYab.Areas.Ads.Controllers
 
         public ActionResult LeftBarCarList()
         {
-            var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
+            var cars = db.Cars.Include(c => c.SubModel).Include(c => c.SubModel.Model)
            .OrderBy(m => m.Priority.SortOrder).Where(m => m.Priority.Code == "SideBar").OrderBy(m => m.SortOrder).Take(5);
             return View(cars.ToList());
         }

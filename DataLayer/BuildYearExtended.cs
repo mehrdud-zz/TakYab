@@ -19,7 +19,12 @@ namespace DataLayer
 
     class BuildYearMetadata
     {
+        [Required]
+        [Display(Name = "سال تولید")]
+        public string Name { get; set; } 
 
+        [Display(Name = "ترتیب")]
+        public Nullable<int> SortOrder { get; set; }
         
     }
 }

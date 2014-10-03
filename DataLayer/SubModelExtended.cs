@@ -19,7 +19,14 @@ namespace DataLayer
 
     class SubModelMetadata
     {
+        [Required]
+        [Display(Name = "مدل خودرو")]
+        public string Name { get; set; }
 
-        
+        [Display(Name = "توضیحات بیشتر")]
+        public string Description { get; set; }
+
+        [Display(Name = "ترتیب")]
+        public Nullable<int> SortOrder { get; set; }
     }
 }

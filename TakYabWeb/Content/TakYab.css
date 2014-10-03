@@ -54,7 +54,8 @@ a:hover,
 a:focus
 {
     text-decoration: none;
-    color: #11505d;
+    /*color: #11505d;*/
+    color: #FF9000 !important;
 }
 /*********       End of Basic Elements      *********/
 /*********       Page Template      *********/
@@ -221,6 +222,16 @@ nav.navbar-takyab
     border-bottom: 1px solid #fff;
 }
 
+
+.panel-takyab-transparent{
+
+}
+
+.btn-takyab:hover
+{
+    color: red !important;
+}
+
 /*********   End of Panels   *********/
 
 
@@ -244,6 +255,7 @@ nav.navbar-takyab
 .grid-row .grid-cell
 {
     vertical-align: middle;
+    text-align: center;
 }
 /*********   End of Grids   *********/
 
@@ -329,8 +341,9 @@ nav.navbar-takyab
     width: 180px;
 }
 
-.searchPanel .btn:hover{
-    color:red;
+.searchPanel .btn:hover
+{
+    color: red;
 }
 
 .searchContainer
@@ -371,11 +384,37 @@ nav.navbar-takyab
 }
 
 
-.btnSearch
+.searchPanel .btnSearch,
+.searchPanel .btnReset
 {
-    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #000;
+    color: #fff;
 }
 
+
+.searchPanel .btnSearch
+{
+    width: 100px;
+}
+
+.searchPanel .btnReset
+{
+    width: 80px;
+}
+
+
+.searchPanel .btnSearch:hover,
+.searchPanel .btnReset:hover
+{ 
+    color: red;
+}
 /*********   End of Search   *********/
 
 
@@ -535,32 +574,35 @@ div.dropdown
 /* Home page */
 .HomePage
 {
-    vertical-align:top;
+    vertical-align: top;
 }
 
 
 .HomePage .leftbarCarListContainer
 {
-    float: left;    
+    float: left;
     padding: 0 10px 0 10px;
     margin: 0;
     display: inline-block;
-    
+    height: 600px;
+    background-color: #f1f1f1;
+    display: inline-block;
+    overflow-y: scroll
 }
 
 .HomePage .leftbarCarListContainer ul.LeftBarCarList
 {
     text-align: center;
-    list-style-type:none;
-    padding:0;
-    margin:0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .HomePage .leftbarCarListContainer ul.LeftBarCarList li
-{    
-       list-style-type:none;
+{
+    list-style-type: none;
     padding: 10px 0 10px 0;
-    margin:0;
+    margin: 0;
     border-bottom: 1px solid #000;
 }
 
@@ -595,4 +637,11 @@ div.dropdown
     width: 100%;
     display: inline-block;
     vertical-align: top;
+}
+
+
+#AdminPanel ul li a
+{
+    font-size: 1.4em;
+    font-weight: 700;
 }

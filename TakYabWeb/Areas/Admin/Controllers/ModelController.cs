@@ -18,7 +18,7 @@ namespace TakYab.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Models.ToList());
+            return View(db.Models.OrderBy(m => m.SortOrder).ToList());
         }
 
         //

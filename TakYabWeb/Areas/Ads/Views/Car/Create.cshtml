@@ -15,7 +15,7 @@
     <fieldset>
         <legend>Car</legend>
         <div class="formPanel ">
-            <div class="rightSidePanel panel panel-primary ">
+            <div class="rightSidePanel panel panel-takyab ">
                 <div class="panel-heading">اطلاعات خودرو</div>
                 <div class=" panel-body">
 
@@ -143,13 +143,13 @@
                         <div class="editor-field">
                             @Html.EditorFor(model => model.PhoneNumber)
                             @Html.ValidationMessageFor(model => model.PhoneNumber)
-                        </div> 
+                        </div>
                     </div>
                 </div>
 
             </div>
             <div class="leftSidePanel ">
-                <div class=" panel panel-primary ">
+                <div class=" panel panel-takyab ">
                     <div class="panel-heading">آپلود عکس</div>
                     <div class="panel-body">
 
@@ -190,9 +190,28 @@
                         <div class="editor-field">
                             <input type="file" id="ImageURI5File" name="ImageURI5File" />
                         </div>
+
+
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AdTypeId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.AdTypeId, ((SelectList)ViewBag.AdTypeId))
+                            @Html.ValidationMessageFor(model => model.AdTypeId)
+                        </div>
+
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PriorityId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PriorityId, ((SelectList)ViewBag.PriorityId))
+                            @Html.ValidationMessageFor(model => model.PriorityId)
+                        </div>
                     </div>
                 </div>
-                <div class="panel panel-primary">
+                <div class="panel panel-takyab">
                     <div class="panel-heading">دقت کنید</div>
                     <div class="panel-body">
                         <p>برای درج آگهی در سایت به موارد زیر دقت کنید</p>
@@ -205,32 +224,8 @@
                     </div>
                 </div>
             </div>
-            <br />
-
-            <div class="panel panel-primary ">
-                <div class="panel-heading">Admin area</div>
-                <div class="panel-body">
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.AdTypeId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.AdTypeId, ((SelectList)ViewBag.AdTypeId))
-                        @Html.ValidationMessageFor(model => model.AdTypeId)
-                    </div>
-
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.PriorityId)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(model => model.PriorityId, ((SelectList)ViewBag.PriorityId))
-                        @Html.ValidationMessageFor(model => model.PriorityId)
-                    </div>
-                </div>
-
-            </div>
             <div class="buttonsContainer">
-                <input type="submit" value="افزودن" />
+                <input type="submit" value="افزودن" class="btn btn-takyab" />
             </div>
 
         </div>
@@ -238,7 +233,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Car", new { area = "Ads", @id = -1 }, null)
 </div>
 
 @section Scripts {

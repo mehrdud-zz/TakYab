@@ -1,10 +1,11 @@
 ﻿@model DataLayer.SubModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "مدل خودرو جدید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>مدل خودرو جدید</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -46,7 +47,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="ذخیره" />
         </p>
     </fieldset>
 }

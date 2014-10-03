@@ -20,6 +20,19 @@ namespace DataLayer
     class PriceRangeMetadata
     {
 
-        
+        [Required]
+        [Display(Name = "گروه قیمت")]
+        public string Name { get; set; }
+         
+        [Display(Name = "ترتیب")]
+        public Nullable<int> SortOrder { get; set; }
+
+        [Required]
+        [Display(Name = "شروع")]
+        public Nullable<decimal> StartRange { get; set; }
+
+        [Required]
+        [Display(Name = "پایان")]
+        public Nullable<decimal> EndRange { get; set; }
     }
 }

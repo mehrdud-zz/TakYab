@@ -20,4 +20,4 @@
                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<img src="~/Content/Images/@ad.FirstImage/Thumbnail.png" />);
                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div><a href="/Ads/Car/Edit/@ad.CarId">ویرایش</a><span>&nbsp;|&nbsp;</span><a href="/Ads/Car/Details/@ad.CarId">مشاهده آگهی</a><span>&nbsp;|&nbsp;</span><a href="/Ads/Car/Delete/@ad.CarId">حذف</a></div>);
            }
-                                  ).WithPaging(4).Sortable().Filterable().WithMultipleFilters()
+).WithPaging(4).Sortable().Filterable().WithMultipleFilters()

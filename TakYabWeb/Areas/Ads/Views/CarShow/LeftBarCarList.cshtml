@@ -12,10 +12,10 @@
                     <tr><td colspan="2"><img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" /></td></tr>
                     <tr>
                         <td>
-                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
+                            @((item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
                         </td>
                         <td>
-                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
+                            @( (item.SubModel != null) ? item.SubModel.Name : String.Empty)
                         </td>
                     </tr>
                     <tr>

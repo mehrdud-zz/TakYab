@@ -1,68 +1,25 @@
-﻿@model IEnumerable<DataLayer.Car>
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.Colour>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "رنگ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
+ 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">رنگ جدید</span>
+    </a>
 </p>
+ 
 
-
-<div class="panel panel-default">
-    <table class="table table-condensed carList">
-        <tr>
-
-            <th>
-                @Html.DisplayNameFor(model => model.SubModelId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProvinceId)
-            </th>
-            <th>
-
-            </th>
-
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr class="@((item.AdStatus != null) ? item.AdStatus.CssCode : "")">
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubModel.Model.Name) -> @Html.DisplayFor(modelItem => item.SubModel.Name) 
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.BuildYear.Name)</td>
-                <td>
-
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Province.Name)
-                </td>
-                <td>
-
-                    <img src="~/Content/Images/@(item.CarId)/ImageURI1/Original.png" />
-
-                </td>
-
-                <td style="text-align:center;">
-
-                    @Html.ActionLink("ویرایش", "Edit", new { id = item.CarId }) |
-                    @Html.ActionLink("مشاهده آگهی", "Details", new { id = item.CarId }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.CarId })
-                </td>
-            </tr>
-        }
-
-    </table>
-</div>
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("رنگ").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/Colour/Edit/@ad.ColourId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/Colour/Details/@ad.ColourId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/Colour/Delete/@ad.ColourId">حذف</a>
+            </div>);
+           }).Sortable()

@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>جدید</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -28,14 +29,7 @@
             @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Active)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
-        </div>
+ 
 
         <div class="editor-label">
             @Html.LabelFor(model => model.SortOrder)
@@ -46,7 +40,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="ذخیره" />
         </p>
     </fieldset>
 }

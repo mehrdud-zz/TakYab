@@ -19,7 +19,13 @@ namespace DataLayer
 
     class AdTypeMetadata
     {
+        [Required]
+        [Display(Name = "نوع آگهی")]
+        public string Name { get; set; }
+         
 
+        [Display(Name = "ترتیب")]
+        public Nullable<int> SortOrder { get; set; }
         
     }
 }

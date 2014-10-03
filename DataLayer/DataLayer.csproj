@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="AdTypeExtended.cs" />
     <Compile Include="BuildYearExtended.cs" />
+    <Compile Include="ColourExtended.cs" />
     <Compile Include="ProvinceExtended.cs" />
     <Compile Include="PriceRange.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
