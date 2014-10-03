@@ -34,7 +34,7 @@ DECLARE @Milage AS BIGINT
 SET @SubModelId = (SELECT TOP(1) [SubModelId] from [SubModel] ORDER BY [SortOrder])
 SET @ProvinceId  = (SELECT TOP(1) [ProvinceId] from [Province] ORDER BY [SortOrder])
 SET @BuildYearId  = (SELECT TOP(1) [BuildYearId] from [BuildYear] ORDER BY [SortOrder])
-SET @PriceRangeId  = (SELECT TOP(1) [PriceRangeId] from [PriceRangel] ORDER BY [SortOrder])
+SET @PriceRangeId  = (SELECT TOP(1) [PriceRangeId] from [PriceRange] ORDER BY [SortOrder])
 SET @PriorityId  = (SELECT TOP(1) [PriorityId] from [Priority] ORDER BY [SortOrder])
 SET @AdStatusId  = (SELECT TOP(1) [AdStatusId] from [AdStatus] ORDER BY [SortOrder])
 SET @AdTypeId  = (SELECT TOP(1) [AdTypeId] from [AdType] ORDER BY [SortOrder])
