@@ -300,7 +300,7 @@
 
         if (modelId != "") {
             $("#SubModelId").show();
-            var requestURL = "/Advertising/SubModel/GetSubModelListByModelId?modelId=" + modelId;
+            var requestURL = "/Ads/Car/GetSubModelListByModelId?modelId=" + modelId;
             console.log("requestURL: " + requestURL);
             $.ajax({
                 url: requestURL,

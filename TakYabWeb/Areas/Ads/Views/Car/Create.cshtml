@@ -145,6 +145,27 @@
                             @Html.ValidationMessageFor(model => model.PhoneNumber)
                         </div>
                     </div>
+
+                    <div class="formRow">
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AdTypeId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.AdTypeId, ((SelectList)ViewBag.AdTypeId))
+                            @Html.ValidationMessageFor(model => model.AdTypeId)
+                        </div>
+                    </div>
+                    <div class="formRow">
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PriorityId)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PriorityId, ((SelectList)ViewBag.PriorityId))
+                            @Html.ValidationMessageFor(model => model.PriorityId)
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -193,22 +214,6 @@
 
 
 
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.AdTypeId)
-                        </div>
-                        <div class="editor-field">
-                            @Html.DropDownListFor(model => model.AdTypeId, ((SelectList)ViewBag.AdTypeId))
-                            @Html.ValidationMessageFor(model => model.AdTypeId)
-                        </div>
-
-
-                        <div class="editor-label">
-                            @Html.LabelFor(model => model.PriorityId)
-                        </div>
-                        <div class="editor-field">
-                            @Html.DropDownListFor(model => model.PriorityId, ((SelectList)ViewBag.PriorityId))
-                            @Html.ValidationMessageFor(model => model.PriorityId)
-                        </div>
                     </div>
                 </div>
                 <div class="panel panel-takyab">
@@ -257,7 +262,7 @@
 
         if (modelId != "") {
             $("#SubModelId").show();
-            var requestURL = "/Advertising/SubModel/GetSubModelListByModelId?modelId=" + modelId;
+            var requestURL = "/Ads/Car/GetSubModelListByModelId?modelId=" + modelId;
             console.log("requestURL: " + requestURL);
             $.ajax({
                 url: requestURL,

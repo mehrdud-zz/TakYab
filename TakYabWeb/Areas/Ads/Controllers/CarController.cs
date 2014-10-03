@@ -283,5 +283,28 @@ namespace TakYab.Areas.Ads.Controllers
 
 
 
+        public ActionResult GetSubModelList()
+        {
+            var submodels = db.SubModels.Include(s => s.Model).OrderBy(m=>m.SortOrder);
+            return View(submodels.ToList());
+        }
+
+
+        public JsonResult GetSubModelListByModelId(Guid modelId)
+        {
+            var submodels = db.SubModels.Include(s => s.Model).Where(m => m.ModelId == modelId).OrderBy(m => m.SortOrder);
+
+            var subModelsSerialized =
+                from cars in submodels
+                select new { SubModelId = cars.SubModelId, Name = cars.Name };
+
+
+            return Json(
+            new
+            {
+                Result = subModelsSerialized.ToList()
+            }
+            , JsonRequestBehavior.AllowGet);
+        }
     }
 }
