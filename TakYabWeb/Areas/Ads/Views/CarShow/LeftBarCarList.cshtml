@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<DataLayer.Car>
+@{
+    ViewBag.Title = "LeftBarCarList";
+}
+
+<ul class="LeftBarCarList">
+    @foreach (DataLayer.Car item in Model)
+    {
+        <li>
+            <a href="/Ads/Car/Details/@(item.CarId)">
+                <table>
+                    <tr><td colspan="2"><img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" /></td></tr>
+                    <tr>
+                        <td>
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
+                        </td>
+                        <td>
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @(item.Price)
+                        </td>
+                        <td>
+                            @((item != null && item.Province != null) ? item.Province.Name : String.Empty)
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </li>
+    }
+</ul>

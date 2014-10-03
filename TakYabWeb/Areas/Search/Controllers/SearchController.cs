@@ -3,90 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc; 
 
-namespace TakYab.Areas.Advertising.Controllers
+namespace TakYab.Areas.Search.Controllers
 {
-
-    public class LightCar
-    {
-        public Guid CarId { get; set; }
-        public string ImageURI { get; set; }
-        public string Model { get; set; }
-        public string SubModel { get; set; }
-
-        public decimal Price;
-
-        public string Province;
-
-        public string BuildYear;
-        public string FirstImage { get; set; }
-
-
-        public string ModelName
-        {
-            get
-            {
-                return String.Format("{0}->{1}", this.SubModel, this.Model);
-            }
-        }
-
-    }
-
-    public class SearchCriteriaLight
-    {
-        public Guid AdTypeId { get; set; }
-        public Guid CarStatusId { get; set; }
-        public Guid ModelId { get; set; }
-        public Guid SubModelId { get; set; }
-        public Guid PriceRangeId { get; set; }
-        public Guid BuildYearId { get; set; }
-        public Guid ProvinceId { get; set; }
-
-        public string AdType { get; set; }
-        public string CarStatus { get; set; }
-        public string Model { get; set; }
-        public string SubModel { get; set; }
-        public string PriceRange { get; set; }
-        public string BuildYear { get; set; }
-        public string Province { get; set; }
-
-        public List<LightCar> LightCarsList { get; set; }
-
-
-        public string FirstImage { get; set; }
-
-    }
-    public class SearchCriterias
-    {
-        public List<DataLayer.CarStatus> CarStatusList { get; set; }
-        public List<DataLayer.Model> ModelList { get; set; }
-        public List<DataLayer.SubModel> SubModelList { get; set; }
-
-        public List<DataLayer.AdType> AdTypeList { get; set; }
-
-        public List<DataLayer.PriceRange> PriceRangeList { get; set; }
-
-        public List<DataLayer.BuildYear> BuildYearList { get; set; }
-
-        public List<DataLayer.Province> ProvinceList { get; set; }
-
-        public Guid AdTypeId { get; set; }
-        public Guid CarStatusId { get; set; }
-        public Guid ModelId { get; set; }
-        public Guid SubModelId { get; set; }
-        public Guid PriceRangeId { get; set; }
-        public Guid BuildYearId { get; set; }
-        public Guid ProvinceId { get; set; }
-
-        public string AdType { get; set; }
-        public string CarStatus { get; set; }
-        public string Model { get; set; }
-        public string SubModel { get; set; }
-        public string PriceRange { get; set; }
-        public string BuildYear { get; set; }
-        public string Province { get; set; }
-    }
     public class SearchController : Controller
     {
         private TakYabEntities db = new TakYabEntities();
@@ -103,7 +23,7 @@ namespace TakYab.Areas.Advertising.Controllers
 
         public ActionResult SearchComponent()
         {
-            var searchCriterias = new SearchCriterias();
+            var searchCriterias = new SearchCriteria();
             searchCriterias.CarStatusList = db.CarStatus.OrderBy(m => m.SortOrder).ToList();
             searchCriterias.ModelList = db.Models.OrderBy(m => m.SortOrder).ToList();
             searchCriterias.SubModelList = db.SubModels.OrderBy(m => m.SortOrder).ToList();
@@ -147,11 +67,6 @@ namespace TakYab.Areas.Advertising.Controllers
             return View(searchCriterias);
         }
 
-        public ActionResult CarRotator()
-        {
-            var selectedCars = db.Cars.Where(m => m.Priority.Code == "Homepage" && !String.IsNullOrEmpty(m.ImageURI1)).OrderBy(m => m.SortOrder).Take(5);
-            return View(selectedCars.ToList());
-        }
 
 
         public ActionResult SearchResults()
@@ -218,40 +133,5 @@ namespace TakYab.Areas.Advertising.Controllers
             return View(searchCriteriaLight);
 
         }
-
-        //public JsonResult SearchAds(
-        //    string usedCar,
-        // string province,
-        // string model,
-        // string subModel,
-        // string priceRange,
-        // string buildYear,
-        // string adType)
-        //{
-        //    var modelId = !String.IsNullOrEmpty(model) ? Guid.Parse(model.Replace("\"", "")) : Guid.Empty;
-        //    var subModelId = !String.IsNullOrEmpty(subModel) ? Guid.Parse(model.Replace("\"", "")) : Guid.Empty;
-
-
-        //    var searchResults =
-        //        from cars in db.Cars
-        //        where
-
-        //        (modelId != Guid.Empty && cars.SubModel.ModelId == modelId) ||
-        //        (subModelId != Guid.Empty && cars.SubModelId == subModelId)
-
-        //        select new
-        //        {
-        //            CarId = cars.CarId,
-        //            ImageURI = cars.ImageURI1.Replace("\\", "/"),
-        //            Model = cars.SubModel.Model.Name,
-        //            SubModel = cars.SubModel.Name,
-        //            Price = cars.Price
-        //        };
-
-
-        //    return Json(new { Results = searchResults.ToList(), counter = searchResults.ToList().Count() }, JsonRequestBehavior.AllowGet);
-        //}
     }
-
-
 }

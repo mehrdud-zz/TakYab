@@ -2,20 +2,25 @@
     ViewBag.Title = "Home Page";
 }
 
+<div class="HomePage">
+ 
 
-<div style="display:inline-block;width:100%;min-height:500px;vertical-align:top;">
-    <div style="width:200px; display:inline-block;vertical-align:top;padding:0 0 0 10px;">
-        @Html.Action("SearchComponent", "Search", new { area = "Advertising" })
+    <div class="HomePageCotnainer">
+        <div class="SearchComponentCotainer">
+            @Html.Action("SearchComponent", "Search", new { area = "Search" })
 
 
+        </div>
+        <div class="CarRotatorContainer">
+            @Html.Action("CarRotator", "CarShow", new { area = "Ads" })
+        </div>
+
+        <div class="BottomPageCarListContainer">
+            @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
+        </div>
     </div>
-    <div style="min-width:300px;width:65%; display:inline-block;vertical-align:top;">
-        @Html.Action("CarRotator", "Search", new { area = "Advertising" })
+    <div class="leftbarCarListContainer">
+        @Html.Action("LeftBarCarList", "CarShow", new { area = "Ads" })
     </div>
 
-    <div style="min-width:300px;width:100%; display:inline-block;vertical-align:top;">
-        @Html.Action("ListCars", "Car", new { area = "Ads" })
-    </div>
 </div>
-
-

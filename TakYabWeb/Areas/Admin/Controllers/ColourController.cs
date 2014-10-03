@@ -7,35 +7,35 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer;
 
-namespace TakYab.Areas.Advertising.Controllers
+namespace TakYab.Areas.Admin.Controllers
 {
-    public class ModelController : Controller
+    public class ColourController : Controller
     {
         private TakYabEntities db = new TakYabEntities();
 
         //
-        // GET: /Advertising/Model/
+        // GET: /Advertising/Colour/
 
         public ActionResult Index()
         {
-            return View(db.Models.ToList());
+            return View(db.Colours.ToList());
         }
 
         //
-        // GET: /Advertising/Model/Details/5
+        // GET: /Advertising/Colour/Details/5
 
         public ActionResult Details(Guid id)
         {
-            Model model = db.Models.Find(id);
-            if (model == null)
+            Colour colour = db.Colours.Find(id);
+            if (colour == null)
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View(colour);
         }
 
         //
-        // GET: /Advertising/Model/Create
+        // GET: /Advertising/Colour/Create
 
         public ActionResult Create()
         {
@@ -43,74 +43,74 @@ namespace TakYab.Areas.Advertising.Controllers
         }
 
         //
-        // POST: /Advertising/Model/Create
+        // POST: /Advertising/Colour/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Model model)
+        public ActionResult Create(Colour colour)
         {
             if (ModelState.IsValid)
             {
-                model.ModelId = Guid.NewGuid();
-                db.Models.Add(model);
+                colour.ColourId = Guid.NewGuid();
+                db.Colours.Add(colour);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(colour);
         }
 
         //
-        // GET: /Advertising/Model/Edit/5
+        // GET: /Advertising/Colour/Edit/5
 
         public ActionResult Edit(Guid id)
         {
-            Model model = db.Models.Find(id);
-            if (model == null)
+            Colour colour = db.Colours.Find(id);
+            if (colour == null)
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View(colour);
         }
 
         //
-        // POST: /Advertising/Model/Edit/5
+        // POST: /Advertising/Colour/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Model model)
+        public ActionResult Edit(Colour colour)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(model).State = EntityState.Modified;
+                db.Entry(colour).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(colour);
         }
 
         //
-        // GET: /Advertising/Model/Delete/5
+        // GET: /Advertising/Colour/Delete/5
 
         public ActionResult Delete(Guid id)
         {
-            Model model = db.Models.Find(id);
-            if (model == null)
+            Colour colour = db.Colours.Find(id);
+            if (colour == null)
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View(colour);
         }
 
         //
-        // POST: /Advertising/Model/Delete/5
+        // POST: /Advertising/Colour/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Model model = db.Models.Find(id);
-            db.Models.Remove(model);
+            Colour colour = db.Colours.Find(id);
+            db.Colours.Remove(colour);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -121,17 +121,20 @@ namespace TakYab.Areas.Advertising.Controllers
             base.Dispose(disposing);
         }
 
-
-        public ActionResult GetModelList()
+        public Colour GetColourById(Guid id)
         {
-            var models = db.SubModels.Include(s => s.Model);
-            return View(models.ToList());
+            var colour = db.Colours.Find(id);
+            return colour;
+
         }
 
 
-        public ActionResult GetModelListforFooter() {
-            var models = db.Models.Where(m=>m.SubNav==true).OrderBy(m=>m.SortOrder);
-            return View(models.ToList());
+
+        public List<Colour> GetColours()
+        {
+            var colour = db.Colours.OrderBy(m => m.SortOrder);
+            return colour.ToList();
+
         }
     }
 }

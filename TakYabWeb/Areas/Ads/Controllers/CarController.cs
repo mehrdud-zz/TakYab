@@ -89,19 +89,18 @@ namespace TakYab.Areas.Ads.Controllers
                             if (!System.IO.Directory.Exists(directory))
                                 System.IO.Directory.CreateDirectory(directory);
 
-                            var path = System.IO.Path.Combine(directory, "Original.jpg");
+                            var path = System.IO.Path.Combine(directory, fileName);
                             Request.Files[i].SaveAs(path);
 
-                            var thumbnail = directory + "Thumbnail.jpg";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail);
+                            var thumbnail = directory + "Thumbnail.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
 
-                            var medium = directory + "Medium.jpg";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium);
+                            var medium = directory + "Medium.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
+                             
 
-
-
-                            var large = directory + "Large.jpg";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large);
+                            var large = directory + "Large.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
 
                             if (i == 0)
                                 car.ImageURI1 = photoPath;
@@ -194,14 +193,17 @@ namespace TakYab.Areas.Ads.Controllers
                             if (!System.IO.Directory.Exists(directory))
                                 System.IO.Directory.CreateDirectory(directory);
 
-                            var path = System.IO.Path.Combine(directory, "Original.jpg");
+                            var path = System.IO.Path.Combine(directory, fileName);
                             Request.Files[i].SaveAs(path);
 
-                            var thumbnail = directory + "Thumbnail.jpg";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail);
+                            var thumbnail = directory + "Thumbnail.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
 
-                            var medium = directory + "Medium.jpg";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium);
+                            var medium = directory + "Medium.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
+
+                            var large = directory + "Large.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
 
                             if (i == 0)
                                 car.ImageURI1 = photoPath;
@@ -216,18 +218,13 @@ namespace TakYab.Areas.Ads.Controllers
                                 car.ImageURI4 = photoPath;
 
                             if (i == 4)
-                                car.ImageURI5 = photoPath;
-
-
+                                car.ImageURI5 = photoPath; 
                         }
                     }
-
-
-
                 db.SaveChanges();
-
                 return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
             }
+
             ViewBag.AdTypeIdList = db.AdTypes.OrderBy(m => m.SortOrder);
             ViewBag.BuildYearIdList = db.BuildYears.OrderBy(m => m.SortOrder);
             ViewBag.PriceRangeIdList = db.PriceRanges.OrderBy(m => m.SortOrder);
@@ -284,12 +281,7 @@ namespace TakYab.Areas.Ads.Controllers
             return View(cars.ToList());
         }
 
-        public ActionResult ListCars()
-        {
-            var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
-                .OrderBy(m => m.Priority.SortOrder).OrderBy(m => m.SortOrder).Take(50);
-            return View(cars.ToList());
-        }
+
 
     }
 }

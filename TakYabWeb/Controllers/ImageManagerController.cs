@@ -14,9 +14,12 @@ namespace TakYab.Controllers
         //
         // GET: /ImageManager/
 
-        public static void resizeImage(string originalFilename,
-                      int canvasWidth, int canvasHeight,
-            string resizedFilePath)
+        public static void resizeImage(
+            string originalFilename,
+            int canvasWidth,
+            int canvasHeight,
+            string resizedFilePath,
+            ImageFormat imageFormat)
         {
             var image = Image.FromFile(originalFilename);
 
@@ -50,19 +53,18 @@ namespace TakYab.Controllers
             int posX = Convert.ToInt32((canvasWidth - (originalWidth * ratio)) / 2);
             int posY = Convert.ToInt32((canvasHeight - (originalHeight * ratio)) / 2);
 
-            graphic.Clear(Color.White); // white padding
-            graphic.DrawImage(image, posX, posY, newWidth, newHeight);
+            graphic.Clear(Color.Transparent); // white padding
+            graphic.DrawImage(image, 0, 0, newWidth, newHeight);
 
             /* ------------- end new code ---------------- */
 
-            System.Drawing.Imaging.ImageCodecInfo[] info =
-                             ImageCodecInfo.GetImageEncoders();
+            System.Drawing.Imaging.ImageCodecInfo[] info =ImageCodecInfo.GetImageEncoders();
+
             EncoderParameters encoderParameters;
             encoderParameters = new EncoderParameters(1);
-            encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality,
-                             100L);
-            thumbnail.Save(resizedFilePath, info[1],
-                             encoderParameters);
+            encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+
+            thumbnail.Save(resizedFilePath, imageFormat);
         }
 
     }

@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace TakYab.Areas.Advertising
+namespace TakYab.Areas.Admin
 {
-    public class AdvertisingAreaRegistration : AreaRegistration
+    public class AdminAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Advertising";
+                return "Admin";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Advertising_default",
-                "Advertising/{controller}/{action}/{id}",
+                "Admin_default",
+                "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

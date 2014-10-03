@@ -5,19 +5,29 @@
     <div id="carCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#carCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carCarousel" data-slide-to="1"></li>
-            <li data-target="#carCarousel" data-slide-to="2"></li>
+            @{var i = "active";
+            var counter = 0;}
+            @foreach (DataLayer.Car item in Model)
+            {
+
+
+                <li data-target="#carCarousel" data-slide-to="@(counter)" class="@(i)"></li>
+
+                i = "";
+                counter++;
+                
+
+            }
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            @{var i = "active";}
+            @{ i = "active";}
             @foreach (DataLayer.Car item in Model)
             {
                 <div class="item @(i)" style="text-align:center;">
 
-                    <img src="Content/Images/@(item.FirstImage)/Large.jpg" alt="@(item.Name) " />
+                    <img src="Content/Images/@(item.FirstImage)/Large.png" alt="@(item.Name) " />
                     <div class="carousel-caption">
                         @(item.Name)
                     </div>

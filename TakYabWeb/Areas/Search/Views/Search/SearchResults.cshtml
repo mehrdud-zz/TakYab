@@ -1,6 +1,6 @@
 ﻿@using GridMvc.Html
 
-@model TakYab.Areas.Advertising.Controllers.SearchCriteriaLight
+@model TakYab.Areas.Search.Controllers.SearchCriteriaLight
 @{
     ViewBag.Title = "SearchResults";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,7 +17,7 @@
                columns.Add(foo => foo.ModelName).Titled("مدل خودرو").Sortable(true);
                columns.Add(foo => foo.Price).Titled("قیمت").Sortable(true);
                columns.Add(foo => foo.Province).Titled("استان").Sortable(true);
-               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<img src="~/Content/Images/@ad.FirstImage/Thumbnail.jpg" />);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<img src="~/Content/Images/@ad.FirstImage/Thumbnail.png" />);
                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div><a href="/Ads/Car/Edit/@ad.CarId">ویرایش</a><span>&nbsp;|&nbsp;</span><a href="/Ads/Car/Details/@ad.CarId">مشاهده آگهی</a><span>&nbsp;|&nbsp;</span><a href="/Ads/Car/Delete/@ad.CarId">حذف</a></div>);
            }).WithPaging(50)
         </div>

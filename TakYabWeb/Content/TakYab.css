@@ -15,7 +15,7 @@ body
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
     background-color: #000;
-} 
+}
 
 h1,
 h2,
@@ -174,7 +174,7 @@ nav.navbar-takyab
 .navbar-takyab .nav li a.active
 {
     outline: 0;
-  color: #FF9000;
+    color: #FF9000;
 }
 
 @media(min-width:767px)
@@ -236,11 +236,14 @@ nav.navbar-takyab
 
 
 /*********   Grids   *********/
-.grid-header{
-    text-align:center;
+.grid-header
+{
+    text-align: center;
 }
-.grid-row  .grid-cell{
-    vertical-align:middle;
+
+.grid-row .grid-cell
+{
+    vertical-align: middle;
 }
 /*********   End of Grids   *********/
 
@@ -326,17 +329,22 @@ nav.navbar-takyab
     width: 180px;
 }
 
-.searchContainer{
-    display:inline-block;
+.searchPanel .btn:hover{
+    color:red;
+}
+
+.searchContainer
+{
+    display: inline-block;
     padding: 2px;
-    background-color:#;
+    background-color: #;
 }
 
 .searchItem
 {
     padding: 0;
     display: inline-block;
-    height: 100%;    
+    height: 100%;
 }
 
 .searchTitle
@@ -356,17 +364,16 @@ nav.navbar-takyab
 
 
 
-.open .btn-takyab 
-
+.open .btn-takyab
 {
     color: #000;
     background-color: #FF9000;
 }
 
 
-.btnSearch{
+.btnSearch
+{
     width: 90px;
-
 }
 
 /*********   End of Search   *********/
@@ -405,4 +412,187 @@ nav.navbar-takyab
 div.dropdown
 {
     float: right;
+}
+
+
+
+
+.carousel-indicators li
+{
+    background-color: #000 !important;
+}
+
+.carousel-indicators .active
+{
+    background-color: #FF9000 !important;
+}
+
+
+/* login
+----------------------------------------------------------*/
+#login
+{
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+#login a
+{
+    background-color: #d3dce0;
+    margin-left: 10px;
+    margin-right: 3px;
+    padding: 2px 3px;
+    text-decoration: none;
+}
+
+#login a.username
+{
+    background: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+}
+
+#login ul
+{
+    margin: 0;
+}
+
+#login li
+{
+    display: inline;
+    list-style: none;
+}
+
+
+/* login page */
+#loginForm
+{
+    display: inline-block;
+}
+
+#loginForm label
+{
+    width: 100px;
+    text-align: left;
+    padding: 0 0 0 5px;
+}
+
+#loginForm .validation-error
+{
+    display: block;
+    margin-left: 15px;
+}
+
+#loginForm .validation-summary-errors ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#loginForm .validation-summary-errors li
+{
+    display: inline;
+    list-style: none;
+    margin: 0;
+}
+
+#loginForm input
+{
+    width: 250px;
+}
+
+#loginForm input[type="checkbox"],
+#loginForm input[type="submit"],
+#loginForm input[type="button"],
+#loginForm button
+{
+    width: auto;
+}
+
+#socialLoginForm
+{
+    margin-left: 40px;
+    float: left;
+    width: 40%;
+}
+
+#logoutForm
+{
+    display: inline;
+}
+
+
+#loginForm .rememberMe
+{
+    padding-right: 100px;
+}
+
+
+
+/* Home page */
+.HomePage
+{
+    vertical-align:top;
+}
+
+
+.HomePage .leftbarCarListContainer
+{
+    float: left;    
+    padding: 0 10px 0 10px;
+    margin: 0;
+    display: inline-block;
+    
+}
+
+.HomePage .leftbarCarListContainer ul.LeftBarCarList
+{
+    text-align: center;
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+
+.HomePage .leftbarCarListContainer ul.LeftBarCarList li
+{    
+       list-style-type:none;
+    padding: 10px 0 10px 0;
+    margin:0;
+    border-bottom: 1px solid #000;
+}
+
+.HomePage .HomePageCotnainer
+{
+    display: inline-block;
+    width: 80%;
+    min-height: 500px;
+    vertical-align: top;
+}
+
+.HomePage .HomePageCotnainer .SearchComponentCotainer
+{
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 0 0 10px;
+}
+
+
+.HomePage .HomePageCotnainer .CarRotatorContainer
+{
+    min-width: 300px;
+    width: 65%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.HomePage .HomePageCotnainer .BottomPageCarListContainer
+{
+    min-width: 300px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
 }

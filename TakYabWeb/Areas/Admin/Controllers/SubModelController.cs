@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer;
 
-namespace TakYab.Areas.Advertising.Controllers
+namespace TakYab.Areas.Admin.Controllers
 {
     public class SubModelController : Controller
     {
