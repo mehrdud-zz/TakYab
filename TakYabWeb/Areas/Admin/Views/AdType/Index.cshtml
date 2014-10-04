@@ -1,0 +1,25 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.AdType>
+
+@{
+    ViewBag.Title = "نوع آگهی";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">نوع آگهی جدید</span>
+    </a>
+</p>
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("نوع آگهی").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/AdType/Edit/@ad.AdTypeId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/AdType/Details/@ad.AdTypeId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/AdType/Delete/@ad.AdTypeId">حذف</a>
+            </div>);
+           }
+                ).Sortable()

@@ -1,0 +1,24 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.BuildYear>
+
+@{
+    ViewBag.Title = "سال تولید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">سال تولید جدید</span>
+    </a>
+</p>
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("سال تولید").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/BuildYear/Edit/@ad.BuildYearId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/BuildYear/Details/@ad.BuildYearId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/BuildYear/Delete/@ad.BuildYearId">حذف</a>
+            </div>);
+           }
+                ).Sortable()

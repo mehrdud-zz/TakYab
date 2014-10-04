@@ -1,0 +1,25 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.Priority>
+
+@{
+    ViewBag.Title = "الویت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">الویت جدید</span>
+    </a>
+</p>
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("الویت").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/Priority/Edit/@ad.PriorityId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/Priority/Details/@ad.PriorityId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/Priority/Delete/@ad.PriorityId">حذف</a>
+            </div>);
+           }
+                        ).Sortable()
