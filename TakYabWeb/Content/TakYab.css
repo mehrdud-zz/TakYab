@@ -612,6 +612,8 @@ div.dropdown
     width: 80%;
     min-height: 500px;
     vertical-align: top;
+    
+    padding: 0 0 0 10px;    
 }
 
 .HomePage .HomePageCotnainer .SearchComponentCotainer
@@ -619,9 +621,25 @@ div.dropdown
     width: 200px;
     display: inline-block;
     vertical-align: top;
-    padding: 0 0 0 10px;
+    z-index:100;
+    position:relative;
+    background-color: #f1f1f1;
+    padding:5px;
+    border-radius: 5px;
+    border: 1px solid #000;
 }
 
+.item-fade{
+    vertical-align:top;
+    opacity: 0.4;
+}
+.hover:hover{
+    opacity:1;
+    
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
 
 .HomePage .HomePageCotnainer .CarRotatorContainer
 {
@@ -629,6 +647,8 @@ div.dropdown
     width: 65%;
     display: inline-block;
     vertical-align: top;
+    z-index:-1;
+    position:relative;
 }
 
 .HomePage .HomePageCotnainer .BottomPageCarListContainer
