@@ -6,9 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using TakYab.Areas.User.Controllers;
 
 namespace TakYab.Areas.Ads.Controllers
 {
+
+
     public class CarController : Controller
     {
         private TakYabEntities db = new TakYabEntities();
@@ -16,7 +19,31 @@ namespace TakYab.Areas.Ads.Controllers
         //
         // GET: /Advertising/Car/
 
+        [Authorize(Roles = "administrator,user")]
         public ActionResult Index()
+        {
+            var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
+
+
+
+
+            if (User.IsInRole("administraor"))
+            {
+                var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel);
+                return View(cars.ToList());
+            }
+
+            var cars2 = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
+.Where(m => m.UserProfile.UserName == username);
+            return View(cars2.ToList());
+
+
+        }
+
+
+
+        [Authorize(Roles = "administrator")]
+        public ActionResult ListAllCars()
         {
             var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel);
             return View(cars.ToList());
@@ -44,6 +71,7 @@ namespace TakYab.Areas.Ads.Controllers
         //
         // GET: /Advertising/Car/Create
 
+        [Authorize(Roles = "administrator,user")]
         public ActionResult Create()
         {
             ViewBag.AdTypeId = new SelectList(db.AdTypes.OrderBy(m => m.SortOrder), "AdTypeId", "Name");
@@ -66,6 +94,7 @@ namespace TakYab.Areas.Ads.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator,user")]
         public ActionResult Create(Car car)
         {
             if (ModelState.IsValid)
@@ -97,7 +126,7 @@ namespace TakYab.Areas.Ads.Controllers
 
                             var medium = directory + "Medium.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
-                             
+
 
                             var large = directory + "Large.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
@@ -116,6 +145,13 @@ namespace TakYab.Areas.Ads.Controllers
 
                             if (i == 4)
                                 car.ImageURI5 = photoPath;
+
+
+                            var userController = new UserController();
+                            var user = userController.GetUser(UserController.GetUsername());
+                            if (user != null)
+                                car.UserId =
+                                    user.UserId;
 
 
                         }
@@ -146,29 +182,38 @@ namespace TakYab.Areas.Ads.Controllers
         //
         // GET: /Advertising/Car/Edit/5
 
+        [Authorize(Roles = "administrator,user")]
         public ActionResult Edit(Guid id)
         {
             Car car = db.Cars.Find(id);
-            if (car == null)
+            if (
+                User.IsInRole("administrator") ||
+                System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName
+                )
             {
-                return HttpNotFound();
+
+                if (car == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.AdTypeIdList = db.AdTypes.OrderBy(m => m.SortOrder);
+                ViewBag.BuildYearIdList = db.BuildYears.OrderBy(m => m.SortOrder);
+                ViewBag.PriceRangeIdList = db.PriceRanges.OrderBy(m => m.SortOrder);
+                ViewBag.PriorityIdList = db.Priorities.OrderBy(m => m.SortOrder);
+                ViewBag.ProvinceIdList = db.Provinces.OrderBy(m => m.SortOrder);
+                ViewBag.ModelIdList = db.Models.OrderBy(m => m.SortOrder);
+                ViewBag.SubModelIdList = db.SubModels.OrderBy(m => m.SortOrder);
+                ViewBag.OutsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+                ViewBag.InsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
+                ViewBag.FuelTypeIdList = db.FuelTypes.OrderBy(m => m.SortOrder);
+                ViewBag.InsuranceTypeIdList = db.InsuranceTypes.OrderBy(m => m.SortOrder);
+                ViewBag.CarStatusIdList = db.CarStatus.OrderBy(m => m.SortOrder);
+
+
+                return View(car);
             }
-
-            ViewBag.AdTypeIdList = db.AdTypes.OrderBy(m => m.SortOrder);
-            ViewBag.BuildYearIdList = db.BuildYears.OrderBy(m => m.SortOrder);
-            ViewBag.PriceRangeIdList = db.PriceRanges.OrderBy(m => m.SortOrder);
-            ViewBag.PriorityIdList = db.Priorities.OrderBy(m => m.SortOrder);
-            ViewBag.ProvinceIdList = db.Provinces.OrderBy(m => m.SortOrder);
-            ViewBag.ModelIdList = db.Models.OrderBy(m => m.SortOrder);
-            ViewBag.SubModelIdList = db.SubModels.OrderBy(m => m.SortOrder);
-            ViewBag.OutsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.InsideColourIdList = db.Colours.OrderBy(m => m.SortOrder);
-            ViewBag.FuelTypeIdList = db.FuelTypes.OrderBy(m => m.SortOrder);
-            ViewBag.InsuranceTypeIdList = db.InsuranceTypes.OrderBy(m => m.SortOrder);
-            ViewBag.CarStatusIdList = db.CarStatus.OrderBy(m => m.SortOrder);
-
-
-            return View(car);
+            return View();
         }
 
         //
@@ -176,9 +221,13 @@ namespace TakYab.Areas.Ads.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator,user")]
         public ActionResult Edit(Car car)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid &&
+                (User.IsInRole("administrator") ||
+                System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName
+                ))
             {
                 db.Entry(car).State = EntityState.Modified;
 
@@ -218,7 +267,9 @@ namespace TakYab.Areas.Ads.Controllers
                                 car.ImageURI4 = photoPath;
 
                             if (i == 4)
-                                car.ImageURI5 = photoPath; 
+                                car.ImageURI5 = photoPath;
+
+
                         }
                     }
                 db.SaveChanges();
@@ -247,11 +298,18 @@ namespace TakYab.Areas.Ads.Controllers
         public ActionResult Delete(Guid id)
         {
             Car car = db.Cars.Find(id);
-            if (car == null)
+            if (User.IsInRole("administrator") ||
+                System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName
+                )
             {
-                return HttpNotFound();
+
+                if (car == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(car);
             }
-            return View(car);
+            return View();
         }
 
         //
@@ -262,9 +320,15 @@ namespace TakYab.Areas.Ads.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Car car = db.Cars.Find(id);
-            db.Cars.Remove(car);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
+            if (User.IsInRole("administrator") ||
+           System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName
+           )
+            {
+                db.Cars.Remove(car);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
+            }
+            return View();
         }
 
         protected override void Dispose(bool disposing)
@@ -285,7 +349,7 @@ namespace TakYab.Areas.Ads.Controllers
 
         public ActionResult GetSubModelList()
         {
-            var submodels = db.SubModels.Include(s => s.Model).OrderBy(m=>m.SortOrder);
+            var submodels = db.SubModels.Include(s => s.Model).OrderBy(m => m.SortOrder);
             return View(submodels.ToList());
         }
 

@@ -223,8 +223,8 @@ nav.navbar-takyab
 }
 
 
-.panel-takyab-transparent{
-
+.panel-takyab-transparent
+{
 }
 
 .btn-takyab:hover
@@ -412,7 +412,7 @@ nav.navbar-takyab
 
 .searchPanel .btnSearch:hover,
 .searchPanel .btnReset:hover
-{ 
+{
     color: red;
 }
 /*********   End of Search   *********/
@@ -430,7 +430,7 @@ nav.navbar-takyab
 
 #carCarousel
 {
-    float: left;
+    vertical-align: top;
 }
 
 
@@ -466,6 +466,11 @@ div.dropdown
     background-color: #FF9000 !important;
 }
 
+.carousel-caption
+{
+    background-color: #808080;
+    display: inline-block;
+}
 
 /* login
 ----------------------------------------------------------*/
@@ -587,7 +592,7 @@ div.dropdown
     height: 600px;
     background-color: #f1f1f1;
     display: inline-block;
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 .HomePage .leftbarCarListContainer ul.LeftBarCarList
@@ -606,40 +611,27 @@ div.dropdown
     border-bottom: 1px solid #000;
 }
 
+
+
+
 .HomePage .HomePageCotnainer
 {
     display: inline-block;
     width: 80%;
     min-height: 500px;
     vertical-align: top;
-    
-    padding: 0 0 0 10px;    
+    padding: 0 0 0 10px;
 }
 
-.HomePage .HomePageCotnainer .SearchComponentCotainer
+#topContainer
 {
-    width: 200px;
+    position: relative;
+    width: 100%;
+    min-height: 800px;
     display: inline-block;
-    vertical-align: top;
-    z-index:100;
-    position:relative;
-    background-color: #f1f1f1;
-    padding:5px;
-    border-radius: 5px;
-    border: 1px solid #000;
+    height: 800px;
 }
 
-.item-fade{
-    vertical-align:top;
-    opacity: 0.4;
-}
-.hover:hover{
-    opacity:1;
-    
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
-}
 
 .HomePage .HomePageCotnainer .CarRotatorContainer
 {
@@ -647,9 +639,50 @@ div.dropdown
     width: 65%;
     display: inline-block;
     vertical-align: top;
-    z-index:-1;
-    position:relative;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
+
+@media(min-width:960px)
+{
+    .HomePage .HomePageCotnainer .CarRotatorContainer
+    {
+        width: 960px;
+    }
+}
+
+.HomePage .HomePageCotnainer .SearchComponentCotainer
+{
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    z-index: 100;
+    position: relative;
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.item-fade
+{
+    vertical-align: top;
+    opacity: 0.4;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+}
+
+.hover:hover
+{
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+}
+
+
 
 .HomePage .HomePageCotnainer .BottomPageCarListContainer
 {

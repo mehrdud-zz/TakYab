@@ -62,6 +62,7 @@
           <Property Name="ImageURI4" Type="nvarchar" MaxLength="500" />
           <Property Name="ImageURI5" Type="nvarchar" MaxLength="500" />
           <Property Name="Milage" Type="bigint" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="CarStatus">
           <Key>
@@ -151,6 +152,15 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <Association Name="FK_Car_AdStatus">
           <End Role="AdStatus" Type="Self.AdStatus" Multiplicity="0..1" />
@@ -272,6 +282,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Car_UserProfile">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubModel_Model">
           <End Role="Model" Type="Self.Model" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -300,6 +322,7 @@
           <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubModel" EntityType="Self.SubModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Car_AdStatus" Association="Self.FK_Car_AdStatus">
             <End Role="AdStatus" EntitySet="AdStatus" />
             <End Role="Car" EntitySet="Car" />
@@ -338,6 +361,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Car_SubModel" Association="Self.FK_Car_SubModel">
             <End Role="SubModel" EntitySet="SubModel" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_UserProfile" Association="Self.FK_Car_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_SubModel_Model" Association="Self.FK_SubModel_Model">
@@ -485,6 +512,11 @@
             <End Role="PriceRange" EntitySet="PriceRanges" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="TakYabModel.UserProfile" />
+          <AssociationSet Name="FK_Car_UserProfile" Association="TakYabModel.FK_Car_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdStatus">
           <Key>
@@ -579,6 +611,8 @@
           <NavigationProperty Name="Province" Relationship="TakYabModel.FK_Car_Province" FromRole="Car" ToRole="Province" />
           <NavigationProperty Name="SubModel" Relationship="TakYabModel.FK_Car_SubModel" FromRole="Car" ToRole="SubModel" />
           <NavigationProperty Name="PriceRange" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="Car" ToRole="PriceRange" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="UserProfile" Relationship="TakYabModel.FK_Car_UserProfile" FromRole="Car" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_Car_AdStatus">
           <End Type="TakYabModel.AdStatus" Role="AdStatus" Multiplicity="0..1" />
@@ -711,6 +745,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="TakYabModel.FK_Car_UserProfile" FromRole="UserProfile" ToRole="Car" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Car_UserProfile">
+          <End Type="TakYabModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -836,6 +892,7 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="TakYabModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Milage" ColumnName="Milage" />
                 <ScalarProperty Name="ImageURI5" ColumnName="ImageURI5" />
                 <ScalarProperty Name="ImageURI4" ColumnName="ImageURI4" />
@@ -874,6 +931,16 @@
                 <ScalarProperty Name="StartRange" ColumnName="StartRange" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PriceRangeId" ColumnName="PriceRangeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="TakYabModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

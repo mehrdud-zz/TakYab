@@ -30,6 +30,8 @@
         <AssociationConnector Association="TakYabModel.FK_Car_SubModel" />
         <EntityTypeShape EntityType="TakYabModel.PriceRange" Width="1.5" PointX="7.375" PointY="0.875" />
         <AssociationConnector Association="TakYabModel.FK_Car_PriceRange" />
+        <EntityTypeShape EntityType="TakYabModel.UserProfile" Width="1.5" PointX="5.375" PointY="6.875" />
+        <AssociationConnector Association="TakYabModel.FK_Car_UserProfile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

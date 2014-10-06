@@ -17,6 +17,11 @@ namespace TakYab.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+   
+
+
+
+
         //
         // GET: /Account/Login
 
@@ -81,6 +86,8 @@ namespace TakYab.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+                    Roles.AddUsersToRole(new string[] { model.UserName }, ConfigKeys.GetConfigValues(ConfigKeys.USER_USER_ROLE));
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -327,6 +334,8 @@ namespace TakYab.Controllers
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
+
+
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

@@ -6,14 +6,14 @@
  
 
     <div class="HomePageCotnainer">
-        <div class="SearchComponentCotainer hover item-fade">
-            @Html.Action("SearchComponent", "Search", new { area = "Search" })
-
+        <div id="topCotnainer" style="position:relative;display:inline-block;min-height:800px;width:100%;">
+            <div class="SearchComponentCotainer hover item-fade">
+                @Html.Action("SearchComponent", "Search", new { area = "Search" })
+            </div>
+            <div class="CarRotatorContainer">
+                @Html.Action("CarRotator", "CarShow", new { area = "Ads" })
+            </div>
         </div>
-        <div class="CarRotatorContainer">
-            @Html.Action("CarRotator", "CarShow", new { area = "Ads" })
-        </div>
-
         <div class="BottomPageCarListContainer">
             @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
         </div>

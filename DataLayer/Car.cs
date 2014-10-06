@@ -41,6 +41,7 @@ namespace DataLayer
         public string ImageURI4 { get; set; }
         public string ImageURI5 { get; set; }
         public Nullable<long> Milage { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual AdStatus AdStatus { get; set; }
         public virtual AdType AdType { get; set; }
@@ -52,5 +53,6 @@ namespace DataLayer
         public virtual Province Province { get; set; }
         public virtual SubModel SubModel { get; set; }
         public virtual PriceRange PriceRange { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

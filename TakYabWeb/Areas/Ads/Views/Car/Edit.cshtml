@@ -9,6 +9,9 @@
 
 @using (Html.BeginForm("Edit", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
+    @Html.HiddenFor(model => model.UserId)
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

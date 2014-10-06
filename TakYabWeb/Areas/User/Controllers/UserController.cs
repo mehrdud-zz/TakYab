@@ -19,5 +19,22 @@ namespace TakYab.Areas.User.Controllers
             var models = db.Models.Where(m => m.SubNav == true).OrderBy(m => m.SortOrder);
             return View(models.ToList());
         }
+
+
+        
+        public UserProfile GetUser(string username)
+        {
+            var user = db.UserProfiles.First(m => m.UserName == username);
+            return user;
+        }
+
+
+        public static string GetUsername()
+        {
+            if (System.Web.Security.Membership.GetUser() != null)
+                return System.Web.Security.Membership.GetUser().UserName;
+
+            return String.Empty;
+        }
     }
 }

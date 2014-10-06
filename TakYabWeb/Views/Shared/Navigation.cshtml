@@ -19,10 +19,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 @*<li><a href="#">تماس با ما</a></li>
-                <li><a href="#">درباره ما</a></li>
-                <li><a href="#">اطلاعات فنی خودرو</a></li>
-                <li><a href="#">قیمت روز خودرو</a></li>*@
-                <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">اطلاعات فنی خودرو</a></li>
+                    <li><a href="#">قیمت روز خودرو</a></li>*@
+
+                @if (User.IsInRole("administrator"))
+                {
+                    <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
+                }
                 <li><a href="~/Ads/Car/Index">فروش خودرو</a></li>
             </ul>
             @Html.Partial("_LoginPartial")

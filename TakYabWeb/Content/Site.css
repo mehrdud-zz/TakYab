@@ -42,9 +42,9 @@ mark {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-    margin: 0 auto;
+    /*margin: 0 auto;
      width:98%;
-     padding: 0 1% 0 1%;
+     padding: 0 1% 0 1%;*/
 }
  
 

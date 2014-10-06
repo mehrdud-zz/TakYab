@@ -114,6 +114,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TakYabDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>TakYabDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
