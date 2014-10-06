@@ -1,0 +1,28 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.InsuranceType>
+
+@{
+    ViewBag.Title = "بیمه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">بیمه جدید</span>
+    </a>
+</p>
+ 
+
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("بیمه").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/InsuranceType/Edit/@ad.InsuranceTypeId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/InsuranceType/Details/@ad.InsuranceTypeId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/InsuranceType/Delete/@ad.InsuranceTypeId">حذف</a>
+            </div>);
+           }
+            ).Sortable()
+

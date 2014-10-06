@@ -1,0 +1,27 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.CarStatus>
+
+@{
+    ViewBag.Title = "صفر/کارکرده";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">صفر/کارکرده جدید</span>
+    </a>
+</p>
+ 
+
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("صفر/کارکرده").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/CarStatus/Edit/@ad.CarStatusId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/CarStatus/Details/@ad.CarStatusId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/CarStatus/Delete/@ad.CarStatusId">حذف</a>
+            </div>);
+           }).Sortable()

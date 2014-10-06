@@ -1,0 +1,26 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.PriceRange>
+
+@{
+    ViewBag.Title = "گروه قیمت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">گروه قیمت جدید</span>
+    </a>
+</p>
+
+
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("گروه قیمت").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/PriceRange/Edit/@ad.PriceRangeId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/PriceRange/Details/@ad.PriceRangeId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/PriceRange/Delete/@ad.PriceRangeId">حذف</a>
+            </div>);
+           }
+            ).Sortable()

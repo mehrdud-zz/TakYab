@@ -1,0 +1,26 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.FuelType>
+
+@{
+    ViewBag.Title = "نوع سوخت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <a href="../Create">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">نوع سوخت جدید</span>
+    </a>
+</p>
+
+ 
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("نوع سوخت").Sortable(true);
+               columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/FuelType/Edit/@ad.FuelTypeId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/FuelType/Details/@ad.FuelTypeId">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/FuelType/Delete/@ad.FuelTypeId">حذف</a>
+            </div>);
+           }).Sortable()
