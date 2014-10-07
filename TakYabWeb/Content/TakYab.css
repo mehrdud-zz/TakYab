@@ -415,14 +415,24 @@ nav.navbar-takyab .container-fluid
     padding: 0;
     display: inline-block;
     height: 100%;
+    vertical-align:middle;
 }
 
+
+.searchTable tr td{ 
+    vertical-align:middle;
+    line-height: 50px;
+    padding:0;
+}
 .searchTitle
 {
     width: 120px;
     line-height:40px;
     text-align: left;
     font-weight: bold;
+    display:inline-block;
+    text-align :right;
+    padding:0 20px 0 0;
 }
 
 
