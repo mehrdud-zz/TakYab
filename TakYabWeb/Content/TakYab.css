@@ -60,11 +60,41 @@ a:focus
 /*********       End of Basic Elements      *********/
 /*********       Page Template      *********/
 
+
+#htmlOuterContainer
+{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+}
+
+#htmlInnerContainer
+{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1300px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+
+header
+{
+    display: inline-block !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
 div#body
 {
     clear: both;
-    padding: 120px 10px 0 0;
-    min-height: 70%;
+    padding: 0;
 }
 
 a:hover
@@ -116,20 +146,44 @@ footer
 
 
 /*********       Navigation      *********/
+.navbar
+{
+    margin: 0 !important;
+}
+
 nav.navbar-takyab
 {
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,.3);
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    background-color: #000;
+    background-color: #B1DB53;
+    padding: 0 !important;
+    border: none;
+    border-radius: 0;
 }
+
+.navbar-takyab .navbar-nav > li > a
+{
+    color: #000 !important;
+    text-align: right;
+    padding-right: 0;
+}
+
+.navbar-takyab .navbar-nav > li > a:hover
+{
+    color: red !important;
+}
+
+nav.navbar-takyab .container-fluid
+{
+    height: 45px;
+    padding: 0 !important;
+}
+
 
 
 
 .navbar-takyab .navbar-brand
 {
-    font-weight: 700;
 }
 
 .navbar-takyab .navbar-brand:focus
@@ -153,13 +207,13 @@ nav.navbar-takyab
 .navbar-takyab a
 {
     color: #fff;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: 700;
 }
 
 .navbar-takyab .nav li.active
 {
-    outline: nonte;
+    outline: none;
     background-color: rgba(255,255,255,.3);
 }
 
@@ -238,8 +292,12 @@ nav.navbar-takyab
 /*********       Buttons      *********/
 .btn-takyab
 {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
+    width:230px;
+    height:40px;
+    
+
 }
 
 
@@ -350,7 +408,6 @@ nav.navbar-takyab
 {
     display: inline-block;
     padding: 2px;
-    background-color: #;
 }
 
 .searchItem
@@ -362,7 +419,8 @@ nav.navbar-takyab
 
 .searchTitle
 {
-    width: 80px;
+    width: 120px;
+    line-height:40px;
     text-align: left;
     font-weight: bold;
 }
@@ -617,10 +675,10 @@ div.dropdown
 .HomePage .HomePageCotnainer
 {
     display: inline-block;
-    width: 80%;
+    width: 100%;
     min-height: 500px;
     vertical-align: top;
-    padding: 0 0 0 10px;
+    padding: 0;
 }
 
 #topContainer
@@ -636,21 +694,15 @@ div.dropdown
 .HomePage .HomePageCotnainer .CarRotatorContainer
 {
     min-width: 300px;
-    width: 65%;
+    width: 100%;
+    height: 620px;
     display: inline-block;
     vertical-align: top;
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
 }
 
-@media(min-width:960px)
-{
-    .HomePage .HomePageCotnainer .CarRotatorContainer
-    {
-        width: 960px;
-    }
-}
 
 .HomePage .HomePageCotnainer .SearchComponentCotainer
 {
@@ -658,11 +710,41 @@ div.dropdown
     display: inline-block;
     vertical-align: top;
     z-index: 100;
-    position: relative;
-    background-color: #f1f1f1;
-    padding: 5px;
+    position: absolute;
+    top: 15px;
+    right: 120px;
     border-radius: 5px;
-    border: 1px solid #000;
+    padding: 5px;
+}
+
+.searchHeaderContainer
+{
+    border-radius: 5px 5px 0 0;
+    background-color: #000;
+    height: 60px;
+    line-height: 60px;
+    width: 390px;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.searchHeader
+{
+    font-weight: 700;
+    font-size: 1.3em;
+    color: #fff;
+}
+
+.searchTable
+{
+    border-radius: 0 0 5px 5px;
+    background-color: #D5B17D;
+ width: 390px;
+    
+    padding: 0;
+    display: inline-block;
 }
 
 .item-fade

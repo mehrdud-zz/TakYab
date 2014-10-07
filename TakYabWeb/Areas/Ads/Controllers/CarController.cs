@@ -370,5 +370,7 @@ namespace TakYab.Areas.Ads.Controllers
             }
             , JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }

@@ -19,26 +19,29 @@
     <script src="~/Scripts/gridmvc.customfilter.js"></script>
 
     @*<script>
-        pageGrids.ordersGrid.addFilterWidget(new CustomersFilterWidget());
-    </script>*@
+            pageGrids.ordersGrid.addFilterWidget(new CustomersFilterWidget());
+        </script>*@
 
 </head>
 <body>
-    <header>
-        @Html.Partial("Navigation")
-    </header>
-    <div id="body">
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
-        </section>
+    <div id="htmlOuterContainer">
+        <div id="htmlInnerContainer">
+            <header>
+                @Html.Partial("Navigation")
+            </header>
+            <div id="body">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+            <footer>
+                @Html.Action("GetModelListforFooter", "User", new { area = "User" })
+            </footer>
+        </div>
     </div>
-    <footer>
-        @Html.Action("GetModelListforFooter", "User", new { area = "User" })
-    </footer>
-
     @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-        <script src="~/Scripts/grayscale.js"></script>
+    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

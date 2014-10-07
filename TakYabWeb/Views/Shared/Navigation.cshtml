@@ -1,35 +1,42 @@
-﻿<nav class="navbar navbar-takyab navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header pull-right">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @*@Html.ActionLink("صفحه اصلی", "Index", "Home", new { area="", @class = "navbar-brand" })*@
-            <a href="~/" title="صفحه اصلی" class="navbar-link">
-                <img src="~/Images/logo3.png" alt="صفحه اصلی" height="50px" />
-            </a>
-
+﻿<div id="header">
+    <div class="takyab-header" style="display:inline-block;width:100%;padding:0 120px 0 120px!important;">        
+        <div style="width:80%; display:inline-block;padding:0;margin:0;float:right;" class="pull-right">
+            <h3>تک یاب، وب سایت اطلاع رسانی و جستجوی خودرو </h3>
         </div>
+        <div style="width:10%; display:inline-block;padding:0;margin:0;text-align:left;float:left;">
+            <a href="~/" title="صفحه اصلی">
+                <img src="~/Images/logo3.png" alt="صفحه اصلی" height="50" />
+            </a>
+        </div>
+    </div>
+    <nav class="navbar navbar-takyab navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header pull-right" >
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                @*<li><a href="#">تماس با ما</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding:0 120px 0 120px !important;">
+                <ul class="nav navbar-nav navbar-right" style="padding:0 !important;">
+                    @*<li><a href="#">تماس با ما</a></li>
                     <li><a href="#">درباره ما</a></li>
                     <li><a href="#">اطلاعات فنی خودرو</a></li>
                     <li><a href="#">قیمت روز خودرو</a></li>*@
 
-                @if (User.IsInRole("administrator"))
-                {
-                    <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
-                }
-                <li><a href="~/Ads/Car/Index">فروش خودرو</a></li>
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+                    @if (User.IsInRole("administrator"))
+                    {
+                        <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
+                    }
+                    <li><a href="~/Ads/Car/Index">فروش خودرو</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>

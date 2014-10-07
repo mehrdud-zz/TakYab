@@ -356,9 +356,13 @@
     <Content Include="Areas\Admin\Views\PriceRange\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Priority\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Province\Index.cshtml" />
+    <Content Include="Areas\Ads\Views\CarShow\CarRotatorFixed.cshtml" />
     <None Include="Properties\PublishProfiles\TakYab.pubxml" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\blankII.jpg" />
+    <Content Include="Images\CarRotator\01.jpg" />
+    <Content Include="Images\CarRotator\02.jpg" />
+    <Content Include="Images\CarRotator\03.jpg" />
     <Content Include="Images\logo3.png" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\grayscale.js" />

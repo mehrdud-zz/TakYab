@@ -7,19 +7,16 @@
 
     <div class="HomePageCotnainer">
         <div id="topCotnainer" style="position:relative;display:inline-block;min-height:800px;width:100%;">
-            <div class="SearchComponentCotainer hover item-fade">
+            <div class="SearchComponentCotainer">
                 @Html.Action("SearchComponent", "Search", new { area = "Search" })
             </div>
             <div class="CarRotatorContainer">
-                @Html.Action("CarRotator", "CarShow", new { area = "Ads" })
+                @*@Html.Action("CarRotator", "CarShow", new { area = "Ads" })*@
+                @Html.Action("CarRotatorFixed", "CarShow", new { area = "Ads" })
             </div>
         </div>
         <div class="BottomPageCarListContainer">
             @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
         </div>
-    </div>
-    <div class="leftbarCarListContainer">
-        @Html.Action("LeftBarCarList", "CarShow", new { area = "Ads" })
-    </div>
-
+    </div> 
 </div>

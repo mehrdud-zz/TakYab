@@ -1,127 +1,167 @@
 ﻿@model TakYab.Areas.Search.Controllers.SearchCriteria
 <div class="searchContainer">
     <form method="post" action="@(Url.Action("SearchResults", "Search", new { area = "Search" }))">
-        <div class="searchPanel"> 
-            <div class="searchItem">
-                <div class="dropdown">
-                    <input type="hidden" value="" name="carStatusHidden" id="carStatusHidden" />
-                    <button class="btn btn-takyab dropdown-toggle @(Model.CarStatusId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="carStatusDropDownMenu" name="carStatusDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.CarStatusId != Guid.Empty ? Model.CarStatus : "صفر/کارکرده -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="usedCarDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'carStatusDropDownMenu', 'carStatusHidden', 'صفر/کارکرده -> همه');">همه</a></li>
-                        @foreach (var item in Model.CarStatusList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.CarStatusId','carStatusDropDownMenu','carStatusHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
+        <div style="display:inline-block;vertical-align:top;">
+            <div class="searchHeaderContainer">
+                <span class="searchHeader">جستجوی هوشمند خودرو</span>
             </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="provinceHidden" id="provinceHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.ProvinceId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="provinceDropDownMenu" name="provinceDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.ProvinceId != Guid.Empty ? Model.Province : "استان -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="provinceDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'provinceDropDownMenu', 'provinceHidden', 'استان -> همه');">همه</a></li>
-                        @foreach (var item in Model.ProvinceList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ProvinceId','provinceDropDownMenu','provinceHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="modelHidden" id="modelHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.ModelId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="modelDropDownMenu" name="modelDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.ModelId != Guid.Empty ? Model.Model : "نوع خودرو -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="modelDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'modelDropDownMenu', 'نوع خودرو -> همه');">همه</a></li>
-                        @foreach (var item in Model.ModelList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ModelId','modelDropDownMenu','modelHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="subModelHidden" id="subModelHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.SubModelId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="subModelDropDownMenu" name="subModelDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.SubModelId != Guid.Empty ? Model.SubModel : "همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="subModelDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'subModelDropDownMenu', 'همه');">همه</a></li>
-                        @foreach (var item in Model.SubModelList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.SubModelId','subModelDropDownMenu','subModelHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="buildYearHidden" id="buildYearHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.BuildYearId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="buildYearDropDownMenu" name="buildYearDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.BuildYearId != Guid.Empty ? Model.BuildYear : "سال تولید -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="buildYearDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'buildYearDropDownMenu', 'سال تولید -> همه');">همه</a></li>
-                        @foreach (var item in Model.BuildYearList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.BuildYearId','buildYearDropDownMenu','buildYearHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="priceRangeHidden" id="priceRangeHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.PriceRangeId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="priceRangeDropDownMenu" name="priceRangeDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.PriceRangeId != Guid.Empty ? Model.PriceRange : "قیمت -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="priceRangeDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'priceRangeDropDownMenu', 'قیمت -> همه');">همه</a></li>
-                        @foreach (var item in Model.PriceRangeList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.PriceRangeId','priceRangeDropDownMenu','priceRangeHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="hidden" value="" name="adTypeHidden" id="adTypeHidden" />
-                <div class="dropdown">
-                    <button class="btn btn-takyab dropdown-toggle @(Model.AdTypeId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="adTypeDropDownMenu" data-toggle="dropdown">
-                        <span class="title">@(Model.AdTypeId != Guid.Empty ? Model.AdType : "نوع آگهی -> همه")</span>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="adTypeDropDownMenu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'adTypeDropDownMenu', 'adTypeHidden', 'نوع آگهی -> همه');">همه</a></li>
-                        @foreach (var item in Model.AdTypeList)
-                        {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.AdTypeId', 'adTypeDropDownMenu','adTypeHidden','@(item.Name)');">@(item.Name)</a></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="searchItem">
-                <input type="submit" value="جستجو" class="btnSearch" />
-                 
-                <input type="button" value="مجدد" class="btnReset" onclick="javascript:resetSearch();" />
+            <table class="searchTable" cellspacing="10" >
 
-            </div>
+                <tr>
+                    <td>
+                        <span class="searchTitle">استان</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="provinceHidden" id="provinceHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab  dropdown-toggle @(Model.ProvinceId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="provinceDropDownMenu" name="provinceDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.ProvinceId != Guid.Empty ? Model.Province : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="provinceDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'provinceDropDownMenu', 'provinceHidden', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.ProvinceList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ProvinceId','provinceDropDownMenu','provinceHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <span class="searchTitle">نوع خودرو</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="modelHidden" id="modelHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab dropdown-toggle @(Model.ModelId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="modelDropDownMenu" name="modelDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.ModelId != Guid.Empty ? Model.Model : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="modelDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'modelDropDownMenu', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.ModelList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.ModelId','modelDropDownMenu','modelHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <span class="searchTitle">نوع خودرو</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="subModelHidden" id="subModelHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab dropdown-toggle @(Model.SubModelId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="subModelDropDownMenu" name="subModelDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.SubModelId != Guid.Empty ? Model.SubModel : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="subModelDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'subModelDropDownMenu', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.SubModelList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.SubModelId','subModelDropDownMenu','subModelHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <span class="searchTitle">نوع آگهی</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="adTypeHidden" id="adTypeHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab dropdown-toggle @(Model.AdTypeId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="adTypeDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.AdTypeId != Guid.Empty ? Model.AdType : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="adTypeDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'adTypeDropDownMenu', 'adTypeHidden', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.AdTypeList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.AdTypeId', 'adTypeDropDownMenu','adTypeHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <span class="searchTitle">قیمت</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="priceRangeHidden" id="priceRangeHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab dropdown-toggle @(Model.PriceRangeId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="priceRangeDropDownMenu" name="priceRangeDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.PriceRangeId != Guid.Empty ? Model.PriceRange : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="priceRangeDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'priceRangeDropDownMenu', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.PriceRangeList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.PriceRangeId','priceRangeDropDownMenu','priceRangeHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <span class="searchTitle">سال تولید</span>
+                    </td>
+                    <td>
+                        <div class="searchItem">
+                            <input type="hidden" value="" name="buildYearHidden" id="buildYearHidden" />
+                            <div class="dropdown">
+                                <button class="btn btn-takyab dropdown-toggle @(Model.BuildYearId != Guid.Empty ? "selectedButton" :  String.Empty)" type="button" id="buildYearDropDownMenu" name="buildYearDropDownMenu" data-toggle="dropdown">
+                                    <span class="title">@(Model.BuildYearId != Guid.Empty ? Model.BuildYear : "همه")</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="buildYearDropDownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('', 'buildYearDropDownMenu', 'همه');">همه</a></li>
+                                    @foreach (var item in Model.BuildYearList)
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="selectThis('@item.BuildYearId','buildYearDropDownMenu','buildYearHidden','@(item.Name)');">@(item.Name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="جستجو" class="btnSearch" />
+                    </td>
+                </tr>
+            </table>
 
         </div>
+        <input type="button" value="مجدد" class="btnReset" onclick="javascript:resetSearch();" />
+
     </form>
 </div>
 
