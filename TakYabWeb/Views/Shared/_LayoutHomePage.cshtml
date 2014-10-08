@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - تکیاب</title>
+    <title>@ViewBag.Title - تکیاب</title>    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -29,7 +29,7 @@
     <script src="~/Scripts/gridmvc.min.js"></script>
     <script src="~/Scripts/gridmvc.customfilter.js"></script>
 
-
+     
 
 </head>
 <body>
@@ -38,7 +38,7 @@
             <header>
                 @Html.Partial("Navigation")
             </header>
-            <div id="body" style="padding-top:20px !important;">
+            <div id="body">
                 @RenderSection("featured", required: false)
                 <section class="content-wrapper main-content clear-fix">
                     @RenderBody()
@@ -46,6 +46,8 @@
             </div>
             <footer>
                 @Html.Action("GetModelListforFooter", "User", new { area = "User" })
+
+                @Html.Partial("Footer2")
             </footer>
         </div>
     </div>

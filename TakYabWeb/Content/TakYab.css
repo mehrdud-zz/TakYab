@@ -15,6 +15,7 @@ body
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
     background-color: #000;
+    overflow-y: scroll;
 }
 
 h1,
@@ -31,6 +32,11 @@ h6
     letter-spacing: 1px;
 }
 
+
+h2
+{
+    color: #FD9F00 !important;
+}
 
 @media(min-width:767px)
 {
@@ -95,6 +101,7 @@ div#body
 {
     clear: both;
     padding: 0;
+    min-height: 600px;
 }
 
 a:hover
@@ -120,7 +127,13 @@ a:hover
 {
     display: inline-block;
     vertical-align: top;
-    width: 55%;
+    padding-right: 20px;
+}
+
+.homepageItem{
+    width:100%;padding:0;display:inline-block;vertical-align:top;
+    margin: 10px 0 10px 0;
+
 }
 /*********       End of Page Template      *********/
 
@@ -136,16 +149,48 @@ footer
 .footerLogoList
 {
     text-align: center;
+    padding: 20px 5px;
+    margin: 20px 0 20px 0;
 }
 
 .footerItem
 {
     display: inline-block;
 }
+
+#footer2
+{
+    color: #fff;
+    background-color: #5F8410;
+    display: inline-block;
+    width: 100%;
+    padding: 20px 5px; 
+    color: #fff;
+    min-height:100px;
+    
+}
+
+#footer2 h4
+{
+    font-weight: 700;
+}
 /*********   End of Footer   *********/
 
 
 /*********       Navigation      *********/
+.login
+{
+    display: inline-block;
+    width: 100%;
+    padding: 0 120px 5px 0;
+    text-align: right;
+}
+
+.login a
+{
+    color: #000 !important;
+}
+
 .navbar
 {
     margin: 0 !important;
@@ -159,6 +204,13 @@ nav.navbar-takyab
     padding: 0 !important;
     border: none;
     border-radius: 0;
+    min-width: 300px !important;
+}
+
+.navbar-takyab .navbar-nav li
+{
+    padding: 0 0 0 20px;
+    text-align: center;
 }
 
 .navbar-takyab .navbar-nav > li > a
@@ -166,6 +218,11 @@ nav.navbar-takyab
     color: #000 !important;
     text-align: right;
     padding-right: 0;
+}
+
+.navbar-nav.navbar-right:last-child
+{
+    margin: 0 !important;
 }
 
 .navbar-takyab .navbar-nav > li > a:hover
@@ -263,7 +320,6 @@ nav.navbar-takyab .container-fluid
 /*********       Panels      *********/
 .panel-takyab
 {
-    border: 1px solid #000 !important;
 }
 
 
@@ -274,6 +330,11 @@ nav.navbar-takyab .container-fluid
     font-weight: 700;
     font-size: 1.2em;
     border-bottom: 1px solid #fff;
+}
+
+.panel-takyab .panel-body
+{
+    background-color: #C09A6B !important;
 }
 
 
@@ -294,10 +355,8 @@ nav.navbar-takyab .container-fluid
 {
     background-color: #fff;
     color: #000;
-    width:230px;
-    height:40px;
-    
-
+    width: 230px;
+    height: 40px;
 }
 
 
@@ -322,14 +381,9 @@ nav.navbar-takyab .container-fluid
 
 /*********   Forms   *********/
 
-.editor-field
-{
-    padding: 0;
-}
 
 .formRow
 {
-    padding: 5px 0 5px 0;
     border-bottom: 1px solid #f1f1f1;
     width: 100%;
 }
@@ -337,47 +391,65 @@ nav.navbar-takyab .container-fluid
 .editor-field
 {
     padding: 5px 0px 5px 0;
-    width: 75%;
     display: inline-block;
 }
 
-.editor-label
-{
-    padding: 5px 0px 5px 20px;
-    font-weight: bold;
-    width: 20%;
-    text-align: left;
-    display: inline-block;
-}
 
 .editor-field select,
-.display-label select
+.display-label select,
+.editor-field input,
+.editor-field textarea
 {
-    min-width: 300px;
-    padding: 5px;
+    min-width: 200px;
+    width: 60%;
     border: 1px solid #e2e2e2;
 }
 
-
+.editor-label,
 .display-label
 {
     padding: 5px 0px 5px 20px;
     font-weight: bold;
-    width: 20%;
+    min-width: 100px;
+    width: 30%;
     text-align: left;
     display: inline-block;
 }
 
+
+
 .display-field
 {
+    min-width: 200px;
     padding: 5px 0px 5px 0;
-    width: 75%;
+    width: 60%;
     display: inline-block;
 }
 
 .buttonsContainer
 {
     padding: 10px 0 0px 0;
+}
+
+.carDetailsPanel .panel-body
+{
+    border-radius: 0 0 5px 5px;
+}
+
+.panel-body .formList li
+{
+    list-style-type: none;
+}
+
+.panel-body .formList li
+{
+    border-bottom: 1px solid #f1f1f1;
+    width: 100%;
+}
+
+.panel-body .formList li:last-child
+{
+    border-bottom: none;
 }
 
 .formPanel
@@ -389,6 +461,67 @@ nav.navbar-takyab .container-fluid
 
 
 /*********   Search   *********/
+#searchComponent
+{
+    display: inline-block;
+    padding: 2px;
+}
+
+#searchComponent .searchHeader
+{
+    border-radius: 5px 5px 0 0;
+    background-color: #000;
+    line-height: 50px;
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 1.3em;
+    color: #fff;
+}
+
+#searchComponent .searchHeader span
+{
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+#searchComponent .searchTable
+{
+    border-radius: 0 0 5px 5px;
+    background-color: #D5B17D;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+}
+
+#searchComponent .searchTable tr td
+{
+    padding: 0 10px 0 10px;
+    vertical-align: middle;
+}
+
+#searchComponent .searchTable .dropdownCell
+{
+    vertical-align: middle;
+    line-height: 55px;
+}
+
+
+#searchComponent .searchTitle
+{
+    width: 70px;
+    text-align: right;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 55px;
+}
+
+
+
+
 .searchPanel
 {
     display: inline-block;
@@ -404,36 +537,10 @@ nav.navbar-takyab .container-fluid
     color: red;
 }
 
-.searchContainer
-{
-    display: inline-block;
-    padding: 2px;
-}
-
-.searchItem
-{
-    padding: 0;
-    display: inline-block;
-    height: 100%;
-    vertical-align:middle;
-}
 
 
-.searchTable tr td{ 
-    vertical-align:middle;
-    line-height: 50px;
-    padding:0;
-}
-.searchTitle
-{
-    width: 120px;
-    line-height:40px;
-    text-align: left;
-    font-weight: bold;
-    display:inline-block;
-    text-align :right;
-    padding:0 20px 0 0;
-}
+
+
 
 
 .selectedButton
@@ -565,6 +672,7 @@ div.dropdown
     margin: 0;
     padding: 0;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 #login ul
@@ -579,10 +687,19 @@ div.dropdown
 }
 
 
+.login
+{
+}
+
 /* login page */
 #loginForm
 {
     display: inline-block;
+}
+
+#loginForm li
+{
+    list-style-type: none;
 }
 
 #loginForm label
@@ -651,6 +768,18 @@ div.dropdown
 }
 
 
+.HomePage .HomePageCotnainer .SearchComponentCotainer
+{
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 5px;
+    padding: 20px 20px 0 0;
+    display: inline-block;
+    z-index: 100;
+}
+
+
 .HomePage .leftbarCarListContainer
 {
     float: left;
@@ -695,9 +824,10 @@ div.dropdown
 {
     position: relative;
     width: 100%;
-    min-height: 800px;
     display: inline-block;
-    height: 800px;
+    position: relative;
+    vertical-align: top;
+    height: 620px;
 }
 
 
@@ -711,51 +841,10 @@ div.dropdown
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -1;
 }
 
 
-.HomePage .HomePageCotnainer .SearchComponentCotainer
-{
-    width: 200px;
-    display: inline-block;
-    vertical-align: top;
-    z-index: 100;
-    position: absolute;
-    top: 15px;
-    right: 120px;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.searchHeaderContainer
-{
-    border-radius: 5px 5px 0 0;
-    background-color: #000;
-    height: 60px;
-    line-height: 60px;
-    width: 390px;
-    padding: 0;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.searchHeader
-{
-    font-weight: 700;
-    font-size: 1.3em;
-    color: #fff;
-}
-
-.searchTable
-{
-    border-radius: 0 0 5px 5px;
-    background-color: #D5B17D;
- width: 390px;
-    
-    padding: 0;
-    display: inline-block;
-}
 
 .item-fade
 {
@@ -782,6 +871,7 @@ div.dropdown
     width: 100%;
     display: inline-block;
     vertical-align: top;
+    text-align: center;
 }
 
 
@@ -789,4 +879,10 @@ div.dropdown
 {
     font-size: 1.4em;
     font-weight: 700;
+}
+
+
+.dropdown-menu
+{
+    min-width: 230px !important;
 }

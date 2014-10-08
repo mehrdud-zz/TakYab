@@ -23,7 +23,7 @@ namespace TakYab.Areas.Ads.Controllers
         public ActionResult BottomPageCarList()
         {
             var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
-                .OrderBy(m => m.Priority.SortOrder).OrderBy(m => m.SortOrder).Take(50);
+                .OrderBy(m => m.Priority.SortOrder).OrderBy(m => m.SortOrder).Take(6);
             return View(cars.ToList());
         }
 

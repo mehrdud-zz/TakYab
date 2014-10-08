@@ -1,10 +1,11 @@
 ﻿@model TakYab.Models.RegisterModel
 @{
     ViewBag.Title = "ثبت نام";
+    Layout = "";
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1> 
+    <h1>@ViewBag.Title</h1> 
 </hgroup>
 
 <section id="loginForm">
@@ -13,8 +14,7 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
 
-        <fieldset>
-            <legend>Registration Form</legend>
+        <fieldset> 
             <ol>
                 <li>
                     @Html.LabelFor(m => m.UserName)

@@ -4,155 +4,140 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- 
+
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
 <fieldset>
-    <legend>Car</legend>
-
     @Html.HiddenFor(model => model.CarId)
 
 
     <div class="formPanel">
-        <div class="rightSidePanel panel panel-takyab ">
-            <div class="panel-heading">اطلاعات خودرو</div>
-            <div class=" panel-body">
+        <div class="rightSidePanel panel carDetailsPanel" style="width:400px;">
+            <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">
+                <div class="pull-right" style="display:inline-block;width:60%;"><span>@Model.ModelName</span> </div>
+                <div style="display:inline-block;width:38%;text-align:left;"><span>@Model.PriceString</span></div>
+            </div>
+            <div class="panel-body" style="background-color:#FFCC00;">
+                <ul class="formList">
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.CarStatusId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.CarStatus.Name)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.ProvinceId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Province.Name)
 
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.CarStatusId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.CarStatus.Name)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.ProvinceId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.Province.Name)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.BuildYearId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.BuildYear.Name)
 
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.SubModelId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.SubModel.Model.Name) -> @Html.DisplayFor(model => model.SubModel.Name)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.BuildYearId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.BuildYear.Name)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.Milage)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Milage)
 
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.Milage)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.Milage)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.OutsideColourId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.OutsideColour)
 
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.Price)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.Price)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.InsideColourId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.InsideColour)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.FuelTypeId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.FuelType.Name)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.InsuranceTypeId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.InsuranceType.Name)
 
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.OutsideColourId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.OutsideColour)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.AdTypeId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.AdType.Name)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.PriorityId)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Priority.Name)
+                        </div>
+                    </li>
+                    <li>
 
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.InsideColourId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.InsideColour)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.FuelTypeId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.FuelType.Name)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.InsuranceTypeId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.InsuranceType.Name)
-
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.AdTypeId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.AdType.Name)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.PriorityId)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.Priority.Name)
-                    </div>
-                </div>
-                <div class="formRow">
-
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.Description)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.Description)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.GearType)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.GearType)
-                    </div>
-                </div>
-                <div class="formRow">
-                    <div class="display-label">
-                        @Html.LabelFor(model => model.PhoneNumber)
-                    </div>
-                    <div class="display-field">
-                        @Html.DisplayFor(model => model.PhoneNumber)
-                    </div>
-                </div>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.Description)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Description)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.GearType)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.GearType)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-label">
+                            @Html.LabelFor(model => model.PhoneNumber)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </div>
+                    </li>
+                </ul>
             </div>
 
         </div>
 
         <div class="leftSidePanel">
-            <div class=" panel panel-takyab-transparent "> 
+            <div class=" panel panel-takyab-transparent ">
                 <div class="panel-body">
                     <div id="carCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
@@ -167,11 +152,11 @@
                             @{var i = "active";}
                             @foreach (var item in Model.CarImages)
                             {
-                                <div class="item @(i)" style="text-align:center;">
-                                    <img src="/Content/Images/@(item)/Medium.png" />
-                                </div>
+                            <div class="item @(i)" style="text-align:center;">
+                                <img src="/Content/Images/@(item)/Medium.png" />
+                            </div>
 
-                                @(i = "")
+                            @(i = "")
                             }
                         </div>
 
@@ -188,10 +173,16 @@
         </div>
 
 
+        <div class="panel carDetailsPanel" style="padding-right:20px;">
+            <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">@Html.LabelFor(model => model.Description)</div>
+            <div class="panel-body" style="background-color:#FFCC00;min-height:100px;display:inline-block;width:100%;">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+
     </div>
 </fieldset>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("بازگشت", "Index", "Home", new { area = "" }, null)
 </div>
-

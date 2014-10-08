@@ -1,22 +1,36 @@
 ﻿@{
     ViewBag.Title = "خانه";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
 
+
 <div class="HomePage">
- 
+
 
     <div class="HomePageCotnainer">
-        <div id="topCotnainer" style="position:relative;display:inline-block;min-height:800px;width:100%;">
+        <div id="topContainer" class="homepageItem" style="margin-top:0 !important;">
             <div class="SearchComponentCotainer">
                 @Html.Action("SearchComponent", "Search", new { area = "Search" })
             </div>
             <div class="CarRotatorContainer">
-                @*@Html.Action("CarRotator", "CarShow", new { area = "Ads" })*@
                 @Html.Action("CarRotatorFixed", "CarShow", new { area = "Ads" })
             </div>
+        </div>
+
+
+        <div class="homepageItem">
+            <h2 style="text-align:center;">Lorem ipsum dolor sit amet</h2>
+            <p style="text-align:right;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+
+        <div class="homepageItem">
+            @Html.Partial("Dena")
         </div>
         <div class="BottomPageCarListContainer">
             @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
         </div>
-    </div> 
+    </div>
 </div>

@@ -9,6 +9,7 @@
             </a>
         </div>
     </div>
+    @Html.Partial("_LoginPartial")
     <nav class="navbar navbar-takyab navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,17 +26,26 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding:0 120px 0 120px !important;">
                 <ul class="nav navbar-nav navbar-right" style="padding:0 !important;">
                     @*<li><a href="#">تماس با ما</a></li>
-                    <li><a href="#">درباره ما</a></li>
-                    <li><a href="#">اطلاعات فنی خودرو</a></li>
-                    <li><a href="#">قیمت روز خودرو</a></li>*@
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">اطلاعات فنی خودرو</a></li>
+            <li><a href="#">قیمت روز خودرو</a></li>*@
+
 
                     @if (User.IsInRole("administrator"))
                     {
                         <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
                     }
-                    <li><a href="~/Ads/Car/Index">فروش خودرو</a></li>
+
+                    <li><a href="~/">تماس با ما</a></li>
+                    <li><a href="~/">درباره ما</a></li>
+                    <li><a href="~/">قیمت روز خودرو</a></li>
+                    <li><a href="~/">اطلاعات فنی خودرو</a></li>
+                    <li><a href="~/Search/Search/SearchResults">جستجوی خودرو</a></li>
+                    <li><a href="~/Ads/Car/Create/">فروش خودرو</a></li>
+                    <li><a href="/">صفحه اصلی</a></li>
+
                 </ul>
-                @Html.Partial("_LoginPartial")
+                
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

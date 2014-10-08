@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
 
 namespace TakYab.Areas.Search.Controllers
 {
@@ -33,7 +33,15 @@ namespace TakYab.Areas.Search.Controllers
             searchCriterias.ProvinceList = db.Provinces.OrderBy(m => m.SortOrder).ToList();
 
 
-            searchCriterias.CarStatusId = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Guid.Parse(Request.Form["carStatusHidden"]) : Guid.Empty;
+            string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
+
+            if (!String.IsNullOrEmpty(sefrKarkarde))
+            {
+                var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
+                if (carStatus != null)
+                    searchCriterias.CarStatusId = carStatus.CarStatusId;
+            }
+
             searchCriterias.ProvinceId = !String.IsNullOrEmpty(Request.Form["provinceHidden"]) ? Guid.Parse(Request.Form["provinceHidden"]) : Guid.Empty;
             searchCriterias.ModelId = !String.IsNullOrEmpty(Request.Form["modelHidden"]) ? Guid.Parse(Request.Form["modelHidden"]) : Guid.Empty;
             searchCriterias.SubModelId = !String.IsNullOrEmpty(Request.Form["subModelHidden"]) ? Guid.Parse(Request.Form["subModelHidden"]) : Guid.Empty;
@@ -72,7 +80,17 @@ namespace TakYab.Areas.Search.Controllers
         public ActionResult SearchResults()
         {
             var searchCriteriaLight = new SearchCriteriaLight();
-            searchCriteriaLight.CarStatusId = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Guid.Parse(Request.Form["carStatusHidden"]) : Guid.Empty;
+            string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
+
+            if (!String.IsNullOrEmpty(sefrKarkarde))
+            {
+                var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
+                if (carStatus != null)
+                    searchCriteriaLight.CarStatusId = carStatus.CarStatusId;
+            }
+
+
+
             searchCriteriaLight.ProvinceId = !String.IsNullOrEmpty(Request.Form["provinceHidden"]) ? Guid.Parse(Request.Form["provinceHidden"]) : Guid.Empty;
             searchCriteriaLight.ModelId = !String.IsNullOrEmpty(Request.Form["modelHidden"]) ? Guid.Parse(Request.Form["modelHidden"]) : Guid.Empty;
             searchCriteriaLight.SubModelId = !String.IsNullOrEmpty(Request.Form["subModelHidden"]) ? Guid.Parse(Request.Form["subModelHidden"]) : Guid.Empty;

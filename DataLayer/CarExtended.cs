@@ -81,6 +81,15 @@ namespace DataLayer
                 return _modelName;
             }
         }
+
+
+        public string PriceString
+        {
+            get
+            {
+                return String.Format("{0:n0}", this.Price);
+            }
+        }
     }
 
 
@@ -169,5 +178,8 @@ namespace DataLayer
 
 
 
+        [Display(Name = "نوع دنده")]
+        public string GearType { get; set; }
+    
     }
 }

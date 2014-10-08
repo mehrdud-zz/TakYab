@@ -248,6 +248,9 @@ namespace TakYab.Areas.Ads.Controllers
                             var thumbnail = directory + "Thumbnail.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
 
+                            var small = directory + "Small.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 320, 240, small, System.Drawing.Imaging.ImageFormat.Png);
+
                             var medium = directory + "Medium.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
 

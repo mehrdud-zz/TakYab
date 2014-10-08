@@ -54,7 +54,7 @@ namespace TakYab.Controllers
             int posY = Convert.ToInt32((canvasHeight - (originalHeight * ratio)) / 2);
 
             graphic.Clear(Color.Transparent); // white padding
-            graphic.DrawImage(image, 0, 0, newWidth, newHeight);
+            graphic.DrawImage(image, posX, posY, newWidth, newHeight);
 
             /* ------------- end new code ---------------- */
 

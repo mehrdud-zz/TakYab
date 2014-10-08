@@ -1,31 +1,58 @@
 ﻿@model IEnumerable<DataLayer.Car>
 @{
     ViewBag.Title = "ListCars";
-} 
+}
 
-<div style="display:inline-block;width:100%;">
+<div style="display:inline-block;text-align:center;max-width:1000px;">
 
     @foreach (var item in Model)
     {
-        <div style="display:inline-block;"><table><tr><td colspan="2"><img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" /></td></tr>
-                <tr>
-                    <td>
-                        @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
-                    </td>
-                    <td>
-                        @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#">آگهی مورد علاقه</a>
-                    </td>
-                    <td>
-                        <a href="#">مقایسه خودروها</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
+        <a href="~/Ads/Car/Details/@item.CarId">
+            <div style="display:inline-block;">
+                <div style="position:relative; display:inline-block;height:240px;width:320px;">
+                    <div style="position:absolute;z-index:-1;bottom:0;left:0;">
+                        <img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" width="320" height="240" />
+                    </div>
+                    <div style="position:absolute;bottom:0;left:0;width:320px;height:80px; display:inline-block; opacity: 0.6;filter: alpha(opacity=60); background-color:#000;">
+                        <table style="width:100%;height:100%;">
+                            <tr>
+                                <td style="border-left:1px solid #fff;color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
+                                </td>
+                                <td style=" color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:1px solid #fff; color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    @((item != null && item.BuildYearId != null) ? item.BuildYear.Name : String.Empty)
+                                </td>
+                                <td style="color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    @(String.Format("{0:n0}", item.Price))
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:1px solid #fff;color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    <a href="#" style="color:#fff;" onclick="addtoFavourits('@item.CarId','@User.Identity.Name');return false;">آگهی مورد علاقه</a>
+                                </td>
+                                <td style="color:#fff;font-weight:bold;text-align:center;" width="120">
+                                    <a href="#" style="color:#fff;" onclick="addtoCompareCars('@item.CarId');return false;">مقایسه خودروها</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </a>
     }
 </div>
+
+<script type="text/javascript">
+    function addtoFavourits(carId, username) {
+
+    }
+
+    function addtoCompareCars(carId) {
+
+    }
+</script>

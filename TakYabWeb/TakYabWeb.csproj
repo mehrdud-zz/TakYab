@@ -363,6 +363,7 @@
     <Content Include="Images\CarRotator\01.jpg" />
     <Content Include="Images\CarRotator\02.jpg" />
     <Content Include="Images\CarRotator\03.jpg" />
+    <Content Include="Images\dena.jpg" />
     <Content Include="Images\logo3.png" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\grayscale.js" />
@@ -433,6 +434,10 @@
     <Content Include="Views\Shared\DisplayTemplates\ColourControl.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ModelController.cshtml" />
     <Content Include="Views\web.config" />
+    <Content Include="Views\Account\LoginAndRegisterPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutHomePage.cshtml" />
+    <Content Include="Views\Shared\Footer2.cshtml" />
+    <Content Include="Views\Shared\Dena.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

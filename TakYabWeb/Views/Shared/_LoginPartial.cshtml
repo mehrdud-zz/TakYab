@@ -1,30 +1,27 @@
-﻿@if (Request.IsAuthenticated)
-{
-    <text>
+﻿<div class="login">
+    @if (Request.IsAuthenticated)
+    {
+        <text>
 
-        <ul class="nav navbar-nav">
-            <li>
-                <span>
-                    Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-                </span>
-                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                }
-
-            </li>
-        </ul>
+            <span>
+                @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
+            </span>
 
 
 
-    </text>
+            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <span>[</span><a href="javascript:document.getElementById('logoutForm').submit()">خروج</a><span>]</span>
+            }
 
-}
-else
-{
-    <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("ثبت نام", "Register", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("ورود", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+
+
+        </text>
+
+    }
+    else
+    {
+        <div class="loginItem">@Html.ActionLink("ورود و ثبت نام", "LoginAndRegisterPage", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</div>
+    }
+</div>

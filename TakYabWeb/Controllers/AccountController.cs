@@ -17,9 +17,14 @@ namespace TakYab.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-   
 
 
+        [AllowAnonymous]
+        public ActionResult LoginAndRegisterPage(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
 
         //
@@ -88,7 +93,7 @@ namespace TakYab.Controllers
                     WebSecurity.Login(model.UserName, model.Password);
                     Roles.AddUsersToRole(new string[] { model.UserName }, ConfigKeys.GetConfigValues(ConfigKeys.USER_USER_ROLE));
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "" });
                 }
                 catch (MembershipCreateUserException e)
                 {
