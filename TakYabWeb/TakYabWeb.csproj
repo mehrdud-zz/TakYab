@@ -357,6 +357,7 @@
     <Content Include="Areas\Admin\Views\Priority\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Province\Index.cshtml" />
     <Content Include="Areas\Ads\Views\CarShow\CarRotatorFixed.cshtml" />
+    <Content Include="Areas\Search\Views\Search\SearchComponentNew.cshtml" />
     <None Include="Properties\PublishProfiles\TakYab.pubxml" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\blankII.jpg" />
