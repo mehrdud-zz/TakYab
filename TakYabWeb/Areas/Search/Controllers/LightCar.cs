@@ -15,6 +15,11 @@ namespace TakYab.Areas.Search.Controllers
         public string Model { get; set; }
         public Nullable<Guid> ModelId { get; set; }
 
+
+        public string CarStatus { get; set; }
+        public Nullable<Guid> CarStatusId { get; set; }
+
+
         public string SubModel { get; set; }
         public Nullable<Guid> SubModelId { get; set; }
 

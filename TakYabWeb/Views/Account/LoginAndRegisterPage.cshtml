@@ -5,8 +5,21 @@
 <div style="width:100%;display:inline-block;vertical-align:top; ">
     <div style="width:45%; border-left:1px solid gray;display:inline-block;padding:10px 20px;vertical-align:top;">
         @Html.Action("Login", "Account", new { area = "" })
+        <input type="button" value="ورود" onclick="login();" />
     </div>
     <div style="width:45%; display:inline-block; padding:10px 20px;vertical-align:top;">
          @Html.Action("Register", "Account", new { area = "" })
+        <input type="button" value="ثبت نام"  onclick="register();"/>
     </div>
 </div>
+
+<script type="text/javascript">
+    function register() {
+        $(".registerForm form").submit();
+    }
+
+    function login() {
+        $(".loginForm form").submit();
+    }
+
+</script>

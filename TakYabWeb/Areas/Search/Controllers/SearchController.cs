@@ -93,6 +93,14 @@ namespace TakYab.Areas.Search.Controllers
 
             var submodelCount =
                  from car in searchResult
+                 where
+                    (searchForm.CarStatusId == Guid.Empty || car.CarStatusId == searchForm.CarStatusId) &&
+                    (searchForm.ProvinceId == Guid.Empty || car.ProvinceId == searchForm.ProvinceId) &&
+                    (searchForm.ModelId == Guid.Empty || car.ModelId == searchForm.ModelId) &&
+                    (searchForm.SubModelId == Guid.Empty || car.SubModelId == searchForm.SubModelId) &&
+                    (searchForm.PriceRangeId == Guid.Empty || car.PriceRangeId == searchForm.PriceRangeId) &&
+                    (searchForm.BuildYearId == Guid.Empty || car.BuildYearId == searchForm.BuildYearId) &&
+                    (searchForm.AdTypeId == Guid.Empty || car.AdTypeId == searchForm.AdTypeId)
                  group car by new { SubModelId = car.SubModelId, SubModel = car.SubModel } into counts
                  select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.SubModelId, Name = counts.Key.SubModel };
 
@@ -102,6 +110,14 @@ namespace TakYab.Areas.Search.Controllers
 
             var modelCount =
                 from car in searchResult
+                where
+                   (searchForm.CarStatusId == Guid.Empty || car.CarStatusId == searchForm.CarStatusId) &&
+                   (searchForm.ProvinceId == Guid.Empty || car.ProvinceId == searchForm.ProvinceId) &&
+                   (searchForm.ModelId == Guid.Empty || car.ModelId == searchForm.ModelId) &&
+                   (searchForm.SubModelId == Guid.Empty || car.SubModelId == searchForm.SubModelId) &&
+                   (searchForm.PriceRangeId == Guid.Empty || car.PriceRangeId == searchForm.PriceRangeId) &&
+                   (searchForm.BuildYearId == Guid.Empty || car.BuildYearId == searchForm.BuildYearId) &&
+                   (searchForm.AdTypeId == Guid.Empty || car.AdTypeId == searchForm.AdTypeId)
                 group car by new { ModelId = car.ModelId, Model = car.Model } into counts
                 select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.ModelId, Name = counts.Key.Model };
 
@@ -111,6 +127,14 @@ namespace TakYab.Areas.Search.Controllers
 
             var provinceCount =
                 from car in searchResult
+                where
+                   (searchForm.CarStatusId == Guid.Empty || car.CarStatusId == searchForm.CarStatusId) &&
+                   (searchForm.ProvinceId == Guid.Empty || car.ProvinceId == searchForm.ProvinceId) &&
+                   (searchForm.ModelId == Guid.Empty || car.ModelId == searchForm.ModelId) &&
+                   (searchForm.SubModelId == Guid.Empty || car.SubModelId == searchForm.SubModelId) &&
+                   (searchForm.PriceRangeId == Guid.Empty || car.PriceRangeId == searchForm.PriceRangeId) &&
+                   (searchForm.BuildYearId == Guid.Empty || car.BuildYearId == searchForm.BuildYearId) &&
+                   (searchForm.AdTypeId == Guid.Empty || car.AdTypeId == searchForm.AdTypeId)
                 group car by new { ProvinceId = car.ProvinceId, Province = car.Province } into counts
                 select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.ProvinceId, Name = counts.Key.Province };
 
@@ -120,7 +144,15 @@ namespace TakYab.Areas.Search.Controllers
 
             var buildYearCount =
                 from car in searchResult
-                group car by new { BuildYearId = car.ProvinceId, BuildYear = car.Province } into counts
+                where
+                   (searchForm.CarStatusId == Guid.Empty || car.CarStatusId == searchForm.CarStatusId) &&
+                   (searchForm.ProvinceId == Guid.Empty || car.ProvinceId == searchForm.ProvinceId) &&
+                   (searchForm.ModelId == Guid.Empty || car.ModelId == searchForm.ModelId) &&
+                   (searchForm.SubModelId == Guid.Empty || car.SubModelId == searchForm.SubModelId) &&
+                   (searchForm.PriceRangeId == Guid.Empty || car.PriceRangeId == searchForm.PriceRangeId) &&
+                   (searchForm.BuildYearId == Guid.Empty || car.BuildYearId == searchForm.BuildYearId) &&
+                   (searchForm.AdTypeId == Guid.Empty || car.AdTypeId == searchForm.AdTypeId)
+                group car by new { BuildYearId = car.BuildYearId, BuildYear = car.BuildYear } into counts
                 select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.BuildYearId, Name = counts.Key.BuildYear };
 
             searchCriterias.BuildYearSearchCriteriaItemList =
@@ -129,11 +161,19 @@ namespace TakYab.Areas.Search.Controllers
 
             var adTypeCount =
                 from car in searchResult
+                where
+                   (searchForm.CarStatusId == Guid.Empty || car.CarStatusId == searchForm.CarStatusId) &&
+                   (searchForm.ProvinceId == Guid.Empty || car.ProvinceId == searchForm.ProvinceId) &&
+                   (searchForm.ModelId == Guid.Empty || car.ModelId == searchForm.ModelId) &&
+                   (searchForm.SubModelId == Guid.Empty || car.SubModelId == searchForm.SubModelId) &&
+                   (searchForm.PriceRangeId == Guid.Empty || car.PriceRangeId == searchForm.PriceRangeId) &&
+                   (searchForm.BuildYearId == Guid.Empty || car.BuildYearId == searchForm.BuildYearId) &&
+                   (searchForm.AdTypeId == Guid.Empty || car.AdTypeId == searchForm.AdTypeId)
                 group car by new { AdTypeId = car.AdTypeId, AdType = car.AdType } into counts
                 select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.AdTypeId, Name = counts.Key.AdType };
 
             searchCriterias.AdTypeSearchCriteriaItemList =
-                buildYearCount.ToList();
+                adTypeCount.ToList();
 
 
             searchCriterias.PriceRangeSearchCriteriaItemList =
@@ -210,13 +250,21 @@ namespace TakYab.Areas.Search.Controllers
                BuildYearId,
                AdTypeId);
 
-            var searchCriterias = new SearchCriteria(); 
+            var searchCriterias = new SearchCriteria();
 
             if (searchResult.Count > 0)
             {
 
                 var submodelCount =
                      from car in searchResult
+                     where
+                        (CarStatusId == Guid.Empty || car.CarStatusId == CarStatusId) &&
+                        (ProvinceId == Guid.Empty || car.ProvinceId == ProvinceId) &&
+                        (ModelId == Guid.Empty || car.ModelId == ModelId) &&
+                        (SubModelId == Guid.Empty || car.SubModelId == SubModelId) &&
+                        (PriceRangeId == Guid.Empty || car.PriceRangeId == PriceRangeId) &&
+                        (BuildYearId == Guid.Empty || car.BuildYearId == BuildYearId) &&
+                        (AdTypeId == Guid.Empty || car.AdTypeId == AdTypeId)
                      group car by new { SubModelId = car.SubModelId, SubModel = car.SubModel } into counts
                      select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.SubModelId, Name = counts.Key.SubModel };
 
@@ -226,6 +274,14 @@ namespace TakYab.Areas.Search.Controllers
 
                 var modelCount =
                     from car in searchResult
+                    where
+                       (CarStatusId == Guid.Empty || car.CarStatusId == CarStatusId) &&
+                       (ProvinceId == Guid.Empty || car.ProvinceId == ProvinceId) &&
+                       (ModelId == Guid.Empty || car.ModelId == ModelId) &&
+                       (SubModelId == Guid.Empty || car.SubModelId == SubModelId) &&
+                       (PriceRangeId == Guid.Empty || car.PriceRangeId == PriceRangeId) &&
+                       (BuildYearId == Guid.Empty || car.BuildYearId == BuildYearId) &&
+                       (AdTypeId == Guid.Empty || car.AdTypeId == AdTypeId)
                     group car by new { ModelId = car.ModelId, Model = car.Model } into counts
                     select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.ModelId, Name = counts.Key.Model };
 
@@ -235,6 +291,14 @@ namespace TakYab.Areas.Search.Controllers
 
                 var provinceCount =
                     from car in searchResult
+                    where
+                       (CarStatusId == Guid.Empty || car.CarStatusId == CarStatusId) &&
+                       (ProvinceId == Guid.Empty || car.ProvinceId == ProvinceId) &&
+                       (ModelId == Guid.Empty || car.ModelId == ModelId) &&
+                       (SubModelId == Guid.Empty || car.SubModelId == SubModelId) &&
+                       (PriceRangeId == Guid.Empty || car.PriceRangeId == PriceRangeId) &&
+                       (BuildYearId == Guid.Empty || car.BuildYearId == BuildYearId) &&
+                       (AdTypeId == Guid.Empty || car.AdTypeId == AdTypeId)
                     group car by new { ProvinceId = car.ProvinceId, Province = car.Province } into counts
                     select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.ProvinceId, Name = counts.Key.Province };
 
@@ -244,7 +308,15 @@ namespace TakYab.Areas.Search.Controllers
 
                 var buildYearCount =
                     from car in searchResult
-                    group car by new { BuildYearId = car.ProvinceId, BuildYear = car.Province } into counts
+                    where
+                       (CarStatusId == Guid.Empty || car.CarStatusId == CarStatusId) &&
+                       (ProvinceId == Guid.Empty || car.ProvinceId == ProvinceId) &&
+                       (ModelId == Guid.Empty || car.ModelId == ModelId) &&
+                       (SubModelId == Guid.Empty || car.SubModelId == SubModelId) &&
+                       (PriceRangeId == Guid.Empty || car.PriceRangeId == PriceRangeId) &&
+                       (BuildYearId == Guid.Empty || car.BuildYearId == BuildYearId) &&
+                       (AdTypeId == Guid.Empty || car.AdTypeId == AdTypeId)
+                    group car by new { BuildYearId = car.BuildYearId, BuildYear = car.BuildYear } into counts
                     select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.BuildYearId, Name = counts.Key.BuildYear };
 
                 searchCriterias.BuildYearSearchCriteriaItemList =
@@ -253,11 +325,19 @@ namespace TakYab.Areas.Search.Controllers
 
                 var adTypeCount =
                     from car in searchResult
+                    where
+                       (CarStatusId == Guid.Empty || car.CarStatusId == CarStatusId) &&
+                       (ProvinceId == Guid.Empty || car.ProvinceId == ProvinceId) &&
+                       (ModelId == Guid.Empty || car.ModelId == ModelId) &&
+                       (SubModelId == Guid.Empty || car.SubModelId == SubModelId) &&
+                       (PriceRangeId == Guid.Empty || car.PriceRangeId == PriceRangeId) &&
+                       (BuildYearId == Guid.Empty || car.BuildYearId == BuildYearId) &&
+                       (AdTypeId == Guid.Empty || car.AdTypeId == AdTypeId)
                     group car by new { AdTypeId = car.AdTypeId, AdType = car.AdType } into counts
                     select new SearchCriteriaItem { Count = counts.Count(), ItemId = counts.Key.AdTypeId, Name = counts.Key.AdType };
 
                 searchCriterias.AdTypeSearchCriteriaItemList =
-                    buildYearCount.ToList();
+                    adTypeCount.ToList();
 
 
                 searchCriterias.PriceRangeSearchCriteriaItemList =
@@ -391,6 +471,8 @@ namespace TakYab.Areas.Search.Controllers
                     AdTypeId = (cars.AdType != null ? cars.AdTypeId : Guid.Empty),
                     BuildYear = cars.BuildYear != null ? cars.BuildYear.Name : String.Empty,
                     BuildYearId = (cars.BuildYear != null ? cars.BuildYearId : Guid.Empty),
+                    CarStatus = cars.CarStatus != null ? cars.CarStatus.Name : String.Empty,
+                    CarStatusId = (cars.CarStatus != null ? cars.CarStatusId : Guid.Empty),
                     FirstImage = cars.ImageURI1
                 };
 

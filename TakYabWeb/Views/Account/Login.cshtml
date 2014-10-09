@@ -2,20 +2,20 @@
 
 @{
     ViewBag.Title = "ورود";
-    Layout = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title</h1>
 </hgroup>
 
-<section id="loginForm">
+<section id="loginForm" class="loginForm">
     @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        <fieldset> 
+        <fieldset>
             <ol>
                 <li>
                     @Html.LabelFor(m => m.UserName)
@@ -32,21 +32,20 @@
                     @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
                 </li>
                 <li class="rememberMe">
-                    <input type="submit" value="ورود" /> &nbsp;
-                    @Html.ActionLink("ثبت نام ", "Register")
+                    <input type="submit" value="ورود" />
                 </li>
             </ol>
-
 
         </fieldset>
 
     }
-</section>
+    <p>
 
-@*<section class="social" id="socialLoginForm">
-        <h2>Use another service to log in.</h2>
-        @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-    </section>*@
+        @Html.ActionLink("ثبت نام", "Register", "Account")
+
+    </p>
+</section>
+ 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
