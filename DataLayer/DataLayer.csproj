@@ -50,6 +50,12 @@
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CarStatusExtended.cs" />
+    <Compile Include="CarView.cs">
+      <DependentUpon>TakYabDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FavouritCar.cs">
+      <DependentUpon>TakYabDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="InsuranceTypeExtended.cs" />
     <Compile Include="FuelTypeExtended.cs" />
     <Compile Include="AdType.cs">
@@ -125,7 +131,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TakYabDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Queries\TakYab.Bak" />
+    <None Include="Queries\TakYab.bak" />
     <None Include="TakYabDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TakYabDataModel.edmx</DependentUpon>

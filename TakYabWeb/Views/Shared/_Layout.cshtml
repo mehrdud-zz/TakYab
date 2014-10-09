@@ -38,19 +38,28 @@
             <header>
                 @Html.Partial("Navigation")
             </header>
-            <div id="body" style="padding-top:20px !important;">
+            <div id="body">
                 @RenderSection("featured", required: false)
                 <section class="content-wrapper main-content clear-fix">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="display:inline-block;width:100%;height:100%;padding:0;margin:0;">
+                            <img src="~/Images/carNav.jpg" />
+                        </div>
+                        @Html.Partial("NavigationUser")
+                    }
                     @RenderBody()
                 </section>
             </div>
             <footer>
                 @Html.Action("GetModelListforFooter", "User", new { area = "User" })
+
+                @Html.Partial("Footer2")
             </footer>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-    
+
 </body>
 </html>

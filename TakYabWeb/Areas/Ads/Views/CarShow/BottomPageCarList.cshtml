@@ -33,7 +33,7 @@
                             </tr>
                             <tr>
                                 <td style="border-left:1px solid #fff;color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    <a href="#" style="color:#fff;" onclick="addtoFavourits('@item.CarId','@User.Identity.Name');return false;">آگهی مورد علاقه</a>
+                                    <a href="#" style="color:#fff;" onclick="addtoFavourits('@item.CarId');return false;">آگهی مورد علاقه</a>
                                 </td>
                                 <td style="color:#fff;font-weight:bold;text-align:center;" width="120">
                                     <a href="#" style="color:#fff;" onclick="addtoCompareCars('@item.CarId');return false;">مقایسه خودروها</a>
@@ -48,7 +48,17 @@
 </div>
 
 <script type="text/javascript">
-    function addtoFavourits(carId, username) {
+    function addtoFavourits(carId) {
+        $.ajax({
+            url: '@Url.Action("AddToFavouriteCars", "Car", new { area="Ads"})',
+            type: 'post',
+            data: JSON.stringify({
+                CarId: carId 
+            }),
+            dataType: "json",
+            processData: false,
+            contentType: "application/json; charset=utf-8" 
+        });
 
     }
 

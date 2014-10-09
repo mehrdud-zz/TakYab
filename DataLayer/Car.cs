@@ -14,6 +14,12 @@ namespace DataLayer
     
     public partial class Car
     {
+        public Car()
+        {
+            this.CarViews = new HashSet<CarView>();
+            this.FavouritCars = new HashSet<FavouritCar>();
+        }
+    
         public System.Guid CarId { get; set; }
         public Nullable<System.Guid> SubModelId { get; set; }
         public Nullable<System.Guid> ProvinceId { get; set; }
@@ -54,5 +60,7 @@ namespace DataLayer
         public virtual SubModel SubModel { get; set; }
         public virtual PriceRange PriceRange { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<CarView> CarViews { get; set; }
+        public virtual ICollection<FavouritCar> FavouritCars { get; set; }
     }
 }

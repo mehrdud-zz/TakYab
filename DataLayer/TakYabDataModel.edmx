@@ -74,6 +74,14 @@
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="SortOrder" Type="int" />
         </EntityType>
+        <EntityType Name="CarView">
+          <Key>
+            <PropertyRef Name="CarViewId" />
+          </Key>
+          <Property Name="CarViewId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarId" Type="uniqueidentifier" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Colour">
           <Key>
             <PropertyRef Name="ColourId" />
@@ -82,6 +90,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Code" Type="nvarchar" MaxLength="200" />
           <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="FavouritCars">
+          <Key>
+            <PropertyRef Name="FavouriteCarId" />
+          </Key>
+          <Property Name="FavouriteCarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarId" Type="uniqueidentifier" />
+          <Property Name="username" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="FuelType">
           <Key>
@@ -294,6 +310,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CarView_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CarView" Type="Self.CarView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="CarView">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavouritCars_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FavouritCars" Type="Self.FavouritCars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="FavouritCars">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubModel_Model">
           <End Role="Model" Type="Self.Model" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -314,7 +358,9 @@
           <EntitySet Name="BuildYear" EntityType="Self.BuildYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarStatus" EntityType="Self.CarStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarView" EntityType="Self.CarView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colour" EntityType="Self.Colour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FavouritCars" EntityType="Self.FavouritCars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsuranceType" EntityType="Self.InsuranceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
@@ -366,6 +412,14 @@
           <AssociationSet Name="FK_Car_UserProfile" Association="Self.FK_Car_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarView_Car" Association="Self.FK_CarView_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="CarView" EntitySet="CarView" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavouritCars_Car" Association="Self.FK_FavouritCars_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="FavouritCars" EntitySet="FavouritCars" />
           </AssociationSet>
           <AssociationSet Name="FK_SubModel_Model" Association="Self.FK_SubModel_Model">
             <End Role="Model" EntitySet="Model" />
@@ -517,6 +571,16 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
+          <EntitySet Name="CarViews" EntityType="TakYabModel.CarView" />
+          <EntitySet Name="FavouritCars" EntityType="TakYabModel.FavouritCar" />
+          <AssociationSet Name="FK_CarView_Car" Association="TakYabModel.FK_CarView_Car">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="CarView" EntitySet="CarViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavouritCars_Car" Association="TakYabModel.FK_FavouritCars_Car">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="FavouritCar" EntitySet="FavouritCars" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdStatus">
           <Key>
@@ -613,6 +677,8 @@
           <NavigationProperty Name="PriceRange" Relationship="TakYabModel.FK_Car_PriceRange" FromRole="Car" ToRole="PriceRange" />
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="UserProfile" Relationship="TakYabModel.FK_Car_UserProfile" FromRole="Car" ToRole="UserProfile" />
+          <NavigationProperty Name="CarViews" Relationship="TakYabModel.FK_CarView_Car" FromRole="Car" ToRole="CarView" />
+          <NavigationProperty Name="FavouritCars" Relationship="TakYabModel.FK_FavouritCars_Car" FromRole="Car" ToRole="FavouritCar" />
         </EntityType>
         <Association Name="FK_Car_AdStatus">
           <End Type="TakYabModel.AdStatus" Role="AdStatus" Multiplicity="0..1" />
@@ -764,6 +830,52 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CarView">
+          <Key>
+            <PropertyRef Name="CarViewId" />
+          </Key>
+          <Property Name="CarViewId" Type="Guid" Nullable="false" />
+          <Property Name="CarId" Type="Guid" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="TakYabModel.FK_CarView_Car" FromRole="CarView" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="FavouritCar">
+          <Key>
+            <PropertyRef Name="FavouriteCarId" />
+          </Key>
+          <Property Name="FavouriteCarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarId" Type="Guid" />
+          <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="TakYabModel.FK_FavouritCars_Car" FromRole="FavouritCar" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_CarView_Car">
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TakYabModel.CarView" Role="CarView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="CarView">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavouritCars_Car">
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TakYabModel.FavouritCar" Role="FavouritCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="FavouritCar">
+              <PropertyRef Name="CarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -941,6 +1053,24 @@
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarViews">
+            <EntityTypeMapping TypeName="TakYabModel.CarView">
+              <MappingFragment StoreEntitySet="CarView">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="CarViewId" ColumnName="CarViewId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FavouritCars">
+            <EntityTypeMapping TypeName="TakYabModel.FavouritCar">
+              <MappingFragment StoreEntitySet="FavouritCars">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="FavouriteCarId" ColumnName="FavouriteCarId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

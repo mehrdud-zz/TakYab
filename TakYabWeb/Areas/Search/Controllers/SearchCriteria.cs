@@ -16,7 +16,7 @@ namespace TakYab.Areas.Search.Controllers
     }
     public class SearchCriteria
     {
-
+        public int TotalNumberofCars { get; set; }
         public List<SearchCriteriaItem> SubModelSearchCriteriaItemList { get; set; }
         public List<SearchCriteriaItem> ModelSearchCriteriaItemList { get; set; }
         public List<SearchCriteriaItem> AdTypeSearchCriteriaItemList { get; set; }
@@ -24,7 +24,7 @@ namespace TakYab.Areas.Search.Controllers
         public List<SearchCriteriaItem> BuildYearSearchCriteriaItemList { get; set; }
         public List<SearchCriteriaItem> ProvinceSearchCriteriaItemList { get; set; }
 
-        
+
         public List<DataLayer.CarStatus> CarStatusList { get; set; }
         public List<DataLayer.Model> ModelList { get; set; }
         public List<DataLayer.SubModel> SubModelList { get; set; }

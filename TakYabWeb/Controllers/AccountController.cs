@@ -47,6 +47,10 @@ namespace TakYab.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                //if (String.IsNullOrEmpty(returnUrl) && User.IsInRole("user"))
+                //{
+                //    RedirectToAction("MyAds", "Car", new { area = "Ads" });
+                //}
                 return RedirectToLocal(returnUrl);
             }
 

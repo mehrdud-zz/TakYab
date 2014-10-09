@@ -36,5 +36,10 @@ namespace TakYab.Areas.User.Controllers
 
             return String.Empty;
         }
+
+        public ActionResult Homepage()
+        {
+            return View();
+        }
     }
 }

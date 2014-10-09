@@ -39,7 +39,7 @@ namespace TakYab.Areas.Search.Controllers
         {
             get
             {
-                return String.Format("{0}->{1}", this.SubModel, this.Model);
+                return String.Format("{0}->{1}", this.Model, this.SubModel);
             }
         }
 

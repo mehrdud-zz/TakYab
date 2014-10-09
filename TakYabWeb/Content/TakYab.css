@@ -342,10 +342,7 @@ nav.navbar-takyab .container-fluid
 {
 }
 
-.btn-takyab:hover
-{
-    color: red !important;
-}
+
 
 /*********   End of Panels   *********/
 
@@ -357,6 +354,19 @@ nav.navbar-takyab .container-fluid
     color: #000;
     width: 230px;
     height: 40px;
+}
+
+.btn-takyab:hover
+{
+    color: red !important;
+}
+
+.btn-takyab .title{
+    float:right;
+}
+
+.btn-takyab .caret{
+    float:left;
 }
 
 
@@ -828,6 +838,7 @@ div.dropdown
     position: relative;
     vertical-align: top;
     height: 620px;
+    margin: 0;
 }
 
 

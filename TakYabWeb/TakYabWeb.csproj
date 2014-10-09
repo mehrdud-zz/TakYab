@@ -358,9 +358,15 @@
     <Content Include="Areas\Admin\Views\Province\Index.cshtml" />
     <Content Include="Areas\Ads\Views\CarShow\CarRotatorFixed.cshtml" />
     <Content Include="Areas\Search\Views\Search\SearchComponentNew.cshtml" />
+    <Content Include="Areas\Ads\Views\Car\MyAds.cshtml" />
+    <Content Include="Areas\User\Views\User\Homeage.cshtml" />
+    <Content Include="Areas\Ads\Views\Car\FavouriteCars.cshtml" />
+    <Content Include="Areas\Ads\Views\Car\AddToFavouriteCars.cshtml" />
+    <Content Include="Areas\Ads\Views\Car\DeleteFavouriteCar.cshtml" />
     <None Include="Properties\PublishProfiles\TakYab.pubxml" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\blankII.jpg" />
+    <Content Include="Images\carNav.jpg" />
     <Content Include="Images\CarRotator\01.jpg" />
     <Content Include="Images\CarRotator\02.jpg" />
     <Content Include="Images\CarRotator\03.jpg" />
@@ -439,6 +445,8 @@
     <Content Include="Views\Shared\_LayoutHomePage.cshtml" />
     <Content Include="Views\Shared\Footer2.cshtml" />
     <Content Include="Views\Shared\Dena.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\NavigationUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

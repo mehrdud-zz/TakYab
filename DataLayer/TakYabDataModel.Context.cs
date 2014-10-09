@@ -39,5 +39,7 @@ namespace DataLayer
         public DbSet<Car> Cars { get; set; }
         public DbSet<PriceRange> PriceRanges { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<CarView> CarViews { get; set; }
+        public DbSet<FavouritCar> FavouritCars { get; set; }
     }
 }

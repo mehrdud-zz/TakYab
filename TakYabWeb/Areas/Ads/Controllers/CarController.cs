@@ -39,6 +39,59 @@ namespace TakYab.Areas.Ads.Controllers
 
 
         }
+        [Authorize(Roles = "administrator,user")]
+        public ActionResult FavouriteCars()
+        {
+            var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
+
+
+            var userFavouritCars = db.FavouritCars.Where(m => m.username == username).Include(m => m.Car.Province).Include(m => m.Car.SubModel).Include(m => m.Car.SubModel.Model);
+
+            List<Car> userCars = new List<Car>();
+            foreach (var item in userFavouritCars)
+            {
+                userCars.Add(item.Car);
+            }
+
+            return View(userCars);
+
+
+        }
+
+
+        
+        [HttpPost]
+        public ActionResult AddToFavouriteCars(string CarId)
+        {
+
+            Guid CarGuidId = (!String.IsNullOrEmpty(CarId) ? Guid.Parse(CarId) : Guid.Empty);
+            var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
+
+            var favouritCar = new FavouritCar() { username = username, CarId = CarGuidId };
+            db.FavouritCars.Add(favouritCar);
+            db.SaveChanges();
+            return View();
+        }
+
+        [Authorize(Roles = "administrator,user")]
+        public ActionResult DeleteFavouriteCar(Guid id)
+        {
+            var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
+
+            var car = db.FavouritCars.First(m => m.CarId == id && m.username == username);
+            db.FavouritCars.Remove(car);
+            db.SaveChanges();
+            return RedirectToAction("FavouriteCars");
+        }
+
+        [Authorize(Roles = "administrator,user")]
+        public ActionResult MyAds()
+        {
+            var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
+            var cars2 = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
+                .Where(m => m.UserProfile.UserName == username);
+            return View(cars2.ToList());
+        }
 
 
 
@@ -218,16 +271,21 @@ namespace TakYab.Areas.Ads.Controllers
 
         //
         // POST: /Advertising/Car/Edit/5
+        public bool CanUserEditCar(Car car)
+        {
+            return
+                 (User.IsInRole("administrator") ||
+                 (car.UserProfile != null && System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName));
 
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator,user")]
         public ActionResult Edit(Car car)
         {
             if (ModelState.IsValid &&
-                (User.IsInRole("administrator") ||
-                System.Web.Security.Membership.GetUser().UserName == car.UserProfile.UserName
-                ))
+               CanUserEditCar(car)
+                )
             {
                 db.Entry(car).State = EntityState.Modified;
 
