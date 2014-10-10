@@ -446,7 +446,6 @@
     <Content Include="Views\Shared\_LayoutHomePage.cshtml" />
     <Content Include="Views\Shared\Footer2.cshtml" />
     <Content Include="Views\Shared\Dena.cshtml" />
-    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Shared\NavigationUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
