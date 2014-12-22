@@ -1,6 +1,8 @@
 USE [TakYab]
 GO
 
+
+
 DECLARE @SubModelId AS uniqueidentifier
 DECLARE @ProvinceId AS uniqueidentifier
 DECLARE @BuildYearId AS uniqueidentifier
@@ -29,8 +31,11 @@ DECLARE @ImageURI5 AS NVARCHAR(50)
 DECLARE @Milage AS BIGINT  
 
 DECLARE @SortOrderIndex AS INT
-SET @SortOrderIndex = 3
+SET @SortOrderIndex = 1
 
+
+DELETE FROM [Car] WHERE [SortOrder] > @SortOrderIndex
+ 
 DECLARE @SortOrderMax AS INT
 SET @SortOrderMax = (SELECT MAX([SortOrder]) FROM [Car])
 SET  @SortOrderMax =  @SortOrderIndex + 1

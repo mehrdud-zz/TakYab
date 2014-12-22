@@ -2,12 +2,9 @@
     @if (Request.IsAuthenticated)
     {
         <text>
-
-            <span>
-                @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
-            </span>
-
-
+            <div>
+                <a data-toggle="modal" data-target="#myModal" href="~/Account/Manage/">@(User.Identity.Name)</a> 
+            </div>
 
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
@@ -15,13 +12,37 @@
                 <span>[</span><a href="javascript:document.getElementById('logoutForm').submit()">خروج</a><span>]</span>
             }
 
-
-
         </text>
 
     }
     else
     {
-        <div class="loginItem">@Html.ActionLink("ورود و ثبت نام", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</div>
+        <div class="login-regstration-button">
+            <a id="loginLink" data-toggle="modal" data-target="#myModal" href="~/Account/LoginRegister/">ورود و ثبت نام</a>
+         
+        </div>
     }
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+
+            </div>
+            <div class="modal-body"><div class="te"></div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -1,17 +1,15 @@
 ﻿@using GridMvc.Html
-
 @model TakYab.Areas.Search.Controllers.SearchCriteriaLight
 @{
     ViewBag.Title = "SearchResults";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div style="display:inline-block;min-height:500px;vertical-align:top;width:100%;    padding: 0 20px 0 0;">
+<div style="display:inline-block;min-height:500px;vertical-align:top;width:100%;    padding: 0 0 0 0;">
     <div style="display:inline-block;vertical-align:top;padding:0 0 0 10px;width:390px;">
         @Html.Action("SearchComponentNew")
     </div>
     <div style="display:inline-block;vertical-align:top; min-width:60%;">
         <div class="panel panel-default">
-
             @Html.Grid(Model.LightCarsList).Columns(columns =>
            {
                columns.Add(foo => foo.ModelName).Titled("مدل خودرو").Sortable(true);
@@ -23,3 +21,9 @@
         </div>
     </div>
 </div>
+@section CarNav{
+    <div class="carNav">
+        <img src="@Url.Content("/Images/carNav.jpg")" />
+    </div>
+}
+

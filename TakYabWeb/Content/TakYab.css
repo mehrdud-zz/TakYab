@@ -1,12 +1,14 @@
 ﻿/*********       Basic Elements      *********/
-html
-{
+html {
     width: 100%;
     height: 100%;
 }
 
-body
-{
+.tinymce-content {
+    white-space: normal;
+}
+
+body {
     direction: rtl;
     border: none;
     font-size: 16px;
@@ -23,8 +25,7 @@ h2,
 h3,
 h4,
 h5,
-h6
-{
+h6 {
     margin: 0 0 35px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -33,42 +34,37 @@ h6
 }
 
 
-h2
-{
+h2 {
     color: #FD9F00 !important;
 }
 
-@media(min-width:767px)
-{
-    p
-    {
+@media(min-width:767px) {
+    p {
         margin: 0 0 35px;
         font-size: 20px;
         line-height: 1.6;
     }
 }
 
-a
-{
+a {
     color: #219ab3;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
 
-a:hover,
-a:focus
-{
-    text-decoration: none;
-    /*color: #11505d;*/
-    color: #FF9000 !important;
-}
+
+    a:hover,
+    a:focus {
+        text-decoration: none;
+        /*color: #11505d;*/
+        color: #FF9000 !important;
+    }
 /*********       End of Basic Elements      *********/
 /*********       Page Template      *********/
 
 
-#htmlOuterContainer
-{
+#htmlOuterContainer {
     width: 100%;
     display: inline-block;
     text-align: center;
@@ -77,8 +73,7 @@ a:focus
     margin: 0;
 }
 
-#htmlInnerContainer
-{
+#htmlInnerContainer {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -88,8 +83,7 @@ a:focus
     vertical-align: top;
 }
 
-header
-{
+header {
     display: inline-block !important;
     width: 100%;
     padding: 0;
@@ -97,107 +91,87 @@ header
     vertical-align: top;
 }
 
-div#body
-{
+div#body {
     clear: both;
     padding: 0;
     min-height: 600px;
 }
 
-a:hover
-{
+a:hover {
     border: none;
 }
 
 
-.container
-{
+.container {
     width: 100% !important;
 }
 
-.leftSidePanel
-{
+.formPanel .leftSidePanel {
     display: inline-block;
     vertical-align: top;
-    width: 40%;
+    min-width: 400px;
+    width: 30%;
 }
 
 
-.rightSidePanel
-{
+.formPanel .rightSidePanel {
     display: inline-block;
     vertical-align: top;
-    padding-right: 20px;
+    min-width: 400px;
+    width: 60%;
 }
 
-.homepageItem{
-    width:100%;padding:0;display:inline-block;vertical-align:top;
+.homepageItem {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
     margin: 10px 0 10px 0;
-
 }
 /*********       End of Page Template      *********/
 
 
 /*********       Footer      *********/
-footer
-{
+footer {
     width: 100%;
     display: inline-block;
     border-color: #d7d7d7;
 }
 
-.footerLogoList
-{
+.footerLogoList {
     text-align: center;
     padding: 20px 5px;
     margin: 20px 0 20px 0;
 }
 
-.footerItem
-{
+.footerItem {
     display: inline-block;
 }
 
-#footer2
-{
+#footer2 {
     color: #fff;
     background-color: #5F8410;
     display: inline-block;
     width: 100%;
-    padding: 20px 5px; 
+    padding: 20px 5px;
     color: #fff;
-    min-height:100px;
-    
+    min-height: 100px;
 }
 
-#footer2 h4
-{
-    font-weight: 700;
-}
+    #footer2 h4 {
+        font-weight: 700;
+    }
 /*********   End of Footer   *********/
 
 
 /*********       Navigation      *********/
-.login
-{
-    display: inline-block;
-    width: 100%;
-    padding: 0 120px 5px 0;
-    text-align: right;
-}
 
-.login a
-{
-    color: #000 !important;
-}
 
-.navbar
-{
+.navbar {
     margin: 0 !important;
 }
 
-nav.navbar-takyab
-{
+nav.navbar-takyab {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #B1DB53;
@@ -207,31 +181,31 @@ nav.navbar-takyab
     min-width: 300px !important;
 }
 
-.navbar-takyab .navbar-nav li
-{
-    padding: 0 0 0 20px;
+
+.navbar-takyab .navbar-takyab-collapse {
+    padding: 0 60px 0 0 !important;
+}
+
+.navbar-takyab .navbar-nav li {
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-.navbar-takyab .navbar-nav > li > a
-{
+.navbar-takyab .navbar-nav > li > a {
     color: #000 !important;
-    text-align: right;
     padding-right: 0;
 }
 
-.navbar-nav.navbar-right:last-child
-{
+.navbar-nav.navbar-right:last-child {
     margin: 0 !important;
 }
 
-.navbar-takyab .navbar-nav > li > a:hover
-{
+.navbar-takyab .navbar-nav > li > a:hover {
     color: red !important;
 }
 
-nav.navbar-takyab .container-fluid
-{
+nav.navbar-takyab .container-fluid {
     height: 45px;
     padding: 0 !important;
 }
@@ -239,60 +213,52 @@ nav.navbar-takyab .container-fluid
 
 
 
-.navbar-takyab .navbar-brand
-{
-}
-
-.navbar-takyab .navbar-brand:focus
-{
-    outline: 0;
-}
-
-.navbar-takyab .navbar-brand .navbar-toggle
-{
-    padding: 4px 6px;
-    font-size: 16px;
-    color: #fff;
-}
-
-.navbar-takyab .navbar-brand .navbar-toggle:focus,
-.navbar-takyab .navbar-brand .navbar-toggle:active
-{
-    outline: 0;
-}
-
-.navbar-takyab a
-{
+.navbar-takyab a {
     color: #fff;
     font-size: 1.1em;
     font-weight: 700;
 }
 
-.navbar-takyab .nav li.active
-{
+.navbar-takyab .nav li.active {
     outline: none;
     background-color: rgba(255,255,255,.3);
 }
 
-.navbar-takyab .nav li a
-{
+.navbar-takyab .nav li.active {
+    outline: none;
+    background-color: rgba(255,255,255,.3);
+}
+
+.navbar-takyab .nav li a {
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
+    width: 150px;
+    text-align: center;
 }
 
-.navbar-takyab .nav li a:hover,
-.navbar-takyab .nav li a:focus,
-.navbar-takyab .nav li a.active
-{
-    outline: 0;
-    color: #FF9000;
+    .navbar-takyab .nav li a:hover,
+    .navbar-takyab .nav li a:focus,
+    .navbar-takyab .nav li a.active {
+        outline: 0;
+        color: #FF9000;
+    }
+
+
+#topBarNavigation li.takyab-active {
+    background-color: #FF9F00;
 }
 
-@media(min-width:767px)
-{
-    .navbar
-    {
+#lowerBarNavigation li.takyab-active {
+    background-color: #B1DB53;
+}
+
+#registerForm {
+    vertical-align: top;
+}
+
+@media(min-width:767px) {
+    .navbar {
         padding: 20px 0;
         border-bottom: 0;
         letter-spacing: 1px;
@@ -302,44 +268,66 @@ nav.navbar-takyab .container-fluid
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
 
-    .top-nav-collapse
-    {
+    .top-nav-collapse {
         padding: 0;
         background-color: #000;
     }
 
-    .navbar-takyab.top-nav-collapse
-    {
+    .navbar-takyab.top-nav-collapse {
         border-bottom: 1px solid rgba(255,255,255,.3);
     }
 }
+
+
+.takyab-header {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 60px 0 60px !important;
+}
+
+    .takyab-header .takyab-header-branding {
+        width: 70%;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        float: right;
+    }
+
+        .takyab-header .takyab-header-branding h3 {
+            font-size: 32px;
+        }
+
+    .takyab-header .takyab-header-logo {
+        display: inline-block;
+        padding: 10px 0 0 0;
+        margin: 0;
+        text-align: left;
+        float: left;
+    }
+
 /*********   End of Navigation   *********/
 
 
 
 /*********       Panels      *********/
-.panel-takyab
-{
+.panel-takyab {
 }
 
 
-.panel-takyab .panel-heading
-{
-    background-color: #000;
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.2em;
-    border-bottom: 1px solid #fff;
-}
+    .panel-takyab .panel-heading {
+        background-color: #000;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2em;
+        border-bottom: 1px solid #fff;
+    }
 
-.panel-takyab .panel-body
-{
-    background-color: #C09A6B !important;
-}
+    .panel-takyab .panel-body {
+        background-color: #C09A6B !important;
+    }
 
 
-.panel-takyab-transparent
-{
+.panel-takyab-transparent {
 }
 
 
@@ -348,39 +336,35 @@ nav.navbar-takyab .container-fluid
 
 
 /*********       Buttons      *********/
-.btn-takyab
-{
+.btn-takyab {
     background-color: #fff;
     color: #000;
     width: 230px;
     height: 40px;
 }
 
-.btn-takyab:hover
-{
-    color: red !important;
-}
+    .btn-takyab:hover {
+        color: red !important;
+    }
 
-.btn-takyab .title{
-    float:right;
-}
+    .btn-takyab .title {
+        float: right;
+    }
 
-.btn-takyab .caret{
-    float:left;
-}
+    .btn-takyab .caret {
+        float: left;
+    }
 
 
 /*********   End of Buttons   *********/
 
 
 /*********   Grids   *********/
-.grid-header
-{
+.grid-header {
     text-align: center;
 }
 
-.grid-row .grid-cell
-{
+.grid-row .grid-cell {
     vertical-align: middle;
     text-align: center;
 }
@@ -392,78 +376,79 @@ nav.navbar-takyab .container-fluid
 /*********   Forms   *********/
 
 
-.formRow
-{
+.formRow {
     border-bottom: 1px solid #f1f1f1;
     width: 100%;
 }
 
-.editor-field
-{
-    padding: 5px 0px 5px 0;
-    display: inline-block;
-}
 
 
 .editor-field select,
 .display-label select,
 .editor-field input,
-.editor-field textarea
-{
+.editor-field textarea {
     min-width: 200px;
-    width: 60%;
+    width: 100%;
     border: 1px solid #e2e2e2;
 }
 
 .editor-label,
-.display-label
-{
+.display-label {
     padding: 5px 0px 5px 20px;
     font-weight: bold;
     min-width: 100px;
     width: 30%;
     text-align: left;
     display: inline-block;
+    vertical-align: top;
+}
+
+.editor-field {
+    padding: 5px 0px 5px 0;
+    display: inline-block;
+    width: 60%;
 }
 
 
-
-.display-field
-{
+.display-field {
     min-width: 200px;
     padding: 5px 0px 5px 0;
     width: 60%;
     display: inline-block;
 }
 
-.buttonsContainer
-{
+.buttonsContainer {
     padding: 10px 0 0px 0;
 }
 
-.carDetailsPanel .panel-body
-{
+
+.carDetailsTable {
+}
+
+
+    .carDetailsTable td {
+        vertical-align: top;
+        padding: 0;
+    }
+
+.carDetailsPanel .panel-body {
     border-radius: 0 0 5px 5px;
 }
 
-.panel-body .formList li
-{
+.panel-body .formList li {
     list-style-type: none;
 }
 
-.panel-body .formList li
-{
+.panel-body .formList li {
     border-bottom: 1px solid #f1f1f1;
     width: 100%;
 }
 
-.panel-body .formList li:last-child
-{
-    border-bottom: none;
-}
+    .panel-body .formList li:last-child {
+        border-bottom: none;
+    }
 
-.formPanel
-{
+.formPanel {
     vertical-align: top;
     width: 100%;
 }
@@ -471,81 +456,71 @@ nav.navbar-takyab .container-fluid
 
 
 /*********   Search   *********/
-#searchComponent
-{
+#searchComponent {
     display: inline-block;
-    padding: 2px;
-}
-
-#searchComponent .searchHeader
-{
-    border-radius: 5px 5px 0 0;
-    background-color: #000;
-    line-height: 50px;
-    width: 100%;
     padding: 0;
+}
+
+    #searchComponent .searchHeader {
+        border-radius: 5px 5px 0 0;
+        background-color: #000;
+        line-height: 50px;
+        width: 100%;
+        padding: 0;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 700;
+        font-size: 1.3em;
+        color: #fff;
+    }
+
+        #searchComponent .searchHeader span {
+            line-height: 50px;
+            vertical-align: middle;
+        }
+
+    #searchComponent .searchTable {
+        border-radius: 0 0 5px 5px;
+        background-color: #D5B17D;
+        padding: 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+        #searchComponent .searchTable tr td {
+            padding: 0 10px 0 10px;
+            vertical-align: middle;
+        }
+
+        #searchComponent .searchTable .dropdownCell {
+            vertical-align: middle;
+            line-height: 55px;
+        }
+
+
+    #searchComponent .searchTitle {
+        width: 70px;
+        text-align: right;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 55px;
+    }
+
+
+
+
+.searchPanel {
     display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    font-weight: 700;
-    font-size: 1.3em;
-    color: #fff;
 }
 
-#searchComponent .searchHeader span
-{
-    line-height: 50px;
-    vertical-align: middle;
-}
+    .searchPanel .btn {
+        width: 180px;
+    }
 
-#searchComponent .searchTable
-{
-    border-radius: 0 0 5px 5px;
-    background-color: #D5B17D;
-    padding: 0;
-    display: inline-block;
-    width: 100%;
-}
-
-#searchComponent .searchTable tr td
-{
-    padding: 0 10px 0 10px;
-    vertical-align: middle;
-}
-
-#searchComponent .searchTable .dropdownCell
-{
-    vertical-align: middle;
-    line-height: 55px;
-}
-
-
-#searchComponent .searchTitle
-{
-    width: 70px;
-    text-align: right;
-    font-weight: bold;
-    display: inline-block;
-    line-height: 55px;
-}
-
-
-
-
-.searchPanel
-{
-    display: inline-block;
-}
-
-.searchPanel .btn
-{
-    width: 180px;
-}
-
-.searchPanel .btn:hover
-{
-    color: red;
-}
+        .searchPanel .btn:hover {
+            color: red;
+        }
 
 
 
@@ -553,25 +528,26 @@ nav.navbar-takyab .container-fluid
 
 
 
-.selectedButton
-{
+.selectedButton {
     color: #000;
     background-color: #FF9000;
 }
 
 
 
+.btn-takyab {
+    color: #fff;
+    background-color: #000;
+}
 
-.open .btn-takyab
-{
+.open .btn-takyab {
     color: #000;
     background-color: #FF9000;
 }
 
 
 .searchPanel .btnSearch,
-.searchPanel .btnReset
-{
+.searchPanel .btnReset {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -584,22 +560,19 @@ nav.navbar-takyab .container-fluid
 }
 
 
-.searchPanel .btnSearch
-{
+.searchPanel .btnSearch {
     width: 100px;
 }
 
-.searchPanel .btnReset
-{
+.searchPanel .btnReset {
     width: 80px;
 }
 
 
-.searchPanel .btnSearch:hover,
-.searchPanel .btnReset:hover
-{
-    color: red;
-}
+    .searchPanel .btnSearch:hover,
+    .searchPanel .btnReset:hover {
+        color: red;
+    }
 /*********   End of Search   *********/
 
 
@@ -608,76 +581,78 @@ nav.navbar-takyab .container-fluid
 
 
 
-.dropdown-menu > li > a
-{
+.dropdown-menu > li > a {
     text-align: right;
 }
 
-#carCarousel
-{
+#carCarousel {
     vertical-align: top;
 }
 
 
 
 
-.carList tr th
-{
+.carList tr th {
     direction: rtl !important;
     text-align: right !important;
 }
 
-.carList tbody tr td
-{
+.carList tbody tr td {
     vertical-align: middle !important;
 }
 
 
-div.dropdown
-{
+div.dropdown {
     float: right;
 }
 
 
 
 
-.carousel-indicators li
-{
+.carousel-indicators li {
     background-color: #000 !important;
 }
 
-.carousel-indicators .active
-{
+.carousel-indicators .active {
     background-color: #FF9000 !important;
 }
 
-.carousel-caption
-{
+.carousel-caption {
     background-color: #808080;
     display: inline-block;
 }
 
-/* login
-----------------------------------------------------------*/
-#login
-{
-    display: block;
+/*********       Login      *********/
+
+
+.login {
+    display: inline-block;
     font-size: .85em;
-    margin: 0 0 10px;
     text-align: right;
+    padding: 0 60px 0 0;
 }
 
-#login a
-{
-    background-color: #d3dce0;
-    margin-left: 10px;
-    margin-right: 3px;
-    padding: 2px 3px;
-    text-decoration: none;
+.login-regstration-button {
+    display: inline-block;
+    width: 300px;
 }
 
-#login a.username
-{
+#loginLink {
+    border-radius: 5px 5px 0 0;
+    background-color: #C39B70;
+    color: #000;
+    padding: 5px 25px 5px 25px;
+}
+
+/*#login a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }*/
+
+#login a.username {
     background: none;
     margin: 0;
     padding: 0;
@@ -685,101 +660,89 @@ div.dropdown
     font-weight: bold;
 }
 
-#login ul
-{
+#login ul {
     margin: 0;
 }
 
-#login li
-{
+#login li {
     display: inline;
     list-style: none;
 }
 
 
-.login
-{
-}
+/*********   End of Login   *********/
 
 /* login page */
-#loginForm
-{
+.loginForm {
     display: inline-block;
 }
 
-#loginForm li
-{
-    list-style-type: none;
-}
+    .loginForm li {
+        list-style-type: none;
+    }
 
-#loginForm label
-{
-    width: 100px;
-    text-align: left;
-    padding: 0 0 0 5px;
-}
+    .loginForm label {
+        width: 100px;
+        text-align: left;
+        padding: 0 0 0 5px;
+    }
 
-#loginForm .validation-error
-{
-    display: block;
-    margin-left: 15px;
-}
+    .loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
 
-#loginForm .validation-summary-errors ul
-{
-    margin: 0;
-    padding: 0;
-}
+    .loginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
 
-#loginForm .validation-summary-errors li
-{
-    display: inline;
-    list-style: none;
-    margin: 0;
-}
+    .loginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
 
-#loginForm input
-{
-    width: 250px;
-}
+    .loginForm input {
+        width: 250px;
+    }
 
-#loginForm input[type="checkbox"],
-#loginForm input[type="submit"],
-#loginForm input[type="button"],
-#loginForm button
-{
-    width: auto;
-}
+        .loginForm input[type="checkbox"],
+        .loginForm input[type="submit"],
+        .loginForm input[type="button"],
+        .loginForm button {
+            width: auto;
+        }
 
-#socialLoginForm
-{
+
+
+#socialLoginForm {
     margin-left: 40px;
     float: left;
     width: 40%;
 }
 
-#logoutForm
-{
+#logoutForm {
     display: inline;
 }
 
 
-#loginForm .rememberMe
-{
+#loginForm .rememberMe {
     padding-right: 100px;
 }
 
 
+#myModal .modal-content {
+    width: 840px;
+    padding: 10px;
+}
 
 /* Home page */
-.HomePage
-{
+.HomePage {
     vertical-align: top;
 }
 
-
-.HomePage .HomePageCotnainer .SearchComponentCotainer
-{
+.SearchComponentCotainer {
     width: 400px;
     display: inline-block;
     vertical-align: top;
@@ -790,8 +753,7 @@ div.dropdown
 }
 
 
-.HomePage .leftbarCarListContainer
-{
+.HomePage .leftbarCarListContainer {
     float: left;
     padding: 0 10px 0 10px;
     margin: 0;
@@ -802,27 +764,24 @@ div.dropdown
     overflow-y: scroll;
 }
 
-.HomePage .leftbarCarListContainer ul.LeftBarCarList
-{
-    text-align: center;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+    .HomePage .leftbarCarListContainer ul.LeftBarCarList {
+        text-align: center;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
-.HomePage .leftbarCarListContainer ul.LeftBarCarList li
-{
-    list-style-type: none;
-    padding: 10px 0 10px 0;
-    margin: 0;
-    border-bottom: 1px solid #000;
-}
+        .HomePage .leftbarCarListContainer ul.LeftBarCarList li {
+            list-style-type: none;
+            padding: 10px 0 10px 0;
+            margin: 0;
+            border-bottom: 1px solid #000;
+        }
 
 
 
 
-.HomePage .HomePageCotnainer
-{
+.HomePage .HomePageCotnainer {
     display: inline-block;
     width: 100%;
     min-height: 500px;
@@ -830,8 +789,7 @@ div.dropdown
     padding: 0;
 }
 
-#topContainer
-{
+#topContainer {
     position: relative;
     width: 100%;
     display: inline-block;
@@ -842,8 +800,7 @@ div.dropdown
 }
 
 
-.HomePage .HomePageCotnainer .CarRotatorContainer
-{
+.CarRotatorContainer {
     min-width: 300px;
     width: 100%;
     height: 620px;
@@ -857,27 +814,24 @@ div.dropdown
 
 
 
-.item-fade
-{
+.item-fade {
     vertical-align: top;
-    opacity: 0.4;
+    opacity: 0.6;
     transition: opacity .5s ease-in-out;
     -moz-transition: opacity .5s ease-in-out;
     -webkit-transition: opacity .5s ease-in-out;
 }
 
-.hover:hover
-{
-    opacity: 1;
-    transition: opacity .5s ease-in-out;
-    -moz-transition: opacity .5s ease-in-out;
-    -webkit-transition: opacity .5s ease-in-out;
-}
+    .item-fade:hover {
+        opacity: 1;
+        transition: opacity .5s ease-in-out;
+        -moz-transition: opacity .5s ease-in-out;
+        -webkit-transition: opacity .5s ease-in-out;
+    }
 
 
 
-.HomePage .HomePageCotnainer .BottomPageCarListContainer
-{
+.HomePage .HomePageCotnainer .BottomPageCarListContainer {
     min-width: 300px;
     width: 100%;
     display: inline-block;
@@ -886,14 +840,170 @@ div.dropdown
 }
 
 
-#AdminPanel ul li a
-{
-    font-size: 1.4em;
-    font-weight: 700;
+.dropdown-menu {
+    min-width: 230px !important;
 }
 
 
-.dropdown-menu
-{
-    min-width: 230px !important;
+
+.field-validation-error {
+    font-weight: 700;
+    color: red;
+}
+
+
+
+.carNav {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.bootomPageCarList {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+}
+
+.hideAlert {
+    opacity: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+
+.bootomPageCarList .infoCell {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    background-color: #000;
+    position: relative;
+}
+
+
+.loginAlert {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+tr.CarNew,
+tr.CarNew .grid-cell {
+    background-color: #cae6fb !important;
+}
+
+tr.CarApproved,
+tr.CarApproved .grid-cell {
+    background-color: #cafbca !important;
+}
+
+tr.Expired,
+tr.Expired .grid-cell {
+    background-color: #fbcaca !important;
+}
+
+
+
+/*********************SideBar*****************/
+
+/* Sidebar Styles */
+
+#sidebar-wrapper {
+    z-index: 1000; 
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #3a7546;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper ul.nav { 
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+
+ #sidebar-wrapper ul.nav .nav-header{
+     font-size:1.4em;
+     color: #FF9F00;
+     font-weight:700;
+ }
+    #sidebar-wrapper ul.nav li {
+        text-indent: 20px;
+        line-height: 40px;
+        border-bottom: 1px ridge #fff;
+        padding:2px;
+    }
+
+        #sidebar-wrapper ul.nav li a {
+            display: block;
+            text-decoration: none;
+            color: #fff !important;
+             
+            font-size:1.2em;
+        }
+
+            #sidebar-wrapper ul.nav li a:hover {
+                text-decoration: none;
+                color: #fff;
+                background: rgba(255,255,255,0.2);
+            }
+
+            #sidebar-wrapper ul.nav li a:active,
+            #sidebar-wrapper ul.nav li a:focus {
+                text-decoration: none;
+            }
+
+    .sidebar-nav > .sidebar-brand {
+        height: 65px;
+        font-size: 18px;
+        line-height: 60px;
+    }
+
+        .sidebar-nav > .sidebar-brand a {
+            color: #999999;
+        }
+
+            .sidebar-nav > .sidebar-brand a:hover {
+                color: #fff;
+                background: none;
+            }
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+        #wrapper.toggled {
+            padding-left: 0;
+        }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }

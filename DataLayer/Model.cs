@@ -25,6 +25,7 @@ namespace DataLayer
         public Nullable<bool> Active { get; set; }
         public Nullable<int> SortOrder { get; set; }
         public Nullable<bool> SubNav { get; set; }
+        public string ImageURI1 { get; set; }
     
         public virtual ICollection<SubModel> SubModels { get; set; }
     }

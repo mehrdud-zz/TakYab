@@ -1,26 +1,12 @@
 ﻿@{
     ViewBag.Title = "خانه";
-    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="HomePage">
 
-
     <div class="HomePageCotnainer">
-        <div id="topContainer" class="homepageItem" style="margin-top:0 !important;">
-            <div class="SearchComponentCotainer">
-                @Html.Action("SearchComponentNew", "Search", new { area = "Search" })
-            </div>
-            <div class="CarRotatorContainer">
-                @Html.Action("CarRotatorFixed", "CarShow", new { area = "Ads" })
-            </div>
-        </div>
-        @if (User.Identity.IsAuthenticated)
-        {
-            @Html.Partial("NavigationUser")
-            <br />
-        }
+
 
         <div class="homepageItem">
             <h2 style="text-align:center;">به وب سایت تکیاب خوش آمدید</h2>
@@ -28,7 +14,6 @@
                 سلام و عرض ادب خدمت دوستان عزیزم و اعضای محترم خانواده بزرگ تک یاب تک یاب وب سایت تخصصی آنلاین آگهی‌های خرید و فروش خودرو می باشد . ز لطف و محبت همه عزیزان اعم از کارشناسان بزرگوا ر ، همکاران و مدیران کل سایت و کاربران همیشه خوب و دوست داشتنی تشکر و قدر دانی میکنم و از خداوند متعال می خواهم که از همه دوستان عزیز به ویژه کاربران عزیز و مدیران ارشد که مدیریت علمی و اجرایی سایت را بخوبی بر دوش میکشند تشکر کنم.هدف از راه اندازی این سایت ایجاد یک فضای امن و مطمئن برای مردم عزیز کشورمان که قصد فروش یا خرید خودرو را دارند با صهولت کامل انجام بپذیرد.
             </p>
         </div>
-
 
         <div class="homepageItem">
             @Html.Partial("Dena")
@@ -38,3 +23,24 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchComponent").addClass("item-fade");
+        });
+    </script>
+}
+
+
+
+@section CarNav{ 
+<div id="topContainer" class="homepageItem" style="margin-top:0 !important;">
+    <div class="SearchComponentCotainer">
+        @Html.Action("SearchComponentNew", "Search", new { area = "Search" })
+    </div>
+    <div class="CarRotatorContainer">
+        @Html.Action("CarRotatorFixed", "CarShow", new { area = "Ads" })
+    </div>
+</div>
+}

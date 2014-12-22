@@ -49,11 +49,18 @@
     <Compile Include="AdStatus.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContentPageExtended.cs" />
     <Compile Include="CarStatusExtended.cs" />
     <Compile Include="CarView.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContentPage.cs">
+      <DependentUpon>TakYabDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FavouritCar.cs">
+      <DependentUpon>TakYabDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirstPageAd.cs">
       <DependentUpon>TakYabDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="InsuranceTypeExtended.cs" />

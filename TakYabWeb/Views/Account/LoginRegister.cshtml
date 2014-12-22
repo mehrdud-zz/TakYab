@@ -1,0 +1,125 @@
+﻿@model TakYab.Models.LoginRegister
+
+@{
+    ViewBag.Title = "ورود و ثبت نام";
+    Layout = "";
+}
+
+<style>
+    body{
+        text-align:right;
+        direction:rtl;
+    }
+    /* login page */
+    .loginForm {
+        display: inline-block;
+        vertical-align:top;
+    }
+
+        .loginForm li {
+            list-style-type: none;
+        }
+
+        .loginForm label {
+            width: 100px;
+            text-align: left;
+            padding: 0 0 0 5px;
+            display:inline-block;
+        }
+
+        .loginForm .validation-error {
+            display: block;
+            margin-left: 15px;
+        }
+
+        .loginForm .validation-summary-errors ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .loginForm .validation-summary-errors li {
+            display: inline;
+            list-style: none;
+            margin: 0;
+        }
+
+        .loginForm input {
+            width: 250px;
+        }
+
+            .loginForm input[type="checkbox"],
+            .loginForm input[type="submit"],
+            .loginForm input[type="button"],
+            .loginForm button {
+                width: auto;
+            }
+   
+</style>
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+<div id="loginRegister" style="display:inline-block;vertical-align:top;text-align:right;">
+    <div id="loginForm" class="loginForm">
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl, LoginRegisterAction = "Login" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <input type="hidden" name="LoginRegisterAction" value="Login" />
+            <fieldset>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.LoginUserName)
+                        @Html.TextBoxFor(m => m.LoginUserName) 
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.LoginPassword)
+                        @Html.PasswordFor(m => m.LoginPassword) 
+                    </li>
+                    <li class="rememberMe">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                    </li>
+                    <li class="rememberMe">
+                        <input type="submit" value="ورود" />
+                    </li>
+                </ol>
+
+            </fieldset>
+
+        }   
+    </div>
+     
+    <div id="registerForm" class="loginForm">
+        @using (Html.BeginForm(new { LoginRegisterAction = "Register" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <fieldset>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.RegisterationUserName)
+                        @Html.TextBoxFor(m => m.RegisterationUserName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.RegisterationPassword)
+                        @Html.PasswordFor(m => m.RegisterationPassword)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword)
+                    </li>
+                    <li class="rememberMe">
+                        <input type="submit" value="ثبت نام" />
+                    </li>
+                </ol>
+
+            </fieldset>
+        }
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

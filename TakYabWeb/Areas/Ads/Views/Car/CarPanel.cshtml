@@ -4,27 +4,5 @@
 @{
     ViewBag.Title = "CarPanel";
     
-}
- 
-@*<script type="text/javascript">
-    /***
-* CustomersFilterWidget - Provides filter user interface for customer name column in this project
-* This widget onRenders select list with avaliable customers.
-*/
-
-    function CustomersFilterWidget() {
-       
-    }
-
-</script>
- 
-@Html.Grid(Model).Columns(columns =>
-           {
-               columns.Add(foo => foo.SubModel.Name).Sortable(true).Titled("SubModel").Filterable(true).SetWidth(110);
-               columns.Add(foo => foo.BuildYear.Name).Sortable(true).Titled("BuildYear").SetWidth(110);
-               columns.Add(foo => foo.Price).Sortable(true).Titled("Price").SetWidth(110);
-           }).SetRowCssClasses(item => item.AdStatus!=null ? "warning" : string.Empty).WithPaging(15).Sortable().Filterable().WithMultipleFilters()*@
-           
-
-
+} 
  @Html.Action("GetSubModelList", "SubModel")

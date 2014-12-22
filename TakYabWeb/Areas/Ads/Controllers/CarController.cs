@@ -23,22 +23,17 @@ namespace TakYab.Areas.Ads.Controllers
         public ActionResult Index()
         {
             var username = TakYab.Areas.User.Controllers.UserController.GetUsername();
-
-
-
-
             if (User.IsInRole("administraor"))
             {
                 var cars = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel);
                 return View(cars.ToList());
             }
 
-            var cars2 = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel)
-.Where(m => m.UserProfile.UserName == username);
+            var cars2 = db.Cars.Include(c => c.AdType).Include(c => c.BuildYear).Include(c => c.PriceRange).Include(c => c.Priority).Include(c => c.Province).Include(c => c.SubModel).
+                Where(m => m.UserProfile.UserName == username);
             return View(cars2.ToList());
-
-
         }
+
         [Authorize(Roles = "administrator,user")]
         public ActionResult FavouriteCars()
         {
@@ -52,14 +47,9 @@ namespace TakYab.Areas.Ads.Controllers
             {
                 userCars.Add(item.Car);
             }
-
             return View(userCars);
-
-
         }
 
-
-        
         [HttpPost]
         public ActionResult AddToFavouriteCars(string CarId)
         {
@@ -118,6 +108,18 @@ namespace TakYab.Areas.Ads.Controllers
             {
                 return HttpNotFound();
             }
+            if (User.Identity != null)
+            {
+                var carView = new CarView
+                {
+                    Username = User.Identity.Name,
+                    CarId = id,
+                    DateViewed = DateTime.Now,
+                    CarViewId = Guid.NewGuid()
+                };
+                db.CarViews.Add(carView);
+                db.SaveChanges();
+            }
             return View(car);
         }
 
@@ -153,12 +155,10 @@ namespace TakYab.Areas.Ads.Controllers
             if (ModelState.IsValid)
             {
                 car.CarId = Guid.NewGuid();
-
                 var carSortNumber = db.Cars.Count() + 1;
                 car.SortOrder = carSortNumber;
                 car.AdCreatedDate = DateTime.Now;
                 car.AdValidUntil = DateTime.Now.AddMonths(1);
-
 
                 if (Request.Files != null)
                     for (var i = 0; i < Request.Files.Count && i < 5; i++)
@@ -175,11 +175,13 @@ namespace TakYab.Areas.Ads.Controllers
                             Request.Files[i].SaveAs(path);
 
                             var thumbnail = directory + "Thumbnail.png";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 100, 75, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
+
+                            var small = directory + "Small.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, small, System.Drawing.Imaging.ImageFormat.Png);
 
                             var medium = directory + "Medium.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
-
 
                             var large = directory + "Large.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
@@ -199,21 +201,17 @@ namespace TakYab.Areas.Ads.Controllers
                             if (i == 4)
                                 car.ImageURI5 = photoPath;
 
-
                             var userController = new UserController();
                             var user = userController.GetUser(UserController.GetUsername());
                             if (user != null)
                                 car.UserId =
                                     user.UserId;
 
-
+                            car.AdStatusId = db.AdStatus.First(m => m.Code == "New").AdStatusId;
                         }
                     }
-
-
                 db.Cars.Add(car);
                 db.SaveChanges();
-
                 return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
             }
 
@@ -304,10 +302,10 @@ namespace TakYab.Areas.Ads.Controllers
                             Request.Files[i].SaveAs(path);
 
                             var thumbnail = directory + "Thumbnail.png";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 100, 75, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
 
                             var small = directory + "Small.png";
-                            TakYab.Controllers.ImageManagerController.resizeImage(path, 320, 240, small, System.Drawing.Imaging.ImageFormat.Png);
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, small, System.Drawing.Imaging.ImageFormat.Png);
 
                             var medium = directory + "Medium.png";
                             TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);

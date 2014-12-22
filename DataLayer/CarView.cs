@@ -17,6 +17,7 @@ namespace DataLayer
         public System.Guid CarViewId { get; set; }
         public Nullable<System.Guid> CarId { get; set; }
         public string Username { get; set; }
+        public Nullable<System.DateTime> DateViewed { get; set; }
     
         public virtual Car Car { get; set; }
     }

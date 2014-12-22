@@ -1,0 +1,7 @@
+﻿@model DataLayer.ContentPage
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Raw(Model.HtmlContent)

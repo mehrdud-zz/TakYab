@@ -81,6 +81,7 @@
           <Property Name="CarViewId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CarId" Type="uniqueidentifier" />
           <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateViewed" Type="datetime" />
         </EntityType>
         <EntityType Name="Colour">
           <Key>
@@ -91,6 +92,17 @@
           <Property Name="Code" Type="nvarchar" MaxLength="200" />
           <Property Name="SortOrder" Type="int" />
         </EntityType>
+        <EntityType Name="ContentPage">
+          <Key>
+            <PropertyRef Name="ContentPageId" />
+          </Key>
+          <Property Name="ContentPageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
+          <Property Name="HtmlContent" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="FavouritCars">
           <Key>
             <PropertyRef Name="FavouriteCarId" />
@@ -98,6 +110,14 @@
           <Property Name="FavouriteCarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarId" Type="uniqueidentifier" />
           <Property Name="username" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="FirstPageAd">
+          <Key>
+            <PropertyRef Name="FirstPageAdId" />
+          </Key>
+          <Property Name="FirstPageAdId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarId" Type="uniqueidentifier" />
+          <Property Name="SortOrder" Type="int" />
         </EntityType>
         <EntityType Name="FuelType">
           <Key>
@@ -128,6 +148,7 @@
           <Property Name="Active" Type="bit" />
           <Property Name="SortOrder" Type="int" />
           <Property Name="SubNav" Type="bit" />
+          <Property Name="ImageURI1" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="PriceRange">
           <Key>
@@ -338,6 +359,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FirstPageAd_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirstPageAd" Type="Self.FirstPageAd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="FirstPageAd">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubModel_Model">
           <End Role="Model" Type="Self.Model" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -360,7 +395,9 @@
           <EntitySet Name="CarStatus" EntityType="Self.CarStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarView" EntityType="Self.CarView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colour" EntityType="Self.Colour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContentPage" EntityType="Self.ContentPage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavouritCars" EntityType="Self.FavouritCars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirstPageAd" EntityType="Self.FirstPageAd" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsuranceType" EntityType="Self.InsuranceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
@@ -421,6 +458,10 @@
             <End Role="Car" EntitySet="Car" />
             <End Role="FavouritCars" EntitySet="FavouritCars" />
           </AssociationSet>
+          <AssociationSet Name="FK_FirstPageAd_Car" Association="Self.FK_FirstPageAd_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="FirstPageAd" EntitySet="FirstPageAd" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubModel_Model" Association="Self.FK_SubModel_Model">
             <End Role="Model" EntitySet="Model" />
             <End Role="SubModel" EntitySet="SubModel" />
@@ -459,6 +500,7 @@
           <Property Name="SortOrder" Type="Int32" />
           <NavigationProperty Name="SubModels" Relationship="Self.FK_SubModel_Model" FromRole="Model" ToRole="SubModel" />
           <Property Name="SubNav" Type="Boolean" />
+          <Property Name="ImageURI1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
@@ -581,6 +623,12 @@
             <End Role="Car" EntitySet="Cars" />
             <End Role="FavouritCar" EntitySet="FavouritCars" />
           </AssociationSet>
+          <EntitySet Name="ContentPages" EntityType="TakYabModel.ContentPage" />
+          <EntitySet Name="FirstPageAds" EntityType="TakYabModel.FirstPageAd" />
+          <AssociationSet Name="FK_FirstPageAd_Car" Association="TakYabModel.FK_FirstPageAd_Car">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="FirstPageAd" EntitySet="FirstPageAds" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdStatus">
           <Key>
@@ -679,6 +727,7 @@
           <NavigationProperty Name="UserProfile" Relationship="TakYabModel.FK_Car_UserProfile" FromRole="Car" ToRole="UserProfile" />
           <NavigationProperty Name="CarViews" Relationship="TakYabModel.FK_CarView_Car" FromRole="Car" ToRole="CarView" />
           <NavigationProperty Name="FavouritCars" Relationship="TakYabModel.FK_FavouritCars_Car" FromRole="Car" ToRole="FavouritCar" />
+          <NavigationProperty Name="FirstPageAds" Relationship="TakYabModel.FK_FirstPageAd_Car" FromRole="Car" ToRole="FirstPageAd" />
         </EntityType>
         <Association Name="FK_Car_AdStatus">
           <End Type="TakYabModel.AdStatus" Role="AdStatus" Multiplicity="0..1" />
@@ -841,6 +890,7 @@
           <Property Name="CarId" Type="Guid" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Car" Relationship="TakYabModel.FK_CarView_Car" FromRole="CarView" ToRole="Car" />
+          <Property Name="DateViewed" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="FavouritCar">
           <Key>
@@ -879,6 +929,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ContentPage">
+          <Key>
+            <PropertyRef Name="ContentPageId" />
+          </Key>
+          <Property Name="ContentPageId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HtmlContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FirstPageAd">
+          <Key>
+            <PropertyRef Name="FirstPageAdId" />
+          </Key>
+          <Property Name="FirstPageAdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarId" Type="Guid" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Car" Relationship="TakYabModel.FK_FirstPageAd_Car" FromRole="FirstPageAd" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_FirstPageAd_Car">
+          <End Type="TakYabModel.Car" Role="Car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TakYabModel.FirstPageAd" Role="FirstPageAd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="FirstPageAd">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -906,6 +990,7 @@
           <EntitySetMapping Name="Models">
             <EntityTypeMapping TypeName="TakYabModel.Model">
               <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="ImageURI1" ColumnName="ImageURI1" />
                 <ScalarProperty Name="SubNav" ColumnName="SubNav" />
                 <ScalarProperty Name="ModelId" ColumnName="ModelId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1059,6 +1144,7 @@
           <EntitySetMapping Name="CarViews">
             <EntityTypeMapping TypeName="TakYabModel.CarView">
               <MappingFragment StoreEntitySet="CarView">
+                <ScalarProperty Name="DateViewed" ColumnName="DateViewed" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CarViewId" ColumnName="CarViewId" />
@@ -1071,6 +1157,27 @@
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="FavouriteCarId" ColumnName="FavouriteCarId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentPages">
+            <EntityTypeMapping TypeName="TakYabModel.ContentPage">
+              <MappingFragment StoreEntitySet="ContentPage">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="HtmlContent" ColumnName="HtmlContent" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContentPageId" ColumnName="ContentPageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirstPageAds">
+            <EntityTypeMapping TypeName="TakYabModel.FirstPageAd">
+              <MappingFragment StoreEntitySet="FirstPageAd">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="FirstPageAdId" ColumnName="FirstPageAdId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

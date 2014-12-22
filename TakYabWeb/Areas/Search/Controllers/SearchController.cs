@@ -35,7 +35,7 @@ namespace TakYab.Areas.Search.Controllers
 
             string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
 
-            if (!String.IsNullOrEmpty(sefrKarkarde))
+            if (!String.IsNullOrEmpty(sefrKarkarde) && sefrKarkarde != "-1")
             {
                 var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
                 if (carStatus != null)
@@ -181,11 +181,14 @@ namespace TakYab.Areas.Search.Controllers
 
             string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
 
-            if (!String.IsNullOrEmpty(sefrKarkarde))
+            if (!String.IsNullOrEmpty(sefrKarkarde) && sefrKarkarde != "-1")
             {
                 var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
                 if (carStatus != null)
+                {
                     searchCriterias.CarStatusId = carStatus.CarStatusId;
+                    searchCriterias.CarStatus = carStatus.Name;
+                }
             }
 
             searchCriterias.ProvinceId = searchForm.ProvinceId;
@@ -227,7 +230,7 @@ namespace TakYab.Areas.Search.Controllers
             int sefrKarKarde = (!String.IsNullOrEmpty(CarStatusString) ? Convert.ToInt32(CarStatusString) : -1);
             if (sefrKarKarde >= 0)
             {
-                var carStatus = db.CarStatus.First(m => m.Code == sefrKarKarde.ToString());
+                var carStatus = db.CarStatus.First(m => m.Code == CarStatusString);
                 if (carStatus != null)
                     CarStatusId = carStatus.CarStatusId;
             }
@@ -347,7 +350,7 @@ namespace TakYab.Areas.Search.Controllers
 
             string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
 
-            if (!String.IsNullOrEmpty(sefrKarkarde))
+            if (!String.IsNullOrEmpty(sefrKarkarde) && sefrKarkarde != "-1")
             {
                 var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
                 if (carStatus != null)
@@ -394,7 +397,7 @@ namespace TakYab.Areas.Search.Controllers
             var searchCriteriaLight = new SearchCriteriaLight();
             string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
 
-            if (!String.IsNullOrEmpty(sefrKarkarde))
+            if (!String.IsNullOrEmpty(sefrKarkarde) && sefrKarkarde != "-1")
             {
                 var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
                 if (carStatus != null)
@@ -487,7 +490,7 @@ namespace TakYab.Areas.Search.Controllers
             var searchCriteriaLight = new SearchCriteriaLight();
             string sefrKarkarde = !String.IsNullOrEmpty(Request.Form["carStatusHidden"]) ? Request.Form["carStatusHidden"] : String.Empty;
 
-            if (!String.IsNullOrEmpty(sefrKarkarde))
+            if (!String.IsNullOrEmpty(sefrKarkarde) && sefrKarkarde != "-1")
             {
                 var carStatus = db.CarStatus.First(m => m.Code == sefrKarkarde);
                 if (carStatus != null)

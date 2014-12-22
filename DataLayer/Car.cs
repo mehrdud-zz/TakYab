@@ -18,6 +18,7 @@ namespace DataLayer
         {
             this.CarViews = new HashSet<CarView>();
             this.FavouritCars = new HashSet<FavouritCar>();
+            this.FirstPageAds = new HashSet<FirstPageAd>();
         }
     
         public System.Guid CarId { get; set; }
@@ -62,5 +63,6 @@ namespace DataLayer
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<CarView> CarViews { get; set; }
         public virtual ICollection<FavouritCar> FavouritCars { get; set; }
+        public virtual ICollection<FirstPageAd> FirstPageAds { get; set; }
     }
 }

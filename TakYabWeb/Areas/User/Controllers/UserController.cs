@@ -21,7 +21,9 @@ namespace TakYab.Areas.User.Controllers
         }
 
 
-        
+
+
+
         public UserProfile GetUser(string username)
         {
             var user = db.UserProfiles.First(m => m.UserName == username);
@@ -40,6 +42,13 @@ namespace TakYab.Areas.User.Controllers
         public ActionResult Homepage()
         {
             return View();
+        }
+
+
+        public ActionResult ViewContent(String ContentURL)
+        {
+            var content = db.ContentPages.First(m => m.URL == ContentURL);
+            return View(content);
         }
     }
 }

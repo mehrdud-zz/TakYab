@@ -70,6 +70,7 @@ namespace TakYab.Models
         public bool RememberMe { get; set; }
     }
 
+
     public class RegisterModel
     {
         [Required]
@@ -86,6 +87,41 @@ namespace TakYab.Models
         [Display(Name = "تایید رمز ورود")]
         [Compare("Password", ErrorMessage = "رمز ورود و تاید رمز ورود متفاوت هستند!")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public enum LoginRegisterAction { Login, Register }
+    public class LoginRegister
+    {
+        [Required]
+        [Display(Name = "اسم کاربری")]
+        public string LoginUserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "طول رمز ورود مجاز {2} کاراکتر میباشد", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "رمز ورود")]
+        public string LoginPassword { get; set; }
+
+
+        [Required]
+        [Display(Name = "اسم کاربری")]
+        public string RegisterationUserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "طول رمز ورود مجاز {2} کاراکتر میباشد", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "رمز ورود")]
+        public string RegisterationPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "تایید رمز ورود")]
+        [Compare("RegisterationPassword", ErrorMessage = "رمز ورود و تاید رمز ورود متفاوت هستند!")]
+        public string ConfirmPassword { get; set; }
+
+        [Display(Name = "من را بخاطر بسپار")]
+        public bool RememberMe { get; set; }
+
+        public LoginRegisterAction LoginRegisterAction;
     }
 
     public class ExternalLogin

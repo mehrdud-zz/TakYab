@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "کمپانی خودرو سازی";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
  
 <p>
@@ -15,6 +15,7 @@
 @Html.Grid(Model).Columns(columns =>
            {
                columns.Add(foo => foo.Name).Titled("کمپانی خودرو سازی").Sortable(true);
+               columns.Add(foo => foo.SubNav).Titled("نمایش در پایین صفحه").Sortable(true); 
                columns.Add(foo => foo.SortOrder).Titled("ترتیب").Sortable(true);
                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
                 <a href="/Admin/Model/Edit/@ad.ModelId">ویرایش</a><span>&nbsp;|&nbsp;</span>

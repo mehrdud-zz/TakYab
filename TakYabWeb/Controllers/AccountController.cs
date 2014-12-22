@@ -27,6 +27,56 @@ namespace TakYab.Controllers
         }
 
 
+        [AllowAnonymous]
+        public ActionResult LoginRegister()
+        {
+            ViewBag.ReturnUrl = "";
+            return View();
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult LoginRegister(LoginRegister model, string LoginRegisterAction)
+        {
+            if (LoginRegisterAction == "Login")
+            {
+                if (WebSecurity.Login(model.LoginUserName, model.LoginPassword, persistCookie: model.RememberMe))
+                {
+                    return RedirectToAction("MyAds", "Car", new { area = "Ads" });
+                }
+
+                // If we got this far, something failed, redisplay form
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+            }
+            else if (LoginRegisterAction == "Register")
+            {
+                if (true)
+                {
+                    // Attempt to register the user
+                    try
+                    {
+                        WebSecurity.CreateUserAndAccount(model.RegisterationUserName, model.RegisterationPassword);
+                        WebSecurity.Login(model.RegisterationUserName, model.RegisterationPassword);
+                        Roles.AddUsersToRole(new string[] { model.RegisterationUserName }, ConfigKeys.GetConfigValues(ConfigKeys.USER_USER_ROLE));
+
+                        return RedirectToAction("Create", "Car", new { area = "Ads" });
+                    }
+                    catch (MembershipCreateUserException e)
+                    {
+                        ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    }
+                }
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
+            return View();
+        }
+
+
         //
         // GET: /Account/Login
 
@@ -51,13 +101,15 @@ namespace TakYab.Controllers
                 //{
                 //    RedirectToAction("MyAds", "Car", new { area = "Ads" });
                 //}
-                return RedirectToLocal(returnUrl);
+                //  return RedirectToLocal(returnUrl);
+                return RedirectToAction("MyAds", "Car", new { area = "Ads" });
             }
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
+
 
         //
         // POST: /Account/LogOff
@@ -97,7 +149,7 @@ namespace TakYab.Controllers
                     WebSecurity.Login(model.UserName, model.Password);
                     Roles.AddUsersToRole(new string[] { model.UserName }, ConfigKeys.GetConfigValues(ConfigKeys.USER_USER_ROLE));
 
-                    return RedirectToAction("Index", "Home", new { area = "" });
+                    RedirectToAction("Create", "Car", new { area = "Ads" });
                 }
                 catch (MembershipCreateUserException e)
                 {

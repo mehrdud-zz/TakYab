@@ -11,25 +11,39 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding:0 120px 0 120px !important;">
-            <ul class="nav navbar-nav navbar-right" style="padding:0 !important;">
+        <div class="collapse navbar-collapse navbar-takyab-collapse" id="bs-example-navbar-collapse-1" >
+            <ul id="lowerBarNavigation" class="nav navbar-nav navbar-right" style="padding:0 !important;">
                 @*<li><a href="#">تماس با ما</a></li>
-                    <li><a href="#">درباره ما</a></li>
-                    <li><a href="#">اطلاعات فنی خودرو</a></li>
-                    <li><a href="#">قیمت روز خودرو</a></li>*@
-
-                 
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">اطلاعات فنی خودرو</a></li>
+                <li><a href="#">قیمت روز خودرو</a></li>*@
 
                 <li><a href="#">خروج</a></li>
+                @if (User.IsInRole("administrator"))
+                {
+                    <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
+                }
+                
                 <li><a href="#">ویرایش مشخصات</a></li>
                 <li><a href="#">ارسال پیام</a></li>
                 <li><a href="#">در انتظار</a></li>
-                <li><a href="~/Ads/Car/FavouriteCars">آگهی های ذخیره شده</a></li>
-                <li><a href="~/Ads/Car/MyAds/">آگهی های من</a></li>
-                <li><a href="/Ads/Car/Create/">آگهی جدید</a></li>
-
+                <li id="Nav-Car-FavouriteCars"><a href="~/Ads/Car/FavouriteCars">آگهی های ذخیره شده</a></li>
+                <li id="Nav-Car-MyAds"><a href="~/Ads/Car/MyAds/">آگهی های من</a></li>
+                <li id="Nav-Car-Create"><a href="/Ads/Car/Create/">آگهی جدید</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var controller = '@(ViewContext.RouteData.Values["controller"])';
+        var action = '@(ViewContext.RouteData.Values["action"])';
+        $("#lowerBarNavigation #Nav-" + controller + "-" + action).addClass("takyab-active");
+         
+    });
+
+</script>

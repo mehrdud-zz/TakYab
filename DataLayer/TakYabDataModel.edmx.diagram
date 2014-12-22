@@ -36,6 +36,9 @@
         <EntityTypeShape EntityType="TakYabModel.FavouritCar" Width="1.5" PointX="14.875" PointY="9.75" />
         <AssociationConnector Association="TakYabModel.FK_CarView_Car" />
         <AssociationConnector Association="TakYabModel.FK_FavouritCars_Car" />
+        <EntityTypeShape EntityType="TakYabModel.ContentPage" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TakYabModel.FirstPageAd" Width="1.5" PointX="14.875" PointY="12.5" />
+        <AssociationConnector Association="TakYabModel.FK_FirstPageAd_Car" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

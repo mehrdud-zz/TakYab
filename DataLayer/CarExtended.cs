@@ -90,6 +90,12 @@ namespace DataLayer
                 return String.Format("{0:n0}", this.Price);
             }
         }
+
+        public bool ImageURI1Checkbox { get; set; }
+        public bool ImageURI2Checkbox { get; set; }
+        public bool ImageURI3Checkbox { get; set; }
+        public bool ImageURI4Checkbox { get; set; }
+        public bool ImageURI5Checkbox { get; set; }
     }
 
 

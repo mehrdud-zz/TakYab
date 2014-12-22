@@ -1,0 +1,25 @@
+﻿@using GridMvc.Html
+@model IEnumerable<DataLayer.ContentPage>
+
+@{
+    ViewBag.Title = "مطلب";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<p>
+    <a href="@Url.Action("Create")">
+        <span class="glyphicon glyphicon-plus"></span><span class="createNew">مطلب جدید</span>
+    </a>
+</p>
+
+@Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(foo => foo.Name).Titled("نام").Sortable(true);
+               columns.Add(foo => foo.URL).Titled("URL").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).RenderValueAs(ad => @<div>
+                <a href="/Admin/ContentPage/Edit/@ad.ContentPageId">ویرایش</a><span>&nbsp;|&nbsp;</span>
+                <a target="_blank" href="/User/User/ViewContent?ContentURL=@(ad.URL)">مشاهده</a><span>&nbsp;|&nbsp;</span>
+                <a href="/Admin/ContentPage/Delete/@ad.ContentPageId">حذف</a>
+            </div>);
+           }).Sortable()

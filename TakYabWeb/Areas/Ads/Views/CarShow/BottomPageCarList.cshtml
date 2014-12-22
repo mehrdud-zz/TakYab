@@ -2,67 +2,55 @@
 @{
     ViewBag.Title = "ListCars";
 }
-
-<div style="display:inline-block;text-align:center;max-width:1000px;">
-
+<div style="display:inline-block;text-align:center;vertical-align:top;">
     @foreach (var item in Model)
     {
-        <a href="~/Ads/Car/Details/@item.CarId">
-            <div style="display:inline-block;">
-                <div style="position:relative; display:inline-block;height:240px;width:320px;">
-                    <div style="position:absolute;z-index:-1;bottom:0;left:0;">
-                        <img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" width="320" height="240" />
-                    </div>
-                    <div style="position:absolute;bottom:0;left:0;width:320px;height:80px; display:inline-block; opacity: 0.6;filter: alpha(opacity=60); background-color:#000;">
-                        <table style="width:100%;height:100%;">
-                            <tr>
-                                <td style="border-left:1px solid #fff;color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
-                                </td>
-                                <td style=" color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border-left:1px solid #fff; color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    @((item != null && item.BuildYearId != null) ? item.BuildYear.Name : String.Empty)
-                                </td>
-                                <td style="color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    @(String.Format("{0:n0}", item.Price))
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border-left:1px solid #fff;color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    <a href="#" style="color:#fff;" onclick="addtoFavourits('@item.CarId');return false;">آگهی مورد علاقه</a>
-                                </td>
-                                <td style="color:#fff;font-weight:bold;text-align:center;" width="120">
-                                    <a href="#" style="color:#fff;" onclick="addtoCompareCars('@item.CarId');return false;">مقایسه خودروها</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+
+        <div style="display:inline-block;vertical-align:top;">
+            <div style=" display:inline-block;vertical-align:top;padding:5px;">
+                <table class="bootomPageCarList">
+                    <tr>
+                        <td colspan="2">
+                            <a href="~/Ads/Car/Details/@item.CarId">
+                                <img src="~/Content/Images/@(item.FirstImage)/Small.png" width="320" height="240" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : "-")
+                        </td>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : "-")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.BuildYearId != null) ? item.BuildYear.Name : "-")
+                        </td>
+                        <td class="infoCell" width="120">
+                            @(String.Format("{0:n0}", item.Price))
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" style="color:#fff;" onclick="addtoFavourits(this, '@item.CarId');return false;">آگهی مورد علاقه</a>
+                            }
+                            else
+                            {
+                                <a href="#" style="color:#fff;" onclick="showRequiredLogin(this);return false;">آگهی مورد علاقه</a>
+                            }
+                        </td>
+                        <td class="infoCell" width="120">
+                            <a href="#" style="color:#fff;" onclick="addtoCompareCars('@item.CarId');return false;">مقایسه خودروها</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
-        </a>
-    }
-</div>
+        </div>
 
-<script type="text/javascript">
-    function addtoFavourits(carId) {
-        $.ajax({
-            url: '@Url.Action("AddToFavouriteCars", "Car", new { area="Ads"})',
-            type: 'post',
-            data: JSON.stringify({
-                CarId: carId 
-            }),
-            dataType: "json",
-            processData: false,
-            contentType: "application/json; charset=utf-8" 
-        });
 
     }
-
-    function addtoCompareCars(carId) {
-
-    }
-</script>
+</div> 

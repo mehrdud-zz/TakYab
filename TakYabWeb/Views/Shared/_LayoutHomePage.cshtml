@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - تکیاب</title>    
+    <title>@ViewBag.Title - تکیاب</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="Content/Gridmvc.css" rel="stylesheet" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,18 +20,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
-    <link href="Content/Gridmvc.css" rel="stylesheet" />
+     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script src="Scripts/gridmvc.js"></script>
-    <script src="Scripts/gridmvc.min.js"></script>
-    <script src="Scripts/gridmvc.customfilter.js"></script>
-
-     
 
 </head>
 <body>
@@ -40,8 +34,7 @@
             </header>
             <div id="body">
                 @RenderSection("featured", required: false)
-                <section class="content-wrapper main-content clear-fix">
-                   
+                <section class="content-wrapper main-content clear-fix"> 
                     @RenderBody()
                 </section>
             </div>
@@ -53,21 +46,22 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-    
-
-
+    @RenderSection("scripts", required: false) 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+    <script src="@Url.Content("Scripts/gridmvc.js")"></script>
+    <script src="@Url.Content("Scripts/gridmvc.min.js")"></script>
+    <script src="@Url.Content("Scripts/gridmvc.customfilter.js")"></script>
+    <script src="@Url.Content("Scripts/TakYab.js")"></script>  
     <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-55627231-1', 'auto');
-    ga('send', 'pageview');
-
+        ga('create', 'UA-55627231-1', 'auto');
+        ga('send', 'pageview'); 
     </script>
 </body>
 </html>

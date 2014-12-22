@@ -192,6 +192,7 @@
     <Compile Include="Areas\Admin\Controllers\BuildYearController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColourController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentPageController.cs" />
     <Compile Include="Areas\Admin\Controllers\FuelTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InsuranceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
@@ -363,6 +364,18 @@
     <Content Include="Areas\Ads\Views\Car\FavouriteCars.cshtml" />
     <Content Include="Areas\Ads\Views\Car\AddToFavouriteCars.cshtml" />
     <Content Include="Areas\Ads\Views\Car\DeleteFavouriteCar.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Delete.cshtml" />
+    <Content Include="Areas\User\Views\User\ViewContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmAds.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Ads.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\NewAds.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\FirstPageAds.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\RemoveFromFirstPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddtoFirstPage.cshtml" />
     <None Include="Properties\PublishProfiles\TakYab.pubxml" />
     <Content Include="Images\blank.gif" />
     <Content Include="Images\blankII.jpg" />
@@ -447,6 +460,9 @@
     <Content Include="Views\Shared\Footer2.cshtml" />
     <Content Include="Views\Shared\Dena.cshtml" />
     <Content Include="Views\Shared\NavigationUser.cshtml" />
+    <Content Include="Views\Account\LoginRegister.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\AdminSideNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,7 @@
 ﻿@model DataLayer.Car
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "مشخصات";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,172 +14,180 @@
 
 
     <div class="formPanel">
-        <div class="rightSidePanel panel carDetailsPanel" style="width:400px;">
-            <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">
-                <div class="pull-right" style="display:inline-block;width:60%;"><span>@Model.ModelName</span> </div>
-                <div style="display:inline-block;width:38%;text-align:left;"><span>@Model.PriceString</span></div>
-            </div>
-            <div class="panel-body" style="background-color:#FFCC00;">
-                <ul class="formList">
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.CarStatusId)
+        <table class="carDetailsTable">
+            <tr>
+                <td>
+                    <div class="rightSidePanel panel carDetailsPanel" style="width:400px;padding-left:20px;padding-top:20px;">
+                        <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">
+                            <div class="pull-right" style="display:inline-block;width:60%;"><span>@Model.ModelName</span> </div>
+                            <div style="display:inline-block;width:38%;text-align:left;"><span>@Model.PriceString</span></div>
                         </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.CarStatus.Name)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.ProvinceId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.Province.Name)
+                        <div class="panel-body" style="background-color:#FFCC00;height:535px;">
+                            <ul class="formList">
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.CarStatusId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.CarStatus.Name)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.ProvinceId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.Province.Name)
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.BuildYearId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.BuildYear.Name)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.BuildYearId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.BuildYear.Name)
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.Milage)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.Milage)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.Milage)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.Milage)
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.OutsideColourId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.OutsideColour)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.OutsideColourId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.OutsideColour)
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.InsideColourId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.InsideColour)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.FuelTypeId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.FuelType.Name)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.InsuranceTypeId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.InsuranceType.Name)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.InsideColourId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.InsideColour)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.FuelTypeId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.FuelType.Name)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.InsuranceTypeId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.InsuranceType.Name)
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.AdTypeId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.AdType.Name)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.PriorityId)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.Priority.Name)
-                        </div>
-                    </li>
-                    <li>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.AdTypeId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.AdType.Name)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.PriorityId)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.Priority.Name)
+                                    </div>
+                                </li>
+                                <li>
 
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.Description)
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.Description)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.Description)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.GearType)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.GearType)
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="display-label">
+                                        @Html.LabelFor(model => model.PhoneNumber)
+                                    </div>
+                                    <div class="display-field">
+                                        @Html.DisplayFor(model => model.PhoneNumber)
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.Description)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.GearType)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.GearType)
-                        </div>
-                    </li>
-                    <li>
-                        <div class="display-label">
-                            @Html.LabelFor(model => model.PhoneNumber)
-                        </div>
-                        <div class="display-field">
-                            @Html.DisplayFor(model => model.PhoneNumber)
-                        </div>
-                    </li>
-                </ul>
-            </div>
 
-        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="width:768px; height:576px;display:inline-block;vertical-align:top;padding-top:20px;">
 
-        <div class="leftSidePanel">
-            <div class=" panel panel-takyab-transparent ">
-                <div class="panel-body">
-                    <div id="carCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#carCarousel" data-slide-to="1"></li>
-                            <li data-target="#carCarousel" data-slide-to="2"></li>
-                        </ol>
+                        <div id="carCarousel" class="carousel slide" data-ride="carousel" style="border-radius:5px;">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#carCarousel" data-slide-to="1"></li>
+                                <li data-target="#carCarousel" data-slide-to="2"></li>
+                            </ol>
 
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            @{var i = "active";}
-                            @foreach (var item in Model.CarImages)
-                            {
-                            <div class="item @(i)" style="text-align:center;">
-                                <img src="/Content/Images/@(item)/Medium.png" />
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                @{var i = "active";}
+                                @foreach (var item in Model.CarImages)
+                                {
+                                <div class="item @(i)" style="text-align:center;">
+                                    <img src="/Content/Images/@(item)Large.png" />
+                                </div>
+
+                                @(i = "")
+                                }
                             </div>
 
-                            @(i = "")
-                            }
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carCarousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carCarousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
                         </div>
 
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carCarousel" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carCarousel" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
 
+                    <div class="panel carDetailsPanel">
+                        <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">@Html.LabelFor(model => model.Description)</div>
+                        <div class="panel-body" style="background-color:#FFCC00;min-height:100px;display:inline-block;width:100%;">
+                            @Html.DisplayFor(model => model.Description)
+                        </div>
+                    </div>
 
-        <div class="panel carDetailsPanel" style="padding-right:20px;">
-            <div class="panel-heading" style="background-color: #99CC67;border-radius:5px 5px 0 0 ;font-weight:bold;color:#fff;">@Html.LabelFor(model => model.Description)</div>
-            <div class="panel-body" style="background-color:#FFCC00;min-height:100px;display:inline-block;width:100%;">
-                @Html.DisplayFor(model => model.Description)
-            </div>
-        </div>
-
+                </td>
+            </tr>
+        </table>
     </div>
 </fieldset>
 

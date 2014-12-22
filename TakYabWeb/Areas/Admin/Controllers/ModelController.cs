@@ -53,10 +53,37 @@ namespace TakYab.Areas.Admin.Controllers
             {
                 model.ModelId = Guid.NewGuid();
                 db.Models.Add(model);
+
+                if (Request.Files != null)
+                    for (var i = 0; i < Request.Files.Count && i < 1; i++)
+                    {
+                        if (Request.Files[i].ContentLength > 0)
+                        {
+                            var fileName = System.IO.Path.GetFileName(Request.Files[i].FileName);
+                            var photoPath = "00Models\\" + model.ModelId + "\\ImageURI" + (i + 1) + "\\";
+                            var directory = System.Configuration.ConfigurationManager.AppSettings["ImagesFolderName"] + photoPath;
+                            if (!System.IO.Directory.Exists(directory))
+                                System.IO.Directory.CreateDirectory(directory);
+
+                            var path = System.IO.Path.Combine(directory, fileName);
+                            Request.Files[i].SaveAs(path);
+
+                            var thumbnail = directory + "Thumbnail.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
+
+                            var medium = directory + "Medium.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
+
+
+                            var large = directory + "Large.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
+
+                            model.ImageURI1 = photoPath;
+                        }
+                    }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(model);
         }
 
@@ -83,6 +110,34 @@ namespace TakYab.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(model).State = EntityState.Modified;
+                if (Request.Files != null)
+                    for (var i = 0; i < Request.Files.Count && i < 1; i++)
+                    {
+                        if (Request.Files[i].ContentLength > 0)
+                        {
+                            var fileName = System.IO.Path.GetFileName(Request.Files[i].FileName);
+                            var photoPath = "00Models\\" + model.ModelId + "\\ImageURI" + (i + 1) + "\\";
+                            var directory = System.Configuration.ConfigurationManager.AppSettings["ImagesFolderName"] + photoPath;
+                            if (!System.IO.Directory.Exists(directory))
+                                System.IO.Directory.CreateDirectory(directory);
+
+                            var path = System.IO.Path.Combine(directory, fileName);
+                            Request.Files[i].SaveAs(path);
+
+                            var thumbnail = directory + "Thumbnail.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 200, 150, thumbnail, System.Drawing.Imaging.ImageFormat.Png);
+
+                            var medium = directory + "Medium.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 640, 480, medium, System.Drawing.Imaging.ImageFormat.Png);
+
+
+                            var large = directory + "Large.png";
+                            TakYab.Controllers.ImageManagerController.resizeImage(path, 960, 720, large, System.Drawing.Imaging.ImageFormat.Png);
+
+                            model.ImageURI1 = photoPath;
+                        }
+                    }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

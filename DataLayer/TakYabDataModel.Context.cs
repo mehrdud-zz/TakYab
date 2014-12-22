@@ -41,5 +41,7 @@ namespace DataLayer
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<CarView> CarViews { get; set; }
         public DbSet<FavouritCar> FavouritCars { get; set; }
+        public DbSet<ContentPage> ContentPages { get; set; }
+        public DbSet<FirstPageAd> FirstPageAds { get; set; }
     }
 }
