@@ -331,6 +331,37 @@ namespace TakYab.Areas.Ads.Controllers
 
                         }
                     }
+                if (car.ImageURI1Checkbox)
+                {
+                    car.ImageURI1 = "-";
+                    car.ImageURI1 = null;
+                }
+
+                if (car.ImageURI2Checkbox)
+                {
+
+                    car.ImageURI2 = "-"; 
+                    car.ImageURI2 = null;
+                }
+
+                if (car.ImageURI3Checkbox)
+                {
+                    car.ImageURI3 = "-";
+                    car.ImageURI3 = null;
+                }
+
+                if (car.ImageURI4Checkbox)
+                {
+                    car.ImageURI4 = "-"; 
+                    car.ImageURI4 = null;
+                }
+
+                if (car.ImageURI5Checkbox)
+                {
+                    car.ImageURI5 = "-";
+                    car.ImageURI5 = null;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "Car", new { @id = 2, are = "Ads" });
             }

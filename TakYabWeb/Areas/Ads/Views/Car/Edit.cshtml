@@ -1,11 +1,11 @@
 ﻿@model DataLayer.Car
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "ویرایش آگهی";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ویرایش</h2>
+<h2>ویرایش آگهی</h2>
 
 @using (Html.BeginForm("Edit", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -13,11 +13,9 @@
     @Html.HiddenFor(model => model.UserId)
 
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
 
-    <fieldset>
-        <legend>Car</legend>
-
+    <fieldset> 
         @Html.HiddenFor(model => model.CarId)
 
 
@@ -113,20 +111,20 @@
                     </div>
                     <div class="formRow">
                         <div class="editor-label">
-                            @Html.LabelFor(model => model.FuelType)
+                            @Html.LabelFor(model => model.FuelTypeId)
                         </div>
                         <div class="editor-field">
                             @Html.DropDownListFor(model => model.FuelTypeId, new SelectList(ViewBag.FuelTypeIdList, "FuelTypeId", "Name", Model.FuelTypeId), "---")
-                            @Html.ValidationMessageFor(model => model.FuelType)
+                            @Html.ValidationMessageFor(model => model.FuelTypeId)
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="editor-label">
-                            @Html.LabelFor(model => model.InsuranceType)
+                            @Html.LabelFor(model => model.InsuranceTypeId)
                         </div>
                         <div class="editor-field">
                             @Html.DropDownListFor(model => model.InsuranceTypeId, new SelectList(ViewBag.InsuranceTypeIdList, "InsuranceTypeId", "Name", Model.InsuranceTypeId), "---")
-                            @Html.ValidationMessageFor(model => model.InsuranceType)
+                            @Html.ValidationMessageFor(model => model.InsuranceTypeId)
                         </div>
                     </div>
                     <div class="formRow">
@@ -196,8 +194,8 @@
                             @if (Model.ImageURI1 != null)
                             {
                                 <img src="~/Content/Images/@(Model.CarId)/ImageURI1/Thumbnail.png" />
-                                <label for="ImageURI1Checkbox">حذف عکس</label>
-                                <input type="checkbox" name="ImageURI1Checkbox" id="ImageURI1Checkbox" />
+                                <label for="ImageURI1Checkbox">حذف عکس</label> 
+                                @Html.EditorFor(m=>m.ImageURI1Checkbox)
                             }
                             <input type="file" id="ImageURI1File" name="ImageURI1File" />
 
@@ -214,7 +212,7 @@
                                 <img src="~/Content/Images/@(Model.CarId)/ImageURI2/Thumbnail.png" />
 
                                 <label for="ImageURI2Checkbox">حذف عکس</label>
-                                <input type="checkbox" name="ImageURI2Checkbox" id="ImageURI2Checkbox" />
+                                    @Html.EditorFor(m => m.ImageURI2Checkbox)
                             }
 
                             <input type="file" id="ImageURI2File" name="ImageURI2File" />
@@ -230,7 +228,7 @@
                             {
                                 <img src="~/Content/Images/@(Model.CarId)/ImageURI3/Thumbnail.png" />
                                 <label for="ImageURI3Checkbox">حذف عکس</label>
-                                <input type="checkbox" name="ImageURI3Checkbox" id="ImageURI3Checkbox" />
+                                @Html.EditorFor(m => m.ImageURI3Checkbox)
                             }
                             <input type="file" id="ImageURI3File" name="ImageURI3File" />
                         </div>
@@ -245,7 +243,7 @@
                             {
                                 <img src="~/Content/Images/@(Model.CarId)/ImageURI4/Thumbnail.png" />
                                 <label for="ImageURI4Checkbox">حذف عکس</label>
-                                <input type="checkbox" name="ImageURI4Checkbox" id="ImageURI4Checkbox" />
+                                @Html.EditorFor(m => m.ImageURI4Checkbox)
                             }
                             <input type="file" id="ImageURI4File" name="ImageURI4File" />
 
@@ -261,7 +259,7 @@
                             {
                                 <img src="~/Content/Images/@(Model.CarId)/ImageURI5/Thumbnail.png" />
                                 <label for="ImageURI5Checkbox">حذف عکس</label>
-                                <input type="checkbox" name="ImageURI5Checkbox" id="ImageURI5Checkbox" />
+                               @Html.EditorFor(m => m.ImageURI5Checkbox)
                             }
                             <input type="file" id="ImageURI5File" name="ImageURI5File" />
                         </div>
@@ -270,7 +268,7 @@
             </div>
 
             <div class="buttonsContainer">
-                <input type="submit" value="Save" />
+                <input type="submit" value="ثبت" />
             </div>
 
 
@@ -279,7 +277,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("بازگشت", "Index")
 </div>
 
 

@@ -457,7 +457,8 @@ namespace TakYab.Areas.Search.Controllers
                     (SubModelId == Guid.Empty || cars.SubModelId == SubModelId) &&
                     (PriceRangeId == Guid.Empty || cars.PriceRangeId == PriceRangeId) &&
                     (BuildYearId == Guid.Empty || cars.BuildYearId == BuildYearId) &&
-                    (AdTypeId == Guid.Empty || cars.AdTypeId == AdTypeId)
+                    (AdTypeId == Guid.Empty || cars.AdTypeId == AdTypeId) &&
+                    (cars.AdStatusId != Guid.Empty && cars.AdStatus.Code == "Approved")
 
                 select new LightCar()
                 {
