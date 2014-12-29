@@ -1,20 +1,20 @@
 ﻿@model TakYab.Models.RegisterModel
 @{
     ViewBag.Title = "ثبت نام";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1> 
+    <h1>@ViewBag.Title</h1> 
 </hgroup>
 
-<section id="loginForm">
+<section id="loginForm" class="registerGorm">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
 
         <fieldset>
-            <legend>Registration Form</legend>
             <ol>
                 <li>
                     @Html.LabelFor(m => m.UserName)
@@ -28,11 +28,11 @@
                     @Html.LabelFor(m => m.ConfirmPassword)
                     @Html.PasswordFor(m => m.ConfirmPassword)
                 </li>
-                <li class="rememberMe">
-                    <input type="submit" value="ثبت نام" />
-                </li>
+                 <li class="rememberMe">
+                        <input type="submit" value="ثبت نام" />
+                    </li> 
             </ol>
-            
+
         </fieldset>
     }
 </section>

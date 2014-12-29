@@ -1,0 +1,24 @@
+﻿body {
+    direction: rtl !important;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        margin: 0 250px 0 0 !important;
+        border-right: 1px solid #e7e7e7 !important;
+        border-left: 0px transparent !important;
+    }
+
+    .navbar-header {
+        width: 260px !important;
+        text-align:right;
+    }
+
+    #content{
+        padding-top:10px !important;
+    }
+
+    #side-menu{
+        padding: 0 !important;
+    }
+}

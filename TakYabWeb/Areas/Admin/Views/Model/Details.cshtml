@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Details</h2>
@@ -25,10 +25,10 @@
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Active)
+         @Html.DisplayNameFor(model => model.SubNav)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Active)
+        @Html.DisplayFor(model => model.SubNav)
     </div>
 
     <div class="display-label">
@@ -37,6 +37,8 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.SortOrder)
     </div>
+    <br />
+    <img src="/Content/Images/@(Model.ImageURI1)Large.png" />
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.ModelId }) |

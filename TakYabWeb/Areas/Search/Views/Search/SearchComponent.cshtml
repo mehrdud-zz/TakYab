@@ -1,7 +1,7 @@
 ﻿@model TakYab.Areas.Search.Controllers.SearchCriteria
 <div class="searchContainer">
     <form method="post" action="@(Url.Action("SearchResults", "Search", new { area = "Search" }))">
-        <div class="searchPanel"> 
+        <div class="searchPanel">
             <div class="searchItem">
                 <div class="dropdown">
                     <input type="hidden" value="" name="carStatusHidden" id="carStatusHidden" />
@@ -116,7 +116,7 @@
             </div>
             <div class="searchItem">
                 <input type="submit" value="جستجو" class="btnSearch" />
-                 
+
                 <input type="button" value="مجدد" class="btnReset" onclick="javascript:resetSearch();" />
 
             </div>

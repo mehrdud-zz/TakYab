@@ -1,35 +1,64 @@
-﻿<nav class="navbar navbar-takyab navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header pull-right">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @*@Html.ActionLink("صفحه اصلی", "Index", "Home", new { area="", @class = "navbar-brand" })*@
-            <a href="~/" title="صفحه اصلی" class="navbar-link">
-                <img src="~/Images/logo3.png" alt="صفحه اصلی" height="50px" />
-            </a>
+﻿<div id="header"> 
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header pull-right">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collpse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" id="bs-example-navbar-collapse-1" style="">
+                <ul id="topBarNavigation" class="nav navbar-nav">
+ 
+                    @*<li><a href="~/User/User/ViewContent?ContentURL=CarPrices">قیمت روز خودرو</a></li>
+                    <li><a href="~/User/User/ViewContent?ContentURL=TechnicalInformation">اطلاعات فنی خودرو</a></li>
+                    <li id="Nav-Search-SearchResults"><a href="~/Search/Search/SearchResults">جستجوی خودرو</a></li>
+                    <li id="Nav-Car-Create"><a href="~/Ads/Car/Create/">فروش خودرو</a></li>
+                    <li id="Nav-Home-Index"><a href="/">صفحه اصلی</a></li>*@
+
+
+
+                    <li><a href="#carPrices" class="page-scroll">قیمت روز خودرو</a></li>
+                    <li><a href="#technicalInformation" class="page-scroll">اطلاعات فنی خودرو</a></li>
+                    <li><a href="#ads" class="page-scroll">آگهی ها</a></li>
+                    <li id="Nav-Search-SearchResults"><a href="#search" class="page-scroll">جستجوی خودرو</a></li>
+                    <li id="Nav-Car-Create"><a href="#newAd" class="page-scroll">فروش خودرو</a></li>
+                    
+                    <li>
+                        @Html.Partial("_LoginPartial") 
+                    </li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {     
+        var controller = '@(ViewContext.RouteData.Values["controller"])';
+        var action = '@(ViewContext.RouteData.Values["action"])';
+        $("#topBarNavigation #Nav-" + controller + "-" + action).addClass("takyab-active");
+    });
+
+</script>
+
+
+
+
+@*<div class="takyab-header">
+        <div style="" class="takyab-header-branding pull-right">
+            <h3>تک یاب، وب سایت اطلاع رسانی و جستجوی خودرو </h3>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                @*<li><a href="#">تماس با ما</a></li>
-                    <li><a href="#">درباره ما</a></li>
-                    <li><a href="#">اطلاعات فنی خودرو</a></li>
-                    <li><a href="#">قیمت روز خودرو</a></li>*@
-
-                @if (User.IsInRole("administrator"))
-                {
-                    <li><a href="~/Admin/Admin/Index">مدیریت سیستم</a></li>
-                }
-                <li><a href="~/Ads/Car/Index">فروش خودرو</a></li>
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        <div class="takyab-header-logo">
+            <a href="~/" title="صفحه اصلی">
+                <img src="~/Images/TakYabLogo.png" alt="صفحه اصلی" height="45" />
+            </a>
+        </div>
+    </div>
+    @Html.Partial("_LoginPartial")*@

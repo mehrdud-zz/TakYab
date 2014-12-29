@@ -34,5 +34,11 @@ namespace TakYab.Areas.Ads.Controllers
             var selectedCars = db.Cars.Where(m => m.Priority.Code == "Homepage" && !String.IsNullOrEmpty(m.ImageURI1)).OrderBy(m => m.SortOrder).Take(5);
             return View(selectedCars.ToList());
         }
+
+
+        public ActionResult CarRotatorFixed()
+        {
+            return View();
+        }
     }
 }

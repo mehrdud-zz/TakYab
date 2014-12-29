@@ -1,25 +1,58 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "خانه";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
 
-<div class="HomePage">
- 
-
-    <div class="HomePageCotnainer">
-        <div id="topCotnainer" style="position:relative;display:inline-block;min-height:800px;width:100%;">
-            <div class="SearchComponentCotainer hover item-fade">
-                @Html.Action("SearchComponent", "Search", new { area = "Search" })
-            </div>
-            <div class="CarRotatorContainer">
-                @Html.Action("CarRotator", "CarShow", new { area = "Ads" })
-            </div>
-        </div>
-        <div class="BottomPageCarListContainer">
-            @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
-        </div>
-    </div>
-    <div class="leftbarCarListContainer">
-        @Html.Action("LeftBarCarList", "CarShow", new { area = "Ads" })
-    </div>
+<div style="display:inline-block;padding:0;vertical-align:top;z-index:-1;">
+@Html.Action("CarRotatorFixed", "CarShow", new { area = "Ads" })
 
 </div>
+
+<section id="carPrices" class="content-section text-center">
+    <div class="homepageContent">
+        <h2 style="text-align:center;">به وب سایت تکیاب خوش آمدید</h2>
+        <p style="text-align:right;">
+            سلام و عرض ادب خدمت دوستان عزیزم و اعضای محترم خانواده بزرگ تک یاب تک یاب وب سایت تخصصی آنلاین آگهی‌های خرید و فروش خودرو می باشد . ز لطف و محبت همه عزیزان اعم از کارشناسان بزرگوا ر ، همکاران و مدیران کل سایت و کاربران همیشه خوب و دوست داشتنی تشکر و قدر دانی میکنم و از خداوند متعال می خواهم که از همه دوستان عزیز به ویژه کاربران عزیز و مدیران ارشد که مدیریت علمی و اجرایی سایت را بخوبی بر دوش میکشند تشکر کنم.هدف از راه اندازی این سایت ایجاد یک فضای امن و مطمئن برای مردم عزیز کشورمان که قصد فروش یا خرید خودرو را دارند با صهولت کامل انجام بپذیرد.
+        </p>
+    </div>
+</section>
+
+<section id="technicalInformation" class="content-section text-center">
+    <div class="homepageContent">
+        <h2 style="text-align:center;">به وب سایت تکیاب خوش آمدید</h2>
+        <p style="text-align:right;">
+            سلام و عرض ادب خدمت دوستان عزیزم و اعضای محترم خانواده بزرگ تک یاب تک یاب وب سایت تخصصی آنلاین آگهی‌های خرید و فروش خودرو می باشد . ز لطف و محبت همه عزیزان اعم از کارشناسان بزرگوا ر ، همکاران و مدیران کل سایت و کاربران همیشه خوب و دوست داشتنی تشکر و قدر دانی میکنم و از خداوند متعال می خواهم که از همه دوستان عزیز به ویژه کاربران عزیز و مدیران ارشد که مدیریت علمی و اجرایی سایت را بخوبی بر دوش میکشند تشکر کنم.هدف از راه اندازی این سایت ایجاد یک فضای امن و مطمئن برای مردم عزیز کشورمان که قصد فروش یا خرید خودرو را دارند با صهولت کامل انجام بپذیرد.
+        </p>
+    </div>
+</section>
+
+<section id="search" class="content-section text-center">
+    <div class="homepageContent">
+        @Html.Action("SearchComponentNew", "Search", new { area = "Search" })
+    </div>
+</section>
+
+<section id="ads" class="content-section text-center">
+    @Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
+</section>
+
+
+<section id="newAd" class="content-section text-center">
+    <div class="homepageContent">
+        <h2 style="text-align:center;">به وب سایت تکیاب خوش آمدید</h2>
+        <p style="text-align:right;">
+            سلام و عرض ادب خدمت دوستان عزیزم و اعضای محترم خانواده بزرگ تک یاب تک یاب وب سایت تخصصی آنلاین آگهی‌های خرید و فروش خودرو می باشد . ز لطف و محبت همه عزیزان اعم از کارشناسان بزرگوا ر ، همکاران و مدیران کل سایت و کاربران همیشه خوب و دوست داشتنی تشکر و قدر دانی میکنم و از خداوند متعال می خواهم که از همه دوستان عزیز به ویژه کاربران عزیز و مدیران ارشد که مدیریت علمی و اجرایی سایت را بخوبی بر دوش میکشند تشکر کنم.هدف از راه اندازی این سایت ایجاد یک فضای امن و مطمئن برای مردم عزیز کشورمان که قصد فروش یا خرید خودرو را دارند با صهولت کامل انجام بپذیرد.
+        </p>
+    </div>
+</section>
+
+@Html.Action("BottomPageCarList", "CarShow", new { area = "Ads" })
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchComponent").addClass("item-fade");
+        });
+    </script>
+}
+

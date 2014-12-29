@@ -1,24 +1,19 @@
 ﻿@model DataLayer.Car
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "آگهی جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>آگهی جدید</h2>
-
 @using (Html.BeginForm("Create", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Car</legend>
-        <div class="formPanel ">
-            <div class="rightSidePanel panel panel-takyab ">
+        <div class="formPanel">
+            <div class="rightSidePanel panel panel-takyab">
                 <div class="panel-heading">اطلاعات خودرو</div>
                 <div class=" panel-body">
-
                     <div class="formRow">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.CarStatusId)
@@ -38,29 +33,21 @@
                         </div>
                     </div>
                     <div class="formRow">
-
+                        <div class="editor-label">
+                            <label for="ModelId">نوع خودرو</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("ModelId", ((SelectList)ViewBag.ModelId))
+                        </div>
+                    </div>
+                    <div class="formRow">
                         <div class="editor-label">
                             @Html.LabelFor(model => model.SubModelId)
                         </div>
                         <div class="editor-field">
-                            <table cellspacing="2px">
-                                <tr>
-                                    <td>
-                                        @Html.DropDownList("ModelId", ((SelectList)ViewBag.ModelId), "", new { })
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="SubModelId" id="SubModelId" style="display:none;">
-                                            <option></option>
-                                        </select>
-
-                                    </td>
-                                </tr>
-                            </table>
+                            <select name="SubModelId" id="SubModelId">
+                                <option></option>
+                            </select>
                         </div>
                     </div>
                     <div class="formRow">
@@ -88,6 +75,7 @@
                         <div class="editor-field">
                             @Html.EditorFor(model => model.Price)
                             @Html.ValidationMessageFor(model => model.Price)
+
                         </div>
                     </div>
                     <div class="formRow">
@@ -109,7 +97,6 @@
                         </div>
                     </div>
                     <div class="formRow">
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.FuelTypeId)
                         </div>
@@ -145,9 +132,7 @@
                             @Html.ValidationMessageFor(model => model.PhoneNumber)
                         </div>
                     </div>
-
                     <div class="formRow">
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.AdTypeId)
                         </div>
@@ -157,7 +142,6 @@
                         </div>
                     </div>
                     <div class="formRow">
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.PriorityId)
                         </div>
@@ -167,20 +151,17 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="leftSidePanel ">
                 <div class=" panel panel-takyab ">
                     <div class="panel-heading">آپلود عکس</div>
                     <div class="panel-body">
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ImageURI1)
                         </div>
                         <div class="editor-field">
                             <input type="file" id="ImageURI1File" name="ImageURI1File" />
                         </div>
-
 
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ImageURI2)
@@ -189,14 +170,12 @@
                             <input type="file" id="ImageURI2File" name="ImageURI2File" />
                         </div>
 
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ImageURI3)
                         </div>
                         <div class="editor-field">
                             <input type="file" id="ImageURI3File" name="ImageURI3File" />
                         </div>
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ImageURI4)
                         </div>
@@ -204,15 +183,12 @@
                             <input type="file" id="ImageURI4File" name="ImageURI4File" />
                         </div>
 
-
                         <div class="editor-label">
                             @Html.LabelFor(model => model.ImageURI5)
                         </div>
                         <div class="editor-field">
                             <input type="file" id="ImageURI5File" name="ImageURI5File" />
                         </div>
-
-
 
                     </div>
                 </div>
@@ -232,35 +208,55 @@
             <div class="buttonsContainer">
                 <input type="submit" value="افزودن" class="btn btn-takyab" />
             </div>
-
         </div>
     </fieldset>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index", "Car", new { area = "Ads", @id = -1 }, null)
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function DashboardDataReceived(data) {
-        var dashboardData = data.Result;
-        var result = '<option value=""></option>';
-        for (var i = 0; i < dashboardData.length; i++) {
-            result += '<option value="' + dashboardData[i].SubModelId + '">' + dashboardData[i].Name + '</option>';
+        function DashboardDataReceived(data) {
+            var dashboardData = data.Result;
+            var result = '<option value=""></option>';
+            for (var i = 0; i < dashboardData.length; i++) {
+                result += '<option value="' + dashboardData[i].SubModelId + '">' + dashboardData[i].Name + '</option>';
+            }
+            $("#SubModelId").html(result);
         }
-        $("#SubModelId").html(result);
-    }
 
-    $("#ModelId").change(function () {
-        var modelId = $(this).val();
+        $("#ModelId").change(function () {
+            var modelId = $(this).val();
 
-        if (modelId != "") {
+            if (modelId != "") {
+                $("#SubModelId").show();
+                var requestURL = "/Ads/Car/GetSubModelListByModelId?modelId=" + modelId;
+                console.log("requestURL: " + requestURL);
+                $.ajax({
+                    url: requestURL,
+                    type: "GET",
+                    context: this,
+                    success: DashboardDataReceived,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            }
+            else {
+                //   $("#SubModelId").hide();
+            }
+
+        });
+
+        $(document).ready(function () {
+
+            var modelId = $("#ModelId").val();
+
             $("#SubModelId").show();
             var requestURL = "/Ads/Car/GetSubModelListByModelId?modelId=" + modelId;
             console.log("requestURL: " + requestURL);
@@ -273,11 +269,18 @@
                     alert(xhr.status);
                     alert(thrownError);
                 }
-            });
-        }
-        else {
-            $("#SubModelId").hide();
-        }
 
-    });
-</script>
+            });
+
+        });
+    </script>
+}
+
+
+@section CarNav{
+    <div class="carNav">
+        <img src="@Url.Content("/Images/carNav.jpg")" />
+    </div>
+}
+
+

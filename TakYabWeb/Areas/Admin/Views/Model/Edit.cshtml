@@ -2,12 +2,13 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Edit", "Model", FormMethod.Post, new { enctype = "multipart/form-data" }))  
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -33,11 +34,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Active)
+            @Html.LabelFor(model => model.SubNav)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
+            @Html.EditorFor(model => model.SubNav)
+            @Html.ValidationMessageFor(model => model.SubNav)
         </div>
 
         <div class="editor-label">
@@ -46,6 +47,20 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.SortOrder)
             @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageURI1)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.ImageURI1)
+            @Html.ValidationMessageFor(model => model.ImageURI1)
+            @if (Model.ImageURI1 != null)
+            {
+                <img src="~/Content/Images/@(Model.ImageURI1)/Thumbnail.png" />
+              
+            }
+            <input type="file" id="ImageURI1File" name="ImageURI1File" />
+
         </div>
 
         <p>

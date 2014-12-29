@@ -1,31 +1,56 @@
 ﻿@model IEnumerable<DataLayer.Car>
 @{
     ViewBag.Title = "ListCars";
-} 
-
-<div style="display:inline-block;width:100%;">
-
+}
+<div style="display:inline-block;text-align:center;vertical-align:top;">
     @foreach (var item in Model)
     {
-        <div style="display:inline-block;"><table><tr><td colspan="2"><img src="~/Content/Images/@(item.FirstImage)/Thumbnail.png" /></td></tr>
-                <tr>
-                    <td>
-                        @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : String.Empty)
-                    </td>
-                    <td>
-                        @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : String.Empty)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#">آگهی مورد علاقه</a>
-                    </td>
-                    <td>
-                        <a href="#">مقایسه خودروها</a>
-                    </td>
-                </tr>
-            </table>
+
+        <div style="display:inline-block;vertical-align:top;">
+            <div style=" display:inline-block;vertical-align:top;padding:5px;">
+                <table class="bootomPageCarList">
+                    <tr>
+                        <td colspan="2">
+                            <a href="~/Ads/Car/Details/@item.CarId">
+                                <img src="~/Content/Images/@(item.FirstImage)/Small.png" width="320" height="240" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Name : "-")
+                        </td>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.SubModel != null && item.SubModel.Model != null) ? item.SubModel.Model.Name : "-")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @((item != null && item.BuildYearId != null) ? item.BuildYear.Name : "-")
+                        </td>
+                        <td class="infoCell" width="120">
+                            @(String.Format("{0:n0}", item.Price))
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="infoCell" width="120">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" style="color:#fff;" onclick="addtoFavourits(this, '@item.CarId');return false;">آگهی مورد علاقه</a>
+                            }
+                            else
+                            {
+                                <a href="#" style="color:#fff;" onclick="showRequiredLogin(this);return false;">آگهی مورد علاقه</a>
+                            }
+                        </td>
+                        <td class="infoCell" width="120">
+                            <a href="#" style="color:#fff;" onclick="addtoCompareCars('@item.CarId');return false;">مقایسه خودروها</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
+
     }
-</div>
+</div> 

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "CarRotatorFixed";
+}
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="z-index:-1;">
+    <!-- Indicators -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Images/CarRotator/01.jpg" width="100%" />
+        </div>
+        <div class="item">
+            <img src="~/Images/CarRotator/02.jpg" width="100%" />
+        </div>
+        <div class="item">
+            <img src="~/Images/CarRotator/03.jpg" width="100%" />
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+<div style="display:inline-block;width:100%;text-align:center;background-color:red;height:40px;margin:-100px;z-index:2000;">
+    <a href="#technicalInformation" class="btn btn-circle page-scroll">
+        <i class="fa fa-angle-double-down animated"></i>
+    </a>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#carousel-example-generic').carousel();
+
+    });
+
+
+</script>
