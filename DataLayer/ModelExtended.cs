@@ -13,12 +13,14 @@ namespace DataLayer
         public override string ToString()
         {
             return this.Name;
-        }
+        } 
+
+        public Nullable<bool> ImageURI1Checkbox { get; set; }
     }
 
 
     class ModelMetadata
-    { 
+    {
         [Required]
         [Display(Name = "کمپانی خودرو سازی")]
         public string Name { get; set; }
@@ -28,5 +30,12 @@ namespace DataLayer
 
         [Display(Name = "ترتیب")]
         public Nullable<int> SortOrder { get; set; }
+
+        [Display(Name = "لوگو")]
+        public string ImageURI1 { get; set; }
+
+        [Display(Name = "نمایش در پایین صفحه")]
+        public Nullable<bool> SubNav { get; set; }
+
     }
 }

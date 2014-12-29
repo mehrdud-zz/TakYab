@@ -12,21 +12,13 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Model
+    public partial class ContentPage
     {
-        public Model()
-        {
-            this.SubModels = new HashSet<SubModel>();
-        }
-    
-        public System.Guid ModelId { get; set; }
+        public System.Guid ContentPageId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<int> SortOrder { get; set; }
-        public Nullable<bool> SubNav { get; set; }
-        public string ImageURI1 { get; set; }
-    
-        public virtual ICollection<SubModel> SubModels { get; set; }
+        public string URL { get; set; }
+        public string HtmlContent { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     }
 }
